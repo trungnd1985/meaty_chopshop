@@ -78,5 +78,7 @@ namespace Nop.Core.Domain.Blogs
         /// Gets or sets the date and time of entity creation
         /// </summary>
         public DateTime CreatedOnUtc { get; set; }
+
+        public int PictureId { get; set; }
     }
 }

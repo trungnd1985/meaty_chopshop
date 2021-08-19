@@ -1,0 +1,44 @@
+@model ProductDetailsModel.ProductBreadcrumbModel
+@using Nop.Core.Domain.Common
+@inject CommonSettings commonSettings
+@{
+    var breadcrumbDelimiter = commonSettings.BreadcrumbDelimiter;
+}
+@if (Model.Enabled)
+{
+    <div class="breadcrumb pt-4 pb-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                            <a href="@Url.RouteUrl("Homepage")">
+                                @T("Products.Breadcrumb.Top")
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="fas fa-angle-double-right"></span>
+                        </li>
+                        @{ int position = 1; }
+                        @foreach (var category in Model.CategoryBreadcrumb)
+                        {
+                            <li class="list-inline-item">
+                                <a href="@Url.RouteUrl("Category", new { SeName = category.SeName })">
+                                    @category.Name
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <span class="fas fa-angle-double-right"></span>
+                            </li>
+                            position++;
+                        }
+                        <li class="list-inline-item active" aria-current="page">
+                            @Model.ProductName
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+}

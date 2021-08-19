@@ -154,6 +154,14 @@ namespace Nop.Web.Factories
             return template.ViewPath;
         }
 
+        public async Task<TopicModel> PrepareTopicModelBySystemNameAsync(string systemName, bool displayTitle)
+        {
+            var model = await this.PrepareTopicModelBySystemNameAsync(systemName);
+            model.DisplayTitle = displayTitle;
+
+            return model;
+        }
+
         #endregion
     }
 }

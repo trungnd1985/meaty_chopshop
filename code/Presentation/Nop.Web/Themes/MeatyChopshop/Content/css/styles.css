@@ -1,0 +1,211 @@
+@font-face {
+    font-family: 'SRN CookieRun';
+    src: url('../font/SRNCookieRun-Bold.woff2') format('woff2'), url('../font/SRNCookieRun-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SRN CookieRun';
+    src: url('../font/SRNCookieRun-Black.woff2') format('woff2'), url('../font/SRNCookieRun-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SRN CookieRun';
+    src: url('../font/SRNCookieRun-Regular.woff2') format('woff2'), url('../font/SRNCookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'UTM Androgyne';
+    src: url('../font/UTMAndrogyne.woff2') format('woff2'), url('../font/UTMAndrogyne.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+html, * {
+    font-family: "SRN CookieRun";
+    font-size: 14px;
+    color: #707070;
+}
+
+footer {
+    background-image: url('../images/bg_footer.jpg');
+    background-repeat: repeat-x;
+    color: #ffffff;
+}
+
+    footer * {
+        color: #FFF;
+    }
+
+    footer a {
+        color: #FFFFFF;
+    }
+
+    footer .hr {
+        border-bottom: 1px solid #356788
+    }
+
+
+header {
+    background-image: url('../images/bg_top.jpg');
+    background-repeat: repeat-x;
+    color: #FFF;
+}
+
+    header * {
+        color: #FFF;
+    }
+
+.bg-menu {
+    background-color: #275471;
+}
+
+@media (min-width: 1200px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1800px;
+    }
+}
+
+.admin-header-links {
+    background-color: #333;
+    text-align: center;
+    color: #eee;
+}
+
+    .admin-header-links * {
+        display: inline-block;
+        margin: 0 10px;
+        line-height: 35px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .admin-header-links .impersonate {
+        display: inline-block;
+    }
+
+        .admin-header-links .impersonate a {
+            background-color: #555;
+            padding: 0 15px;
+        }
+
+            .admin-header-links .impersonate a:hover,
+            .admin-header-links .impersonate a:focus {
+                background-color: #666;
+            }
+
+.topic-title {
+    color: #265372;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.footer .topic-title, header .topic-title {
+    color: #FFF;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #265372;
+    border-color: #265372;
+}
+
+    .btn-primary:hover {
+        background-color: #356788;
+        border-color: #356788;
+    }
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #FFF;
+}
+
+.banner-product {
+    background-image: url(../images/banner/banner_san_pham.jpg);
+    min-height: 400px;
+}
+
+.banner-news {
+    background-image: url(../images/banner/banner_goc_am_thuc.jpg);
+    min-height: 400px;
+    color: #FFF;
+}
+
+    .banner-news * {
+        color: #FFF;
+    }
+
+.hr {
+    border-bottom: 1px solid rgba(0,0,0,.125)
+}
+
+.related-products {
+    background-image: url(../images/banner/banner_san_pham.jpg);
+}
+
+.btn-outline-light {
+    border: 1px solid #b9b9b9;
+    color: #707070;
+}
+
+    .btn-outline-light:not(:disabled):not(.disabled).active, .btn-outline-light:not(:disabled):not(.disabled):active, .show > .btn-outline-light.dropdown-toggle {
+        color: #FFF;
+        background-color: #d12e25;
+        border: 1px solid #974642;
+    }
+
+    .btn-outline-light:hover {
+        color: #fff;
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
+.qty-input {
+    width: 150px !important;
+    display: inline-block;
+}
+
+.bg-gray {
+    background-color: #f7f7f7;
+    color: #707070;
+}
+
+    .bg-gray .topic-title {
+        color: #707070;
+    }
+
+.current-price {
+    color: #d12e25;
+}
+
+.product-name {
+    color: #333333;
+}
+
+.product-item {
+    border: none;
+}
+
+    .product-item:hover {
+        border: 1px solid #dedede;
+    }
+
+.bg-primary {
+    background-color: #275471 !important;
+}
+
+.badge-notification {
+    position: absolute;
+    font-size: .9rem;
+    margin-top: -.1rem;
+    margin-left: -.9rem;
+    padding: .2em .45em;
+}

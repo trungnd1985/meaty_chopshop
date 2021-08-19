@@ -38,5 +38,7 @@ namespace Nop.Web.Factories
         /// The task result contains the view path
         /// </returns>
         Task<string> PrepareTemplateViewPathAsync(int topicTemplateId);
+
+        Task<TopicModel> PrepareTopicModelBySystemNameAsync(string systemName, bool displayTitle);
     }
 }

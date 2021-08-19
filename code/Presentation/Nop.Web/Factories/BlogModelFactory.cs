@@ -12,10 +12,12 @@ using Nop.Services.Blogs;
 using Nop.Services.Common;
 using Nop.Services.Customers;
 using Nop.Services.Helpers;
+using Nop.Services.Localization;
 using Nop.Services.Media;
 using Nop.Services.Seo;
 using Nop.Web.Infrastructure.Cache;
 using Nop.Web.Models.Blogs;
+using Nop.Web.Models.Media;
 
 namespace Nop.Web.Factories
 {
@@ -39,6 +41,7 @@ namespace Nop.Web.Factories
         private readonly IUrlRecordService _urlRecordService;
         private readonly IWorkContext _workContext;
         private readonly MediaSettings _mediaSettings;
+        private readonly ILocalizationService _localizationService;
 
         #endregion
 
@@ -56,7 +59,8 @@ namespace Nop.Web.Factories
             IStoreContext storeContext,
             IUrlRecordService urlRecordService,
             IWorkContext workContext,
-            MediaSettings mediaSettings)
+            MediaSettings mediaSettings,
+            ILocalizationService localizationService)
         {
             _blogSettings = blogSettings;
             _captchaSettings = captchaSettings;
@@ -71,10 +75,11 @@ namespace Nop.Web.Factories
             _urlRecordService = urlRecordService;
             _workContext = workContext;
             _mediaSettings = mediaSettings;
+            _localizationService = localizationService;
         }
 
         #endregion
-        
+
         #region Methods
 
         /// <summary>
@@ -91,7 +96,7 @@ namespace Nop.Web.Factories
 
             if (blogPost == null)
                 throw new ArgumentNullException(nameof(blogPost));
-
+            var language = await _workContext.GetWorkingLanguageAsync();
             model.Id = blogPost.Id;
             model.MetaTitle = blogPost.MetaTitle;
             model.MetaDescription = blogPost.MetaDescription;
@@ -104,7 +109,28 @@ namespace Nop.Web.Factories
             model.CreatedOn = await _dateTimeHelper.ConvertToUserTimeAsync(blogPost.StartDateUtc ?? blogPost.CreatedOnUtc, DateTimeKind.Utc);
             model.Tags = await _blogService.ParseTagsAsync(blogPost);
             model.AddNewComment.DisplayCaptcha = _captchaSettings.Enabled && _captchaSettings.ShowOnBlogCommentPage;
+            var pictureSize = _mediaSettings.CategoryThumbPictureSize;
 
+            var blogPostPictureCacheKey = _staticCacheManager.PrepareKeyForDefaultCache(NopModelCacheDefaults.BlogPostPictureCacheKey,
+                        model, pictureSize);
+            model.PictureModel = await _staticCacheManager.GetAsync(blogPostPictureCacheKey, async () =>
+            {
+                var picture = await _pictureService.GetPictureByIdAsync(blogPost.PictureId);
+                string fullSizeImageUrl, imageUrl;
+
+                (fullSizeImageUrl, picture) = await _pictureService.GetPictureUrlAsync(picture);
+                (imageUrl, _) = await _pictureService.GetPictureUrlAsync(picture, pictureSize);
+
+                var titleLocale = await _localizationService.GetResourceAsync("Media.Category.ImageLinkTitleFormat");
+                var altLocale = await _localizationService.GetResourceAsync("Media.Category.ImageAlternateTextFormat");
+                return new PictureModel
+                {
+                    FullSizeImageUrl = fullSizeImageUrl,
+                    ImageUrl = imageUrl,
+                    Title = string.Format(titleLocale, blogPost.Title),
+                    AlternateText = string.Format(altLocale, blogPost.Title)
+                };
+            });
             //number of blog comments
             var storeId = _blogSettings.ShowBlogCommentsPerStore ? (await _storeContext.GetCurrentStoreAsync()).Id : 0;
 
@@ -151,6 +177,9 @@ namespace Nop.Web.Factories
             var blogPosts = string.IsNullOrEmpty(command.Tag)
                 ? await _blogService.GetAllBlogPostsAsync(store.Id, language.Id, dateFrom, dateTo, command.PageNumber - 1, command.PageSize)
                 : await _blogService.GetAllBlogPostsByTagAsync(store.Id, language.Id, command.Tag, command.PageNumber - 1, command.PageSize);
+
+
+
 
             var model = new BlogPostListModel
             {
@@ -262,7 +291,7 @@ namespace Nop.Web.Factories
 
             return cachedModel;
         }
-        
+
         /// <summary>
         /// Prepare blog comment model
         /// </summary>

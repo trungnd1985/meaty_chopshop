@@ -214,6 +214,8 @@ namespace Nop.Web.Framework.Infrastructure
             services.AddSingleton<IEventPublisher, EventPublisher>();
             services.AddScoped<ISettingService, SettingService>();
 
+            services.AddScoped<IMeatyProductService, MeatyProductService>();
+
             //plugin managers
             services.AddScoped(typeof(IPluginManager<>), typeof(PluginManager<>));
             services.AddScoped<IAuthenticationPluginManager, AuthenticationPluginManager>();

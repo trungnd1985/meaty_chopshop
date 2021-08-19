@@ -1,0 +1,88 @@
+﻿@model BlogPostListModel
+@{
+    Layout = "_ColumnsOne";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.Blog").Text);
+    //page class
+    Html.AppendPageCssClassParts("html-blog-page");
+}
+@*@section left {
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBlogBefore })
+        @await Component.InvokeAsync("BlogMonths")
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnAfterBlogArchive })
+        @await Component.InvokeAsync("BlogTags")
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBlogAfter })
+    }*@
+@section Breadcrumb{
+
+    <div class="banner-news mb-5">
+        <div class="container">
+            <div class="row align-items-center" style="min-height:400px">
+                <div class="col-12">
+                    <h1>@T("MenuBlog")</h1>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="@Url.RouteUrl("Homepage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="fas fa-angle-double-right"></span>
+                        </li>
+                        <li class="list-inline-item active">@T("MenuBlog")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-9">
+            <div class="row">
+                <div class="col-4">
+                    @foreach (var item in Model.BlogPosts)
+                    {
+                        <div class="card border-0">
+                            <a href="@Url.RouteUrl("BlogPost", new {SeName = item.SeName})">
+                                <img src="@item.PictureModel.ImageUrl" class="card-img-top" alt="@item.PictureModel.AlternateText" title="@item.PictureModel.Title">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="@Url.RouteUrl("BlogPost", new {SeName = item.SeName})">@item.Title</a></h5>
+                                <p class="card-text">@Html.Raw(item.BodyOverview)</p>
+                                <div class="float-left">
+                                    <i class="fas fa-tags"></i> @foreach (var tag in item.Tags)
+                                    {
+                                        <span>#@tag</span>
+                                    }
+                                </div>
+                                <div class="float-right">
+                                    <i class="fas fa-calendar-alt"></i> @item.CreatedOn.ToString("dd/MM/yyyy")
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    @{
+                        var pager = Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber");
+                    }
+                    @if (!(await pager.IsEmpty()))
+                    {
+                        <div class="pager">
+                            @pager
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="col-3">
+            <div class="row">
+                @await Component.InvokeAsync("BlogTags")
+            </div>
+        </div>
+    </div>
+</div>

@@ -283,5 +283,9 @@ namespace Nop.Web.Infrastructure.Cache
         public static CacheKey WidgetModelKey => new CacheKey("Nop.pres.widget-{0}-{1}-{2}-{3}", WidgetPrefixCacheKey);
         public static string WidgetPrefixCacheKey => "Nop.pres.widget";
 
+        public static CacheKey BlogPostPictureCacheKey => new CacheKey("Nop.pres.blog.picture-{0}-{1}", BlogPostPicturePrefixCacheKey, BlogPostPicturePrefixCacheKeyById);
+        public static string BlogPostPicturePrefixCacheKey => "Nop.pres.blog.picture";
+        public static string BlogPostPicturePrefixCacheKeyById => "Nop.pres.blog.picture-{0}-";
+
     }
 }

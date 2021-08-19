@@ -1,0 +1,52 @@
+﻿@*<div class="header">
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderBefore })
+    <div class="header-upper">
+        <div class="header-selectors-wrapper">
+            @await Component.InvokeAsync("TaxTypeSelector")
+            @await Component.InvokeAsync("CurrencySelector")
+            @await Component.InvokeAsync("LanguageSelector")
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderSelectors })
+        </div>
+        <div class="header-links-wrapper">
+            @await Component.InvokeAsync("HeaderLinks")
+            @await Component.InvokeAsync("FlyoutShoppingCart")
+        </div>
+    </div>
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMiddle })
+    <div class="header-lower">
+        <div class="header-logo"> 
+        </div>
+        <div class="search-box store-search-box">
+           
+        </div>
+    </div>
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderAfter })
+</div>*@
+<header>
+    <div class="container">
+        <div class="row pt-4 pb-4">
+            <div class="col-4">
+                @await Component.InvokeAsync("Logo")
+            </div>
+            <div class="col-4 align-self-center">
+                @await Component.InvokeAsync("SearchBox")
+            </div>
+            <div class="col-4 align-self-center">
+                <div class="row">
+                    <div class="col">
+                        <div class="media float-right">
+                            <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_hotline.svg" class="mr-3">
+                            <div class="media-body">
+                                @await Component.InvokeAsync("TopicBlock", new { systemName = "HotLine" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        @await Component.InvokeAsync("HeaderLinks")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @await Component.InvokeAsync("TopMenu")
+</header>

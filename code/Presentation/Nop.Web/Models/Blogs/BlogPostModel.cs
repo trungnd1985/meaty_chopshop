@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Nop.Web.Framework.Models;
+using Nop.Web.Models.Media;
 
 namespace Nop.Web.Models.Blogs
 {
@@ -11,6 +12,7 @@ namespace Nop.Web.Models.Blogs
             Tags = new List<string>();
             Comments = new List<BlogCommentModel>();
             AddNewComment = new AddBlogCommentModel();
+            PictureModel = new PictureModel();
         }
 
         public string MetaKeywords { get; set; }
@@ -24,6 +26,8 @@ namespace Nop.Web.Models.Blogs
         public bool AllowComments { get; set; }
         public int NumberOfComments { get; set; }
         public DateTime CreatedOn { get; set; }
+
+        public PictureModel PictureModel { get; set; }
 
         public IList<string> Tags { get; set; }
 

@@ -15,9 +15,9 @@ namespace Nop.Web.Components
         }
 
         /// <returns>A task that represents the asynchronous operation</returns>
-        public async Task<IViewComponentResult> InvokeAsync(string systemName)
+        public async Task<IViewComponentResult> InvokeAsync(string systemName, bool displayTitle = true)
         {
-            var model = await _topicModelFactory.PrepareTopicModelBySystemNameAsync(systemName);
+            var model = await _topicModelFactory.PrepareTopicModelBySystemNameAsync(systemName, displayTitle);
             if (model == null)
                 return Content("");
             return View(model);

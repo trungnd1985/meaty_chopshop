@@ -1,0 +1,80 @@
+﻿@{
+    Layout = "_Root.Head";
+}
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BodyStartHtmlTagAfter })
+@await Html.PartialAsync("_Notifications")
+@await Html.PartialAsync("_JavaScriptDisabledWarning")
+@await Html.PartialAsync("_OldInternetExplorerWarning")
+@await Component.InvokeAsync("AdminHeaderLinks")
+@await Html.PartialAsync("_Header")
+<script asp-location="Footer">
+        var localized_data = {
+            AjaxCartFailure: "@T("AjaxCart.Failure")"
+        };
+        AjaxCart.init(false, '.header-links .cart-qty', '.header-links .wishlist-qty', '#flyout-cart', localized_data);
+</script>
+@*@await Component.InvokeAsync("TopMenu")*@
+@if (IsSectionDefined("Breadcrumb"))
+{
+    @RenderSection("Breadcrumb")
+}
+<main role="main" class="flex-shrink-0">
+    @RenderBody()
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col">
+                <div class="media">
+                    <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_tuyen_chon.svg" class="mr-3" title="@T("ProductionCollection")">
+                    <div class="media-body">
+                        @await Component.InvokeAsync("TopicBlock", new { systemName = "ProductionCollection" })
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="media">
+                    <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_dong_goi.svg" class="mr-3" title="@T("Package")">
+                    <div class="media-body">
+                        @await Component.InvokeAsync("TopicBlock", new { systemName = "Package" })
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="media">
+                    <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_tu_nhien.svg" class="mr-3" title="@T("Nature")">
+                    <div class="media-body">
+                        @await Component.InvokeAsync("TopicBlock", new { systemName = "Nature" })
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="media">
+                    <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_van_chuyen.svg" class="mr-3" title="@T("Shipping")">
+                    <div class="media-body">
+                        @await Component.InvokeAsync("TopicBlock", new { systemName = "Shipping" })
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="media">
+                    <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_tien_ich.svg" class="mr-3" title="@T("Utilities")">
+                    <div class="media-body">
+                        @await Component.InvokeAsync("TopicBlock", new { systemName = "Utilities" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+@*<div class="master-wrapper-content">
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentBefore })
+
+
+    <div class="master-column-wrapper">
+
+    </div>
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentAfter })
+</div>*@
+@await Component.InvokeAsync("Footer")
+@await Component.InvokeAsync("EuCookieLaw")
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BodyEndHtmlTagBefore })

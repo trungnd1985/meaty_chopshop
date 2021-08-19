@@ -1,0 +1,19 @@
+﻿@model SocialModel
+<ul class="list-inline">
+	@if (!string.IsNullOrEmpty(Model.FacebookLink))
+	{
+		<li class="list-inline-item"><a href="@Model.FacebookLink" target="_blank" rel="noopener noreferrer"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_fb.svg" /></a></li>
+	}
+	@if (!string.IsNullOrEmpty(Model.TwitterLink))
+	{
+		<li class="list-inline-item"><a href="@Model.TwitterLink" target="_blank" rel="noopener noreferrer"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_twi.svg" /></a></li>
+	}
+	@if (Model.NewsEnabled)
+	{
+		<li class="list-inline-item"><a href="@Url.RouteUrl("NewsRSS", new {languageId = Model.WorkingLanguageId})">@T("Footer.FollowUs.RSS")</a></li>
+	}
+	@if (!string.IsNullOrEmpty(Model.YoutubeLink))
+	{
+		<li class="list-inline-item"><a href="@Model.YoutubeLink" target="_blank" rel="noopener noreferrer">@T("Footer.FollowUs.Youtube")</a></li>
+	}
+</ul>
