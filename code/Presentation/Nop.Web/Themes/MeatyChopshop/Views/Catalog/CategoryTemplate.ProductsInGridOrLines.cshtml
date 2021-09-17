@@ -115,13 +115,13 @@
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBottom, additionalData = Model })
     </div>
 </div>-->
-<div class="row">
+<div class="row border-bottom pb-4">
     <div class="col">
         @await Html.PartialAsync("_CatalogSelectors", Model.CatalogProductsModel)
     </div>
 </div>
 <div class="row">
-    <div class="col">
+    <div class="col pt-4">
         @{
             var catalogProductsViewData = new ViewDataDictionary(ViewData);
             catalogProductsViewData["fetchUrl"] = Html.Raw(Url.Action("GetCategoryProducts", "Catalog", new { categoryId = Model.Id }));

@@ -37,6 +37,7 @@
           "Nop.Data": "4.4.0",
           "Nop.Services": "4.4.0",
           "Nop.Web.Framework": "4.4.0",
+          "RestSharp": "106.6.7",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -2303,6 +2304,17 @@
         },
         "compile": {
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {}
+        }
+      },
+      "RestSharp/106.6.7": {
+        "runtime": {
+          "lib/netstandard2.0/RestSharp.dll": {
+            "assemblyVersion": "106.6.7.0",
+            "fileVersion": "106.6.7.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/RestSharp.dll": {}
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
@@ -6529,6 +6541,13 @@
       "sha512": "sha512-1rxdf8NfyAxLlqIEciCl/yNhmz1YiLkmp6rrF8p3/NVmyHHzPWLx8djtDvSAwhPLg64BXvsRcM3+5bP1HAUdYg==",
       "path": "portable.bouncycastle/1.8.8",
       "hashPath": "portable.bouncycastle.1.8.8.nupkg.sha512"
+    },
+    "RestSharp/106.6.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+A1bV6IXh4MzbmVNSWqi3yOUDJC08HlPUX90R9Ith5qwIF2ZJdJAxNOqsDdqwmiJvtJugKRVGULjPoYzxmBFeA==",
+      "path": "restsharp/106.6.7",
+      "hashPath": "restsharp.106.6.7.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
       "type": "package",

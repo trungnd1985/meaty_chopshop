@@ -157,9 +157,13 @@ namespace Nop.Web.Factories
         public async Task<TopicModel> PrepareTopicModelBySystemNameAsync(string systemName, bool displayTitle)
         {
             var model = await this.PrepareTopicModelBySystemNameAsync(systemName);
-            model.DisplayTitle = displayTitle;
+            if (model != null)
+            {
+                model.DisplayTitle = displayTitle;
+                return model;
+            }
 
-            return model;
+            return null;            
         }
 
         #endregion

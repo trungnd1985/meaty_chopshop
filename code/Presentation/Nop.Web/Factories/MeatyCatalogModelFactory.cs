@@ -126,7 +126,21 @@ namespace Nop.Web.Factories
                             AlternateText = string.Format(altLocale, catModel.Name)
                         };
                     });
-                    catModel.FeaturedProducts = (await _productModelFactory.PrepareProductOverviewModelsAsync(products)).ToList();
+                    catModel.SubCategories = await (await _categoryService.GetAllCategoriesByParentCategoryIdAsync(category.Id))
+                        .SelectAwait(async curCategory =>
+                        {
+                            var subCatModel = new CategoryModel.SubCategoryModel
+                            {
+                                Id = curCategory.Id,
+                                Name = await _localizationService.GetLocalizedAsync(curCategory, y => y.Name),
+                                SeName = await _urlRecordService.GetSeNameAsync(curCategory),
+                                Description = await _localizationService.GetLocalizedAsync(curCategory, y => y.Description)
+                            };
+
+                            return subCatModel;
+                        }).ToListAsync();
+
+                    catModel.FeaturedProducts = (await _productModelFactory.PrepareProductOverviewModelsAsync(products, category: catModel)).ToList();
 
                     return catModel;
                 }).ToListAsync();

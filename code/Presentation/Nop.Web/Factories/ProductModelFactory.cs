@@ -1201,7 +1201,7 @@ namespace Nop.Web.Factories
         public virtual async Task<IEnumerable<ProductOverviewModel>> PrepareProductOverviewModelsAsync(IEnumerable<Product> products,
             bool preparePriceModel = true, bool preparePictureModel = true,
             int? productThumbPictureSize = null, bool prepareSpecificationAttributes = false,
-            bool forceRedirectionAfterAddingToCart = false)
+            bool forceRedirectionAfterAddingToCart = false, CategoryModel category = null)
         {
             if (products == null)
                 throw new ArgumentNullException(nameof(products));
@@ -1240,6 +1240,11 @@ namespace Nop.Web.Factories
                 {
                     model.ProductSpecificationModel = await PrepareProductSpecificationModelAsync(product);
                 }
+                if (category != null)
+                {
+                    model.CategoryName = category.Name;
+                }
+                
 
                 //reviews
                 model.ReviewOverviewModel = await PrepareProductReviewOverviewModelAsync(product);
