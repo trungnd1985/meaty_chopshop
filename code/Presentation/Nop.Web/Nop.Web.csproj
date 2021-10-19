@@ -76,6 +76,36 @@
 
     <Content Include="Themes\MeatyChopShop\Views\Catalog\_ProductsInGridOrLines.cshtml" />
 
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\BillingAddress.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\Completed.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\Confirm.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\OnePageCheckout.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\OpcBillingAddress.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\OpcConfirmOrder.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\OpcPaymentInfo.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\OpcPaymentMethods.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\OpcShippingAddress.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\OpcShippingMethods.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\PaymentInfo.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\PaymentMethod.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\ShippingAddress.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\ShippingMethod.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Checkout\_PickupPoints.cshtml" />
+
     <Content Include="Themes\MeatyChopShop\Views\Common\ContactUs.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Common\ContactVendor.cshtml" />
@@ -85,6 +115,8 @@
     <Content Include="Themes\MeatyChopShop\Views\Common\Sitemap.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Common\StoreClosed.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\Login.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Home\Index.cshtml" />
 
@@ -172,6 +204,8 @@
 
     <Content Include="Themes\MeatyChopShop\Views\Shared\Components\OrderSummary\Default.cshtml" />
 
+    <Content Include="Themes\MeatyChopShop\Views\Shared\Components\OrderTotals\Default.cshtml" />
+
     <Content Include="Themes\MeatyChopShop\Views\Shared\Components\PopularProductTags\Default.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Shared\Components\RelatedProducts\Default.cshtml" />
@@ -185,6 +219,8 @@
     <Content Include="Themes\MeatyChopShop\Views\Shared\_ColumnsOne.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Shared\_ColumnsTwo.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Shared\_DiscountBox.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Shared\_Header.cshtml" />
 
@@ -203,6 +239,8 @@
     <Content Include="Themes\MeatyChopShop\Views\ShoppingCart\_GiftCardBox.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\StoreLocation\Index.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Topic\TopicDetails.cshtml" />
     <None Include="Plugins\**" CopyToPublishDirectory="PreserveNewest" Exclude="Plugins\**\runtimes\**;Plugins\**\ref\**;Plugins\**\*.pdb" />
 
     <Content Include="Themes\**" CopyToPublishDirectory="PreserveNewest" Exclude="Themes\**\*.config;Themes\**\*.cshtml;Themes\**\*.json" />
@@ -228,6 +266,8 @@
     <Content Remove="Themes\MeatyChopShop\Content\images\icon\gia_vi.svg" />
     <Content Remove="Themes\MeatyChopShop\Content\images\icon\gia_vi_2.svg" />
     <Content Remove="Themes\MeatyChopShop\Content\images\icon\icon_cua_hang.svg" />
+    <Content Remove="Themes\MeatyChopShop\Content\images\icon\icon_dang_nhap.svg" />
+    <Content Remove="Themes\MeatyChopShop\Content\images\icon\icon_dang_xuat.svg" />
     <Content Remove="Themes\MeatyChopShop\Content\images\icon\icon_dia_chi.svg" />
     <Content Remove="Themes\MeatyChopShop\Content\images\icon\icon_dong_goi.svg" />
     <Content Remove="Themes\MeatyChopShop\Content\images\icon\icon_email.svg" />
@@ -289,11 +329,27 @@
     <None Remove="Themes\MeatyChopShop\Views\Catalog\_FilterPriceBox.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Catalog\_FilterSpecsBox.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Catalog\_ProductsInGridOrLines.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\BillingAddress.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\Completed.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\Confirm.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\OnePageCheckout.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\OpcBillingAddress.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\OpcConfirmOrder.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\OpcPaymentInfo.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\OpcPaymentMethods.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\OpcShippingAddress.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\OpcShippingMethods.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\PaymentInfo.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\PaymentMethod.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\ShippingAddress.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\ShippingMethod.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Checkout\_PickupPoints.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Common\ContactUs.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Common\ContactVendor.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Common\PageNotFound.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Common\Sitemap.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Common\StoreClosed.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\Login.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Home\Index.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\News\List.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\News\NewsItem.cshtml" />
@@ -337,6 +393,7 @@
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\MeatyHomepageCategories\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\HomepageProducts\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\OrderSummary\Default.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Shared\Components\OrderTotals\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\PopularProductTags\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\RelatedProducts\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\SocialButtons\Default.cshtml" />
@@ -344,6 +401,7 @@
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\TopMenu\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\_ColumnsOne.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\_ColumnsTwo.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Shared\_DiscountBox.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\_Header.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\_ProductBox.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\_Root.cshtml" />
@@ -353,6 +411,7 @@
     <None Remove="Themes\MeatyChopShop\Views\ShoppingCart\Wishlist.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\ShoppingCart\_GiftCardBox.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\StoreLocation\Index.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Topic\TopicDetails.cshtml" />
 
     <None Update="Areas\Admin\sitemap.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -453,6 +512,66 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\BillingAddress.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\Completed.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\Confirm.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\OnePageCheckout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\OpcBillingAddress.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\OpcConfirmOrder.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\OpcPaymentInfo.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\OpcPaymentMethods.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\OpcShippingAddress.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\OpcShippingMethods.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\PaymentInfo.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\PaymentMethod.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\ShippingAddress.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\ShippingMethod.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Checkout\_PickupPoints.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Update="Themes\MeatyChopShop\Views\Common\ContactUs.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -470,6 +589,10 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Update="Themes\MeatyChopShop\Views\Common\StoreClosed.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\Login.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -645,6 +768,10 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Shared\Components\OrderTotals\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Update="Themes\MeatyChopShop\Views\Shared\Components\PopularProductTags\Default.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -670,6 +797,10 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Update="Themes\MeatyChopShop\Views\Shared\_ColumnsTwo.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Shared\_DiscountBox.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -706,6 +837,10 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Update="Themes\MeatyChopShop\Views\StoreLocation\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Topic\TopicDetails.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

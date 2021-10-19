@@ -5,167 +5,190 @@
 
 @inject IWorkContext workContext
 
-    <footer class="container-fluid footer mt-auto py-3">
-        <div class="row">
-            <div class="container pt-5 pb-5 hr">
-                <div class="row">
-                    <div class="col">
-                        <div class="media">
-                            <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_hotline.svg" class="mr-3">
-                            <div class="media-body">
-                                @await Component.InvokeAsync("TopicBlock", new { systemName = "HotLine" })
-                            </div>
+<footer class="container-fluid footer mt-auto py-3">
+    <div class="row">
+        <div class="container pt-5 pb-5 hr">
+            <div class="row">
+                <div class="col">
+                    <div class="media">
+                        <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_hotline.svg" class="mr-3">
+                        <div class="media-body">
+                            @await Component.InvokeAsync("TopicBlock", new { systemName = "HotLine" })
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="media">
-                            <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_email.svg" class="mr-3">
-                            <div class="media-body">
-                                @await Component.InvokeAsync("TopicBlock", new { systemName = "EmailUs" })
-                            </div>
+                </div>
+                <div class="col">
+                    <div class="media">
+                        <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_email.svg" class="mr-3">
+                        <div class="media-body">
+                            @await Component.InvokeAsync("TopicBlock", new { systemName = "EmailUs" })
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="media">
-                            <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_time.svg" class="mr-3">
-                            <div class="media-body">
-                                @await Component.InvokeAsync("TopicBlock", new { systemName = "OpenHour" })
-                            </div>
+                </div>
+                <div class="col">
+                    <div class="media">
+                        <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_time.svg" class="mr-3">
+                        <div class="media-body">
+                            @await Component.InvokeAsync("TopicBlock", new { systemName = "OpenHour" })
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="social">
-                            <div class="title">
-                                <strong>@T("Footer.FollowUs")</strong>
-                            </div>
-                            @await Component.InvokeAsync("SocialButtons")
+                </div>
+                <div class="col">
+                    <div class="social">
+                        <div class="title">
+                            <strong>@T("Footer.FollowUs")</strong>
                         </div>
+                        @await Component.InvokeAsync("SocialButtons")
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="container pt-5 pb-5 hr">
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-6">
-                                @await Component.InvokeAsync("Logo")
-                            </div>
-                            <div class="col-6">
-                                <div class="title text-uppercase">
-                                    <strong>Meaty ChopShop</strong>
-                                </div>
-                            </div>
+    </div>
+    <div class="row">
+        <div class="container pt-5 pb-5 hr">
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-6">
+                            @await Component.InvokeAsync("Logo")
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="row">
-                            <div class="col">
-
+                        <div class="col-6">
+                            <div class="title text-uppercase mb-4">
+                                <strong>Meaty ChopShop</strong>
                             </div>
-                            <div class="col">
-                                <div class="title text-uppercase">
-                                    <strong>@T("Footer.MyAccount")</strong>
-                                </div>
-                                <ul class="list">
-                                    @if (Model.DisplayCustomerInfoFooterItem)
-                                    {
-                                        <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
-                                    }
-                                    @if (Model.DisplayCustomerOrdersFooterItem)
-                                    {
-                                        <li><a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
-                                    }
-                                    @if (Model.DisplayCustomerAddressesFooterItem)
-                                    {
-                                        <li><a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a></li>
-                                    }
-                                    @if (Model.ShoppingCartEnabled && Model.DisplayShoppingCartFooterItem)
-                                    {
-                                        <li><a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a></li>
-                                    }
-                                    @if (Model.WishlistEnabled && Model.DisplayWishlistFooterItem)
-                                    {
-                                        <li><a href="@Url.RouteUrl("Wishlist")">@T("Wishlist")</a></li>
-                                    }
-                                    @if (Model.AllowCustomersToApplyForVendorAccount && Model.DisplayApplyVendorAccountFooterItem)
-                                    {
-                                        <li><a href="@Url.RouteUrl("ApplyVendorAccount")">@T("Vendors.ApplyAccount")</a></li>
-                                    }
-                                    @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
-                                    {
-                                        <li><a href="@Url.RouteUrl("Topic", new {SeName = topic.SeName})">@topic.Name</a></li>
-                                    }
-                                </ul>
-                            </div>
-                            <div class="col">
-
-                            </div>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="media mb-4">
+                                        <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_dia_chi.svg" class="mr-3">
+                                        <div class="media-body">
+                                            @await Component.InvokeAsync("TopicBlock", new { systemName = "Address", displayTitle = false })
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media mb-4">
+                                        <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_phone.svg" class="mr-3">
+                                        <div class="media-body">
+                                            @await Component.InvokeAsync("TopicBlock", new { systemName = "PhoneNumber", displayTitle = false })
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    @await Component.InvokeAsync("TopicBlock", new { systemName = "BusinessInformation", displayTitle = false })
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="container pt-4 pb-4">
-                <div class="row">
-                    <div class="col"></div>
-                    <div class="col-6 text-center">
-                        <div class="footer-info">
-                            <span class="footer-disclaimer">@T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreName)</span>
-                            @if (Model.DisplayTaxShippingInfoFooter)
-                            {
-                                var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
-                                <span class="footer-tax-shipping">
-                                    @T(inclTax ? "Footer.TaxShipping.InclTax" : "Footer.TaxShipping.ExclTax", Url.RouteUrl("Topic", new { SeName = await Html.GetTopicSeNameAsync("shippinginfo") }))
-                                </span>
-                            }
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <div class="title text-uppercase mb-4">
+                                <strong>Thông tin chung</strong>
+                            </div>
+                            <ul class="list pl-3">
+                                <li><a href="@Url.RouteUrl("Topic", new {SeName = "ve-meaty"})">Về Meaty</a></li>
+                                <li><a href="@Url.RouteUrl("Topic", new {SeName = "ho-so-phap-ly"})">Hồ sơ pháp lý</a></li>
+                                <li><a href="@Url.RouteUrl("Topic", new {SeName = "chinh-sach-cua-chung-toi"})">Chính sách của chúng tôi</a></li>
+                                <li><a href="@Url.Action("Index","StoreLocation")">@T("ShopAddresses")</a></li>
+                                <li><a href="@Url.RouteUrl("Topic", new {SeName = "cau-hoi-thuong-gap"})">Câu hỏi thường gặp</a></li>
+                            </ul>
                         </div>
-                        @if (!Model.HidePoweredByNopCommerce)
+                        <div class="col">
+                            <div class="title text-uppercase mb-4">
+                                <strong>@T("Footer.MyAccount")</strong>
+                            </div>
+                            <ul class="list pl-3">
+                                @if (Model.DisplayCustomerInfoFooterItem)
+                                {
+                                    <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
+                                }                
+                                @if (Model.ShoppingCartEnabled && Model.DisplayShoppingCartFooterItem)
+                                {
+                                    <li><a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a></li>
+                                }
+                                @if (Model.WishlistEnabled && Model.DisplayWishlistFooterItem)
+                                {
+                                    <li><a href="@Url.RouteUrl("Wishlist")">@T("Wishlist")</a></li>
+                                }                                
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <div class="title text-uppercase mb-4">
+                                <strong>Tản mạn</strong>
+                            </div>
+                            <ul class="list pl-3">
+                                <li><a href="#">Góc ẩm thực</a></li>
+                                <li><a href="#">Tin tức thị trường</a></li>
+                                <li><a href="#">Nghệ thuật Ẩm thực</a></li>
+                                <li><a href="#">Kiến thức thú vị</a></li>
+                                <li><a href="#">Tư vấn Dinh dưỡng</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="container pt-4 pb-4">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-6 text-center">
+                    <div class="footer-info">
+                        <span class="footer-disclaimer">@T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreName)</span>
+                        @if (Model.DisplayTaxShippingInfoFooter)
                         {
-                            <div class="footer-powered-by">
-                                @*Would you like to remove the "Powered by nopCommerce" link in the bottom of the footer?
-                    Please find more info at https://www.nopcommerce.com/nopcommerce-copyright-removal-key*@
-                                Powered by <a href="@(Nop.Services.Common.NopLinksDefaults.OfficialSite.Main)">nopCommerce</a>
-                            </div>
+                            var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
+                            <span class="footer-tax-shipping">
+                                @T(inclTax ? "Footer.TaxShipping.InclTax" : "Footer.TaxShipping.ExclTax", Url.RouteUrl("Topic", new { SeName = await Html.GetTopicSeNameAsync("shippinginfo") }))
+                            </span>
                         }
-                        @await Component.InvokeAsync("StoreThemeSelector")
                     </div>
-                    <div class="col"></div>
+                    @if (!Model.HidePoweredByNopCommerce)
+                    {
+                        <div class="footer-powered-by">
+                            @*Would you like to remove the "Powered by nopCommerce" link in the bottom of the footer?
+                                Please find more info at https://www.nopcommerce.com/nopcommerce-copyright-removal-key*@
+                            Powered by <a href="@(Nop.Services.Common.NopLinksDefaults.OfficialSite.Main)">nopCommerce</a>
+                        </div>
+                    }
+                    @await Component.InvokeAsync("StoreThemeSelector")
                 </div>
+                <div class="col"></div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <script asp-location="Footer">
-        $(document).ready(function () {
-            $('.footer-block .title').on('click', function () {
-                var e = window, a = 'inner';
-                if (!('innerWidth' in window)) {
-                    a = 'client';
-                    e = document.documentElement || document.body;
-                }
-                var result = { width: e[a + 'Width'], height: e[a + 'Height'] };
-                if (result.width < 769) {
-                    $(this).siblings('.list').slideToggle('slow');
-                }
-            });
+<script asp-location="Footer">
+    $(document).ready(function () {
+        $('.footer-block .title').on('click', function () {
+            var e = window, a = 'inner';
+            if (!('innerWidth' in window)) {
+                a = 'client';
+                e = document.documentElement || document.body;
+            }
+            var result = { width: e[a + 'Width'], height: e[a + 'Height'] };
+            if (result.width < 769) {
+                $(this).siblings('.list').slideToggle('slow');
+            }
         });
-    </script>
-    <script asp-location="Footer">
-        $(document).ready(function () {
-            $('.block .title').on('click', function () {
-                var e = window, a = 'inner';
-                if (!('innerWidth' in window)) {
-                    a = 'client';
-                    e = document.documentElement || document.body;
-                }
-                var result = { width: e[a + 'Width'], height: e[a + 'Height'] };
-                if (result.width < 1001) {
-                    $(this).siblings('.listbox').slideToggle('slow');
-                }
-            });
+    });
+</script>
+<script asp-location="Footer">
+    $(document).ready(function () {
+        $('.block .title').on('click', function () {
+            var e = window, a = 'inner';
+            if (!('innerWidth' in window)) {
+                a = 'client';
+                e = document.documentElement || document.body;
+            }
+            var result = { width: e[a + 'Width'], height: e[a + 'Height'] };
+            if (result.width < 1001) {
+                $(this).siblings('.listbox').slideToggle('slow');
+            }
         });
-    </script>
+    });
+</script>
