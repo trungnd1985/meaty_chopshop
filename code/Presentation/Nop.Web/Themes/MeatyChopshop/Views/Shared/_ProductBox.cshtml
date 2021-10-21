@@ -38,12 +38,11 @@
                     </li>
                 }
             </ul>
-
+            <span class="price actual-price @(!string.IsNullOrEmpty(Model.ProductPrice.OldPrice) ? "text-danger" : "")">@Model.ProductPrice.Price</span>
             @if (!string.IsNullOrEmpty(Model.ProductPrice.OldPrice))
             {
-                <span class="price old-price">@Model.ProductPrice.OldPrice</span>
+                <del>@Model.ProductPrice.OldPrice</del>
             }
-            <span class="price actual-price">@Model.ProductPrice.Price</span>
         </div>
         @if (!Model.ProductPrice.DisableBuyButton)
         {
