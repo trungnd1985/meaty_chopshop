@@ -4,7 +4,7 @@
 @inject IWorkContext workContext
 @if (!Model.CustomerEntersPrice)
 {
-    <div class="prices">
+    <div class="prices clearfix">
         @if (Model.CallForPrice)
         {
             @*call for price*@
@@ -25,13 +25,13 @@
             if (!string.IsNullOrWhiteSpace(Model.PriceWithDiscount))
             {
                 @*discounted price*@
-                <div class="product-price discounted-price">
+                <div class="product-price discounted-price float-left mr-4">
                     <span class="text-danger price-value-@(Model.ProductId)">
                         @Html.Raw(Model.PriceWithDiscount)
                     </span>
                 </div>
             }
-            <div class="@(string.IsNullOrWhiteSpace(Model.PriceWithDiscount) ? "product-price" : "non-discounted-price")">
+            <div class="float-left @(string.IsNullOrWhiteSpace(Model.PriceWithDiscount) ? "product-price" : "non-discounted-price")">
                 @if (string.IsNullOrWhiteSpace(Model.PriceWithDiscount))
                 {
                     <span id="price-value-@(Model.ProductId)" class="current-price price-value-@(Model.ProductId)">@Html.Raw(Model.Price)</span>

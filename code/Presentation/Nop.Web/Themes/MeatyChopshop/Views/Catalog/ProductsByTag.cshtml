@@ -22,19 +22,55 @@
     @await Html.PartialAsync("_CatalogFilters", Model.CatalogProductsModel)
 }
 
-<div class="page product-tag-page">
-    <div class="page-title">
-        <h1>@string.Format(T("Products.Tags.ProductsTaggedWith").Text, Model.TagName)</h1>
+@section Breadcrumb
+{
+    <div class="banner-product mb-5">
+        <div class="container">
+            <div class="row align-items-center" style="min-height:400px">
+                <div class="col-12">
+                    <h1>@string.Format(T("Products.Tags.ProductsTaggedWith").Text, Model.TagName)</h1>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="@Url.RouteUrl("Homepage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="fas fa-angle-double-right"></span>
+                        </li>
+                        <li class="list-inline-item active">@T("sitemap.products")</li>
+                        @{ int position = 1; }
+                        @*@foreach (var cat in Model.CategoryBreadcrumb)
+                        {
+                            var isLastCategory = cat.Id == Model.Id;
+                            @if (isLastCategory)
+                            {
+                                <li class="list-inline-item active"><a href="@Url.RouteUrl("Category", new { SeName = cat.SeName })" title="@cat.Name">@cat.Name</a></li>
+                            }
+                            else
+                            {
+                                <li class="list-inline-item"><a href="@Url.RouteUrl("Category", new { SeName = cat.SeName })" title="@cat.Name">@cat.Name</a></li>
+                                <li class="list-inline-item">
+                                    <span class="fas fa-angle-double-right"></span>
+                                </li>
+                            }
+                            position++;
+                        }*@
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="page-body">
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductsByTagTop, additionalData = Model })
+}
+<div class="row border-bottom pb-4">
+    <div class="col">
         @await Html.PartialAsync("_CatalogSelectors", Model.CatalogProductsModel)
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductsByTagBeforeProductList, additionalData = Model })
+    </div>
+</div>
+<div class="row">
+    <div class="col pt-4">
         @{
             var catalogProductsViewData = new ViewDataDictionary(ViewData);
-            catalogProductsViewData["fetchUrl"] = Html.Raw(Url.Action("GetTagProducts", "Catalog", new { tagId = Model.Id }));
+            catalogProductsViewData["fetchUrl"] = Html.Raw(Url.Action("GetCategoryProducts", "Catalog", new { categoryId = Model.Id }));
         }
         @await Html.PartialAsync("_CatalogProducts", Model.CatalogProductsModel, catalogProductsViewData)
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductsByTagBottom, additionalData = Model })
     </div>
 </div>

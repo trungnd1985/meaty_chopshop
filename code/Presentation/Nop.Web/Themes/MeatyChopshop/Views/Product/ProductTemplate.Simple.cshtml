@@ -153,14 +153,15 @@
                                 }
                                 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsEssentialBottom, additionalData = Model })
                             </div>
-                            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsBeforeCollateral, additionalData = Model })
-                            <div class="product-collateral">
-                                @await Html.PartialAsync("_ProductSpecifications", Model.ProductSpecificationModel)
-
-                            </div>
+                            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsBeforeCollateral, additionalData = Model })                            
                             @await Component.InvokeAsync("ProductsAlsoPurchased", new { productId = Model.Id })
                         </div>
-                        <div class="row pb-4 pt-4">
+                        <div class="row hr pb-4 pt-4">
+                            <div class="product-collateral col">
+                                @await Html.PartialAsync("_ProductSpecifications", Model.ProductSpecificationModel)
+                            </div>
+                        </div>
+                        <div class="col row pb-4 pt-4">
                             <div class="col">
                                 @await Html.PartialAsync("_ProductTags", Model.ProductTags)
                             </div>
@@ -215,7 +216,10 @@
             </div>
         </form>
     </div>
-    <div class="related-products mb-5 hr pb-4 pt-4">
+    
+</div>
+<section class="related-products mb-5 hr pb-4 pt-4">
+    <div class="container">
         @await Component.InvokeAsync("RelatedProducts", new { productId = Model.Id })
     </div>
-</div>
+</section>
