@@ -429,6 +429,7 @@
 
   <ItemGroup>
     <Folder Include="Plugins\" />
+    <Folder Include="Themes\MeatyChopShop\Content\plugins\owlcarousel\" />
   </ItemGroup>
 
   <ItemGroup>

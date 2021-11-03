@@ -30,10 +30,10 @@
                             </a>
                         </li>
                     </ul>
-                </div>                
+                </div>
             </div>
             <div class="row">
-                <div class="col">                    
+                <div class="col">
                     <hr />
                 </div>
             </div>
@@ -44,10 +44,10 @@
                     </a>
                 </div>
                 <div class="col-12 col-md-10">
-                    <div class="row">
+                    <div class="row owl-carousel owl-theme">
                         @foreach (var product in item.FeaturedProducts)
                         {
-                            <div class="col-12 col-md-3">
+                            <div>
                                 @await Html.PartialAsync("_ProductBox", product)
                             </div>
                         }
@@ -56,11 +56,25 @@
             </div>
         </div>
 
-        if ((index +1) % 3 == 0)
+        if ((index + 1) % 3 == 0)
         {
-            @await Component.InvokeAsync("TopicBlock", new { systemName = $"HomeCategory{index}", displayTitle = false })            
+            @await Component.InvokeAsync("TopicBlock", new { systemName = $"HomeCategory{index}", displayTitle = false })
         }
 
         index += 1;
     }
 }
+
+<script asp-location="Footer">
+    $(document).ready(function () {
+        $(".owl-carousel").owlCarousel({
+            items: 4,
+            nav: true,
+            loop: true,
+            autoplay: true,
+            autoplayHoverPause: true,
+            margin: 10,
+            dots: true
+        });
+    });
+</script>
