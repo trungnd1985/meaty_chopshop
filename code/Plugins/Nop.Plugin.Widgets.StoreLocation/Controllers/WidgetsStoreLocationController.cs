@@ -21,7 +21,7 @@ namespace Nop.Plugin.Widgets.StoreLocation.Controllers
 
         }
 
-        public IActionResult Configure()
+        public async Task<IActionResult> Configure()
         {
             return View("~/Plugins/Widgets.StoreLocation/Views/Configure.cshtml");
         }
