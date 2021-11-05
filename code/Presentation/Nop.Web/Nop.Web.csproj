@@ -116,13 +116,67 @@
 
     <Content Include="Themes\MeatyChopShop\Views\Common\StoreClosed.cshtml" />
 
+    <Content Include="Themes\MeatyChopShop\Views\Customer\AccountActivation.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\AddressAdd.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\AddressEdit.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\Addresses.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\Avatar.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\ChangePassword.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\CheckGiftCardBalance.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\ConfigureMultiFactorAuthenticationProvider.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\DownloadableProducts.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\EmailRevalidation.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\GdprTools.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\Info.cshtml" />
+
     <Content Include="Themes\MeatyChopShop\Views\Customer\Login.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\MultiFactorAuthentication.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\MultiFactorVerification.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\PasswordRecovery.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\PasswordRecoveryConfirm.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\Register.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\RegisterResult.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\UserAgreement.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\_CheckUsernameAvailability.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\_CustomerAttributes.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\_ExternalAuthentication.Errors.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Customer\_MultiFactorAuthenticationProviders.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Home\Index.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\News\List.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\News\NewsItem.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Order\CustomerOrders.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Order\CustomerRewardPoints.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Order\Details.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Order\ShipmentDetails.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Product\CompareProducts.cshtml" />
 
@@ -191,6 +245,8 @@
     <Content Include="Themes\MeatyChopShop\Views\Product\_SKU_Man_GTIN_Ven.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Shared\Components\CategoryNavigation\Default.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Shared\Components\CustomerNavigation\Default.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Shared\Components\Footer\Default.cshtml" />
 
@@ -349,10 +405,37 @@
     <None Remove="Themes\MeatyChopShop\Views\Common\PageNotFound.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Common\Sitemap.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Common\StoreClosed.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\AccountActivation.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\AddressAdd.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\AddressEdit.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\Addresses.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\Avatar.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\ChangePassword.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\CheckGiftCardBalance.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\ConfigureMultiFactorAuthenticationProvider.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\DownloadableProducts.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\EmailRevalidation.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\GdprTools.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\Info.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Customer\Login.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\MultiFactorAuthentication.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\MultiFactorVerification.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\PasswordRecovery.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\PasswordRecoveryConfirm.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\Register.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\RegisterResult.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\UserAgreement.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\_CheckUsernameAvailability.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\_CustomerAttributes.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\_ExternalAuthentication.Errors.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Customer\_MultiFactorAuthenticationProviders.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Home\Index.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\News\List.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\News\NewsItem.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Order\CustomerOrders.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Order\CustomerRewardPoints.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Order\Details.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Order\ShipmentDetails.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Product\CompareProducts.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Product\CustomerProductReviews.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Product\NewProducts.cshtml" />
@@ -387,6 +470,7 @@
     <None Remove="Themes\MeatyChopShop\Views\Product\_ShareButton.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Product\_SKU_Man_GTIN_Ven.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\CategoryNavigation\Default.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Shared\Components\CustomerNavigation\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\Footer\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\HeaderLinks\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\ManufacturerNavigation\Default.cshtml" />
@@ -593,7 +677,99 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\AccountActivation.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\AddressAdd.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\AddressEdit.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\Addresses.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\Avatar.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\ChangePassword.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\CheckGiftCardBalance.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\ConfigureMultiFactorAuthenticationProvider.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\DownloadableProducts.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\EmailRevalidation.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\GdprTools.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\Info.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Update="Themes\MeatyChopShop\Views\Customer\Login.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\MultiFactorAuthentication.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\MultiFactorVerification.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\PasswordRecovery.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\PasswordRecoveryConfirm.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\Register.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\RegisterResult.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\UserAgreement.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\_CheckUsernameAvailability.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\_CustomerAttributes.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\_ExternalAuthentication.Errors.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Customer\_MultiFactorAuthenticationProviders.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -606,6 +782,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Update="Themes\MeatyChopShop\Views\News\NewsItem.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Order\CustomerOrders.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Order\CustomerRewardPoints.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Order\Details.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Order\ShipmentDetails.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -742,6 +934,10 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Update="Themes\MeatyChopShop\Views\Shared\Components\CategoryNavigation\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Shared\Components\CustomerNavigation\Default.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
