@@ -119,29 +119,37 @@ namespace Nop.Web.Areas.Admin.Factories
         {
             if (searchModel == null)
                 throw new ArgumentNullException(nameof(searchModel));
-            //get categories
-            var categories = await _categoryService.GetAllCategoriesAsync(categoryName: searchModel.SearchCategoryName,
-                showHidden: true,
-                pageIndex: searchModel.Page - 1, pageSize: searchModel.PageSize,
-                overridePublished: searchModel.SearchPublishedId == 0 ? null : (bool?)(searchModel.SearchPublishedId == 1));
-
-            //prepare grid model
-            var model = await new NewsCategoryListModel().PrepareToGridAsync(searchModel, categories, () =>
+            try
             {
-                return categories.SelectAwait(async category =>
+                //get categories
+                var categories = await _categoryService.GetAllCategoriesAsync(categoryName: searchModel.SearchCategoryName,
+                    showHidden: true,
+                    pageIndex: searchModel.Page - 1, pageSize: searchModel.PageSize,
+                    overridePublished: searchModel.SearchPublishedId == 0 ? null : (bool?)(searchModel.SearchPublishedId == 1));
+
+                var model = await new NewsCategoryListModel().PrepareToGridAsync(searchModel, categories, () =>
                 {
-                    //fill in model values from the entity
-                    var categoryModel = category.ToModel<NewsCategoryModel>();
+                    return categories.SelectAwait(async category =>
+                    {
+                        //fill in model values from the entity
+                        var categoryModel = category.ToModel<NewsCategoryModel>();
 
-                    //fill in additional values (not existing in the entity)
-                    categoryModel.Breadcrumb = await _categoryService.GetFormattedBreadCrumbAsync(category);
-                    categoryModel.SeName = await _urlRecordService.GetSeNameAsync(category, 0, true, false);
+                        //fill in additional values (not existing in the entity)
+                        categoryModel.Breadcrumb = await _categoryService.GetFormattedBreadCrumbAsync(category);
+                        categoryModel.SeName = await _urlRecordService.GetSeNameAsync(category, 0, true, false);
 
-                    return categoryModel;
+                        return categoryModel;
+                    });
                 });
-            });
 
-            return model;
+                return model;
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return null;
         }
 
         public async Task<NewsCategoryModel> PrepareCategoryModelAsync(NewsCategoryModel model, NewsCategory category, bool excludeProperties = false)

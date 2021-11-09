@@ -16,47 +16,18 @@ namespace Nop.Data.Migrations
     public class AddNewsCategoryMigration : Migration
     {
         private readonly INopDataProvider _dataProvider;
+        private readonly IMigrationManager _migrationManager;
 
-        public AddNewsCategoryMigration(INopDataProvider dataProvider)
+        public AddNewsCategoryMigration(INopDataProvider dataProvider, IMigrationManager migrationManager)
         {
             _dataProvider = dataProvider;
+            _migrationManager = migrationManager;
         }
 
         public override void Up()
         {
-            var newsCategoryTableName = nameof(NewsCategory);
-            var newsCategoryTable = Schema.Table(newsCategoryTableName);
-
-            if (!newsCategoryTable.Exists())
-            {
-                Create.Table(newsCategoryTableName)
-                    .WithColumn(nameof(NewsCategory.Id)).AsInt32().NotNullable().PrimaryKey().Identity(1, 1)
-                    .WithColumn(nameof(NewsCategory.Name)).AsString(400).NotNullable()
-                    .WithColumn(nameof(NewsCategory.Description)).AsString().Nullable()
-                    .WithColumn(nameof(NewsCategory.CreatedOnUtc)).AsDateTime().NotNullable()
-                    .WithColumn(nameof(NewsCategory.Deleted)).AsBoolean().NotNullable()
-                    .WithColumn(nameof(NewsCategory.DisplayOrder)).AsInt32().NotNullable()
-                    .WithColumn(nameof(NewsCategory.MetaDescription)).AsString(400).Nullable()
-                    .WithColumn(nameof(NewsCategory.MetaTitle)).AsString(400).Nullable()
-                    .WithColumn(nameof(NewsCategory.PageSize)).AsInt32().NotNullable()
-                    .WithColumn(nameof(NewsCategory.ParentCategoryId)).AsInt32().NotNullable()
-                    .WithColumn(nameof(NewsCategory.PictureId)).AsInt32().NotNullable()
-                    .WithColumn(nameof(NewsCategory.Published)).AsBoolean().NotNullable()
-                    .WithColumn(nameof(NewsCategory.SubjectToAcl)).AsBoolean().NotNullable()
-                    .WithColumn(nameof(NewsCategory.UpdatedOnUtc)).AsDateTime().NotNullable()
-                    ;
-            }
-
-            var newsInCategoryTableName = nameof(NewsInCategory);
-            var newsInCategoryTable = Schema.Table(newsInCategoryTableName);
-
-            if (!newsInCategoryTable.Exists())
-            {
-                Create.Table(newsInCategoryTableName)
-                    .WithColumn(nameof(NewsInCategory.Id)).AsInt32().NotNullable().PrimaryKey().Identity(1, 1)
-                    .WithColumn(nameof(NewsInCategory.NewsCategoryId)).AsInt32().NotNullable().ForeignKey<NewsCategory>()
-                    .WithColumn(nameof(NewsInCategory.NewsId)).AsInt32().NotNullable().ForeignKey<NewsItem>();
-            }
+            _migrationManager.BuildTable<NewsCategory>(Create);
+            _migrationManager.BuildTable<NewsInCategory>(Create);
 
         }
 
