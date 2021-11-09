@@ -187,12 +187,12 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse container" id="navbarSupportedContent">
+    <div class="collapse show navbar-collapse container" id="navbarSupportedContent">
         <div class="col-3">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-list"></i> @T("Categories")
+                        <i class="fas fa-align-left"></i> @T("Categories")
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @foreach (var item in Model.Categories)
@@ -208,16 +208,17 @@
                 @if (Model.DisplayHomepageMenuItem)
                 {
                     <li class="nav-item"><a class="nav-link" href="@Url.RouteUrl("Homepage")">@T("Homepage")</a></li>
+                    <li class="nav-item d-none d-sm-block"><span class="nav-link">|</span></li>
                 }
                 @if (Model.NewProductsEnabled && Model.DisplayNewProductsMenuItem)
                 {
                     <li class="nav-item"><a class="nav-link" href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a></li>
+                    <li class="nav-item d-none d-sm-block"><span class="nav-link">|</span></li>
                 }
-                @if (Model.DisplayProductSearchMenuItem)
-                {
-                    <li class="nav-item"><a class="nav-link" href="@Url.RouteUrl("ProductSearch")">@T("Search")</a></li>
-                }
+                <li class="nav-item"><a class="nav-link" href="#">@T("ComboAndGift")</a></li>
+                <li class="nav-item  d-none d-sm-block"><span class="nav-link">|</span></li>
                 <li class="nav-item"><a class="nav-link" href="@Url.Action("List","News")">@T("MenuNews")</a></li>
+                <li class="nav-item  d-none d-sm-block"><span class="nav-link">|</span></li>
                 @if (Model.BlogEnabled && Model.DisplayBlogMenuItem)
                 {
                     <li class="nav-item"><a class="nav-link" href="@Url.RouteUrl("Blog")">@T("MenuBlog")</a></li>
@@ -229,7 +230,7 @@
             {
                 <ul class="navbar-nav mr-auto float-right">
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.RouteUrl("ContactUs")">
+                        <a class="nav-link" href="@Url.Action("Index","StoreLocation")">
                             @T("ShopAddresses") <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_cua_hang.svg" title="@T("ShopAddresses")" />
                         </a>
                     </li>

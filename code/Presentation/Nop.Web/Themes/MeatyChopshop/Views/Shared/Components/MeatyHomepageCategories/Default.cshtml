@@ -1,41 +1,53 @@
 ﻿@model IList<CategoryModel>
 @if (Model.Count > 0)
 {
+    var index = 0;
+
     @foreach (var item in Model)
     {
         <div class="container mb-5">
-            <div class="row">
-                <div class="col-3">
+            <div class="row pt-4 pb-4">
+                <div class="col-12 col-md-3">
                     <h1>
                         <a class="topic-title" href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
                             @item.Name
                         </a>
                     </h1>
                 </div>
-                <div class="col-9">
-                    <ul class="list-inline">
+                <div class="col-12 col-md-9">
+                    <ul class="list-inline float-right sub-categories" style="margin-bottom: .5rem; line-height: 1.2; font-size: 2.5rem;">
                         @foreach (var childCate in item.SubCategories)
                         {
-                            <li class="list-inline-item">
+                            <li class="list-inline-item pl-4 pr-4">
                                 <a href="@Url.RouteUrl("Category", new { SeName = childCate.SeName })" title="@childCate.PictureModel.Title">
                                     @childCate.Name
                                 </a>
                             </li>
                         }
+                        <li class="list-inline-item border-left pl-4">
+                            <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
+                                Shop all
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="row">
-                <div class="col-2">
+                <div class="col">
+                    <hr />
+                </div>
+            </div>
+            <div class="row pt-4">
+                <div class="col-2  d-none d-sm-block">
                     <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
                         <img class="img-fluid" alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" />
                     </a>
                 </div>
-                <div class="col-10">
-                    <div class="row">
+                <div class="col-12 col-md-10">
+                    <div class="row owl-carousel owl-theme">
                         @foreach (var product in item.FeaturedProducts)
                         {
-                            <div class="col-3">
+                            <div>
                                 @await Html.PartialAsync("_ProductBox", product)
                             </div>
                         }
@@ -43,5 +55,26 @@
                 </div>
             </div>
         </div>
+
+        if ((index + 1) % 3 == 0)
+        {
+            @await Component.InvokeAsync("TopicBlock", new { systemName = $"HomeCategory{index}", displayTitle = false })
+        }
+
+        index += 1;
     }
 }
+
+<script asp-location="Footer">
+    $(document).ready(function () {
+        $(".owl-carousel").owlCarousel({
+            items: 4,
+            nav: true,
+            loop: true,
+            autoplay: true,
+            autoplayHoverPause: true,
+            margin: 10,
+            dots: true
+        });
+    });
+</script>

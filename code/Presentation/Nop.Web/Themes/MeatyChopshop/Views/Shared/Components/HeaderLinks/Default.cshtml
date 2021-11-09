@@ -8,7 +8,7 @@
         @if (Model.IsAuthenticated)
         {
             <li class="list-inline-item"><a href="@Url.RouteUrl("CustomerInfo")" class="ico-account"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_tai_khoan.svg" /></a></li>
-            <li class="list-inline-item"><a href="@Url.RouteUrl("Logout")" class="ico-logout"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_logout.svg" /></a></li>
+            <li class="list-inline-item"><a href="@Url.RouteUrl("Logout")" class="ico-logout"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_dang_xuat.svg" /></a></li>
         }
         else
         {
@@ -20,7 +20,7 @@
             {
                 <li class="list-inline-item"><a href="@Url.RouteUrl("Register", new { returnUrl })" class="ico-register"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_tai_khoan.svg" /></a></li>
             }
-            <li class="list-inline-item"><a href="@Url.RouteUrl("Login", new { returnUrl })" class="ico-login">@T("Account.Login")</a></li>
+    <li class="list-inline-item"><a title="@T("Account.Login")" href="@Url.RouteUrl("Login", new { returnUrl })" class="ico-login"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_dang_nhap.svg" /></a></li>
         }
         @if (Model.AllowPrivateMessages)
         {

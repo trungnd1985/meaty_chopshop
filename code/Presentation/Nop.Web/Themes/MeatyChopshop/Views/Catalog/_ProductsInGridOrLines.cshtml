@@ -2,9 +2,11 @@
 
 @if (!string.IsNullOrEmpty(Model.WarningMessage))
 {
+<div class="row">
     <div class="warning">
         @Model.WarningMessage
     </div>
+</div>
 }
 
 @if (Model.Products.Count > 0)
@@ -15,12 +17,14 @@
     }
     else
     {
-        @foreach (var product in Model.Products)
-        {
-            <div class="col-3 mb-5">
-                @await Html.PartialAsync("_ProductBox", product)
-            </div>
-        }
+<div class="row">
+    @foreach (var product in Model.Products)
+    {
+        <div class="col-3 mb-5">
+            @await Html.PartialAsync("_ProductBox", product)
+        </div>
+    }
+</div>
     }
 
     var pager = Html.Pager(Model)
@@ -29,18 +33,27 @@
         .BooleanParameterName("advs")
         .BooleanParameterName("isc")
         .BooleanParameterName("sid")
+        .MainUlCssClass("pagination")
+        .CurrentPageCssClass("page-item active")
+        .IndividualPageCssClass("page-item")
         .RenderEmptyParameters(true);
 
     @if (!await pager.IsEmpty())
     {
-        <div class="pager">
+<div class="row">
+    <div class="col">
+        <nav aria-label="Pager">
             @pager
-        </div>
+        </nav>
+    </div>
+</div>
     }
 }
 else if (!string.IsNullOrEmpty(Model.NoResultMessage))
 {
+<div class="row">
     <div class="no-result">
         @Model.NoResultMessage
     </div>
+</div>
 }

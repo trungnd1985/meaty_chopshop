@@ -7,6 +7,31 @@
     //page class
     Html.AppendPageCssClassParts("html-recently-added-products-page");
 }
+
+@section Breadcrumb
+{
+    <div class="banner-product mb-5">
+        <div class="container">
+            <div class="row align-items-center" style="min-height:400px">
+                <div class="col-12">
+                    <h1>@T("Products.NewProducts")</h1>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="@Url.RouteUrl("Homepage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="fas fa-angle-double-right"></span>
+                        </li>
+                        <li class="list-inline-item">
+                            <span>@T("Products.NewProducts")</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 <div class="page recently-added-products-page">
     <div class="page-title">
         <a href="@Url.RouteUrl("NewProductsRSS")" class="link-rss" title="@T("Products.NewProducts.RSS.Hint")">@T("Products.NewProducts.RSS")</a>
@@ -16,15 +41,15 @@
         @if (Model.Count > 0)
         {
             <div class="product-grid">
-                <div class="item-grid">
+                <div class="row">
                     @foreach (var product in Model)
                     {
-                        <div class="item-box">
+                        <div class="col-3 mb-5">
                             @await Html.PartialAsync("_ProductBox", product)
                         </div>
                     }
                 </div>
-            </div>        
+            </div>
         }
     </div>
 </div>

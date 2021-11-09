@@ -2663,6 +2663,20 @@ namespace Nop.Services.Catalog
             await _discountProductMappingRepository.DeleteAsync(discountProductMapping);
         }
 
+        public async Task<IList<Product>> GetProductsAsync(int storeId = 0)
+        {
+            var products = await _productRepository.GetAllAsync(query =>
+            {
+                return from p in query
+                       orderby p.DisplayOrder, p.Id
+                       where p.Published &&
+                             !p.Deleted
+                       select p;
+            }, cache => cache.PrepareKeyForDefaultCache(NopCatalogDefaults.ProductsPageCacheKey));
+
+            return products;
+        }
+
         #endregion
 
         #endregion

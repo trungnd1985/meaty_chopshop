@@ -38,7 +38,8 @@ namespace Nop.Data.Mapping
             { typeof(ForumSubscription), "Forums_Subscription" },
             { typeof(ForumTopic), "Forums_Topic" },
             { typeof(PrivateMessage), "Forums_PrivateMessage" },
-            { typeof(NewsItem), "News" }
+            { typeof(NewsItem), "News" },
+            { typeof(NewsCategory), "NewsCategories" }
         };
 
         public Dictionary<(Type, string), string> ColumnName => new Dictionary<(Type, string), string>
@@ -60,7 +61,7 @@ namespace Nop.Data.Mapping
             { (typeof(CustomerAddressMapping), "AddressId"), "Address_Id" },
             { (typeof(CustomerAddressMapping), "CustomerId"), "Customer_Id" },
             { (typeof(ShippingMethodCountryMapping), "ShippingMethodId"), "ShippingMethod_Id" },
-            { (typeof(ShippingMethodCountryMapping), "CountryId"), "Country_Id" },
+            { (typeof(ShippingMethodCountryMapping), "CountryId"), "Country_Id" }            
         };
     }
 }

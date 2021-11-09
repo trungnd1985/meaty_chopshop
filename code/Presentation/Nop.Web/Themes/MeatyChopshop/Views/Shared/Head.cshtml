@@ -8,6 +8,9 @@
     var supportRtl = (await workContext.GetWorkingLanguageAsync()).Rtl;
     var themeName = await themeContext.GetWorkingThemeNameAsync();
 
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/plugins/owlcarousel/dist/assets/owl.carousel.min.css");
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/plugins/owlcarousel/dist/assets/owl.theme.green.min.css");
+
     //add main CSS file
     Html.AppendCssFileParts($"~/Themes/{themeName}/Content/css/styles.css");
 

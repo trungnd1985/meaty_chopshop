@@ -1,0 +1,11 @@
+{
+  "Group": "Widgets",
+  "FriendlyName": "Store Location",
+  "SystemName": "Widgets.StoreLocation",
+  "Version": "1.0",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "Nguyen Duc Trung",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.StoreLocation.dll",
+  "Description": "This plugin allows you to manage Store location"
+}

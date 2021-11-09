@@ -148,7 +148,7 @@ header {
 }
 
 .related-products {
-    background-image: url(../images/banner/banner_san_pham.jpg);
+    background-color: #fcfcfc;
 }
 
 .btn-outline-light {
@@ -208,4 +208,58 @@ header {
     margin-top: -.1rem;
     margin-left: -.9rem;
     padding: .2em .45em;
+}
+
+ul.sub-categories {
+    margin-bottom: .5rem;
+    line-height: 1.2;
+    font-size: 2.5rem;
+}
+
+    ul.sub-categories li a {
+        color: #707070;
+    }
+
+        ul.sub-categories li a:hover {
+            color: #355061;
+            font-weight: bold;
+        }
+
+hr {
+    margin-bottom: 1rem;
+    border: 0;
+    height: 1px;
+    border-top: 1px solid #DEDEDE;
+}
+
+.actual-price {
+    color: #355061;
+    font-weight: bold;
+}
+
+.product-title {
+    color: #323232;
+}
+
+    .product-title:hover {
+        color: #355061;
+        font-weight: bold;
+    }
+
+.banner-store-location {
+    background-image: url(../images/banner/banner_dinh_vi.jpg);
+    min-height: 400px;
+    color: #FFF;
+}
+
+.filter a {
+    color: #323232
+}
+
+.filter .title {
+    color:#265372
+}
+
+a:hover {
+    text-decoration: none;
 }

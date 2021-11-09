@@ -18,9 +18,9 @@ using Nop.Services.Logging;
 using Nop.Services.Media;
 using Nop.Services.Orders;
 using Nop.Services.Seo;
-using SendinblueMarketingAutomation.Api;
-using SendinblueMarketingAutomation.Client;
-using SendinblueMarketingAutomation.Model;
+using SendinBlueMarketingAutomation.Api;
+using SendinBlueMarketingAutomation.Client;
+using SendinBlueMarketingAutomation.Model;
 
 namespace Nop.Plugin.Misc.Sendinblue.Services
 {

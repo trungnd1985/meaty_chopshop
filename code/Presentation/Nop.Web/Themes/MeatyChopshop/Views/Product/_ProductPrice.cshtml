@@ -4,7 +4,7 @@
 @inject IWorkContext workContext
 @if (!Model.CustomerEntersPrice)
 {
-    <div class="prices">
+    <div class="prices clearfix">
         @if (Model.CallForPrice)
         {
             @*call for price*@
@@ -22,34 +22,26 @@
                     <span>@Model.OldPrice</span>
                 </div>
             }
-            <div class="@if (string.IsNullOrWhiteSpace(Model.PriceWithDiscount))
-                        {
-                            <text>product-price</text>
-                        }
-                        else
-                        {
-                            <text>non-discounted-price</text>
-                        }">
-                @if (!string.IsNullOrWhiteSpace(Model.OldPrice) || !string.IsNullOrWhiteSpace(Model.PriceWithDiscount))
-                {
-                    @*display "Price:" label if we have old price or discounted one*@
-                    <label for="price-value-@(Model.ProductId)">@T("Products.Price"):</label>
-                }
-                @*render price*@
-                <span @if (string.IsNullOrWhiteSpace(Model.PriceWithDiscount)) { <text> id="price-value-@(Model.ProductId)" class="current-price h2 font-weight-bold price-value-@(Model.ProductId)" </text> }>
-                    @Html.Raw(Model.Price)
-                </span>
-            </div>
             if (!string.IsNullOrWhiteSpace(Model.PriceWithDiscount))
             {
                 @*discounted price*@
-                <div class="product-price discounted-price">
-                    <span>@T("Products.Price.WithDiscount"):</span>
-                    <span class="price-value-@(Model.ProductId)">
+                <div class="product-price discounted-price float-left mr-4">
+                    <span class="text-danger price-value-@(Model.ProductId)">
                         @Html.Raw(Model.PriceWithDiscount)
                     </span>
                 </div>
             }
+            <div class="float-left @(string.IsNullOrWhiteSpace(Model.PriceWithDiscount) ? "product-price" : "non-discounted-price")">
+                @if (string.IsNullOrWhiteSpace(Model.PriceWithDiscount))
+                {
+                    <span id="price-value-@(Model.ProductId)" class="current-price price-value-@(Model.ProductId)">@Html.Raw(Model.Price)</span>
+                }
+                else
+                {
+                    <del>@Html.Raw(Model.Price)</del>
+                }
+            </div>
+
             if (Model.DisplayTaxShippingInfo)
             {
                 var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;

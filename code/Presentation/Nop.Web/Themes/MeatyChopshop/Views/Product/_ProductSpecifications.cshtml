@@ -9,13 +9,7 @@
             <strong>@T("Products.Specs")</strong>
         </div>
         <div class="table-wrapper">
-            <table class="data-table">
-                <thead>
-                    <tr class="hidden-row">
-                        <th width="25%"><span>@T("Products.Specs.AttributeName")</span></th>
-                        <th><span>@T("Products.Specs.AttributeValue")</span></th>
-                    </tr>
-                </thead>
+            <table class="data-table table">                
                 <tbody>
                     @foreach (var group in Model.Groups)
                     {
@@ -24,8 +18,8 @@
                             @if (group.Id > 0)
                             {
                                 <tr>
-                                    <td class="spec-group-name">
-                                        @group.Name
+                                    <td class="spec-group-name text-bold">
+                                        @(group.Name):
                                     </td>
                                 </tr>
                             }
@@ -35,8 +29,8 @@
                                 var attr = group.Attributes[i];
 
                                 <tr @(i % 2 == 0 ? Html.Raw(" class=\"odd\"") : Html.Raw(" class=\"even\""))>
-                                    <td class="spec-name">
-                                        @attr.Name
+                                    <td class="spec-name text-body"  style="width: 15%">
+                                        @attr.Name: 
                                     </td>
                                     <td class="spec-value">
                                         @for (int j = 0; j < attr.Values.Count; j++)

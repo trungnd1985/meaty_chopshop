@@ -28,13 +28,21 @@
         <img class="card-img-top" alt="@Model.DefaultPictureModel.AlternateText" src="@Model.DefaultPictureModel.ImageUrl" title="@Model.DefaultPictureModel.Title" />
     </a>
     <div class="card-body">
-        <h5 class="card-title"><a href="@Url.RouteUrl("Product", new {SeName = Model.SeName})">@Model.Name</a></h5>
+        <h5 class="card-title"><a class="product-title" href="@Url.RouteUrl("Product", new {SeName = Model.SeName})">@Model.Name</a></h5>
         <div class="card-text">
+            <ul class="list-unstyled">
+                @if (!string.IsNullOrWhiteSpace(Model.CategoryName))
+                {
+                    <li>
+                        <i class="fas fa-tags"></i>@Model.CategoryName
+                    </li>
+                }
+            </ul>
+            <span class="price actual-price @(!string.IsNullOrEmpty(Model.ProductPrice.OldPrice) ? "text-danger" : "")">@Model.ProductPrice.Price</span>
             @if (!string.IsNullOrEmpty(Model.ProductPrice.OldPrice))
             {
-                <span class="price old-price">@Model.ProductPrice.OldPrice</span>
+                <del>@Model.ProductPrice.OldPrice</del>
             }
-            <span class="price actual-price">@Model.ProductPrice.Price</span>
         </div>
         @if (!Model.ProductPrice.DisableBuyButton)
         {
@@ -49,7 +57,7 @@
             }
             <button type="button" class="button-2 product-box-add-to-cart-button btn-block btn btn-primary" onclick="AjaxCart.addproducttocart_catalog('@addtocartlink');return false;">@(addToCartText)</button>
         }
-        
+
         @if (!Model.ProductPrice.DisableWishlistButton)
         {
             <button type="button" class="button-2 add-to-wishlist-button btn-block btn btn-outline-light" title="@T("ShoppingCart.AddToWishlist")" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">@T("ShoppingCart.AddToWishlist")</button>

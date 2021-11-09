@@ -227,6 +227,8 @@ namespace Nop.Services.Catalog
         /// </summary>
         public static CacheKey ProductsHomepageCacheKey => new CacheKey("Nop.product.homepage.");
 
+        public static CacheKey ProductsPageCacheKey => new CacheKey("Nop.product.productpage.");
+
         /// <summary>
         /// Key for caching identifiers of category featured products
         /// </summary>
