@@ -215,6 +215,7 @@ namespace Nop.Web.Framework.Infrastructure
             services.AddScoped<ISettingService, SettingService>();
 
             services.AddScoped<IMeatyProductService, MeatyProductService>();
+            services.AddScoped<INewsCategoryService, NewsCategoryService>();            
 
             //plugin managers
             services.AddScoped(typeof(IPluginManager<>), typeof(PluginManager<>));

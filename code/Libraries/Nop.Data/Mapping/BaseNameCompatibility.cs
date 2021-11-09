@@ -39,7 +39,7 @@ namespace Nop.Data.Mapping
             { typeof(ForumTopic), "Forums_Topic" },
             { typeof(PrivateMessage), "Forums_PrivateMessage" },
             { typeof(NewsItem), "News" },
-            { typeof(NewsCategory), "NewsCategories" }
+            { typeof(NewsCategory), "NewsCategory" }
         };
 
         public Dictionary<(Type, string), string> ColumnName => new Dictionary<(Type, string), string>

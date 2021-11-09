@@ -1196,6 +1196,8 @@ namespace Nop.Web.Areas.Admin.Infrastructure.Mapper
                 .ForMember(model => model.ShowHeaderRssUrl_OverrideForStore, options => options.Ignore())
                 .ForMember(model => model.ShowNewsOnMainPage_OverrideForStore, options => options.Ignore());
             CreateMap<NewsSettingsModel, NewsSettings>();
+            CreateMap<NewsCategory, NewsCategoryModel>();
+            CreateMap<NewsCategoryModel, NewsCategory>();
         }
 
         /// <summary>

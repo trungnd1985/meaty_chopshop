@@ -1,7 +1,9 @@
-﻿using Nop.Web.Framework.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -32,11 +34,9 @@ namespace Nop.Web.Areas.Admin.Models.News
             //CategoryProductSearchModel = new CategoryProductSearchModel();
         }
 
-        public IList<NewsCategoryLocalizedModel> Locales { get; set; }
 
-        #region Properties
 
-        public int LanguageId { get; set; }
+        #region Properties        
 
         [NopResourceDisplayName("Admin.News.Categories.Fields.Name")]
         public string Name { get; set; }
@@ -55,6 +55,33 @@ namespace Nop.Web.Areas.Admin.Models.News
 
         [NopResourceDisplayName("Admin.News.Categories.Fields.SeName")]
         public string SeName { get; set; }
+
+        [NopResourceDisplayName("Admin.News.Categories.Fields.Parent")]
+        public int ParentCategoryId { get; set; }
+
+        [UIHint("Picture")]
+        [NopResourceDisplayName("Admin.News.Categories.Fields.Picture")]
+        public int PictureId { get; set; }
+
+        [NopResourceDisplayName("Admin.News.Categories.Fields.PageSize")]
+        public int PageSize { get; set; }
+
+        [NopResourceDisplayName("Admin.News.Categories.Fields.Published")]
+        public bool Published { get; set; }
+
+        [NopResourceDisplayName("Admin.News.Categories.Fields.Deleted")]
+        public bool Deleted { get; set; }
+
+        [NopResourceDisplayName("Admin.News.Categories.Fields.DisplayOrder")]
+        public int DisplayOrder { get; set; }
+
+        public IList<NewsCategoryLocalizedModel> Locales { get; set; }
+
+        public string Breadcrumb { get; set; }
+
+        public CategoryNewsSearchModel CategoryProductSearchModel { get; set; }
+
+        public IList<SelectListItem> AvailableCategories { get; set; }
 
         #endregion
     }

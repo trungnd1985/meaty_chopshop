@@ -11,14 +11,14 @@ namespace Nop.Web.Areas.Admin.Factories
     {
         Task<NewsCategorySearchModel> PrepareCategorySearchModelAsync(NewsCategorySearchModel searchModel);
 
-        Task<CategoryListModel> PrepareCategoryListModelAsync(NewsCategorySearchModel searchModel);
+        Task<NewsCategoryListModel> PrepareCategoryListModelAsync(NewsCategorySearchModel searchModel);
 
         Task<NewsCategoryModel> PrepareCategoryModelAsync(NewsCategoryModel model, NewsCategory category, bool excludeProperties = false);
 
-        Task<CategoryProductListModel> PrepareCategoryProductListModelAsync(CategoryProductSearchModel searchModel, NewsCategory category);
+        Task<CategoryNewsListModel> PrepareCategoryNewsListModelAsync(CategoryNewsSearchModel searchModel, NewsCategory category);
 
-        Task<AddProductToCategorySearchModel> PrepareAddProductToCategorySearchModelAsync(AddProductToCategorySearchModel searchModel);
+        Task<AddNewsToCategorySearchModel> PrepareAddNewsToCategorySearchModelAsync(AddNewsToCategorySearchModel searchModel);
 
-        Task<AddProductToCategoryListModel> PrepareAddProductToCategoryListModelAsync(AddProductToCategorySearchModel searchModel);
+        Task<AddNewsToCategoryListModel> PrepareAddNewsToCategoryListModelAsync(AddNewsToCategorySearchModel searchModel);
     }
 }

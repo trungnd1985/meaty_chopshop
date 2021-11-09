@@ -40,18 +40,13 @@ namespace Nop.Web.Areas.Admin.Controllers
         private readonly INewsCategoryModelFactory _categoryModelFactory;
         private readonly INewsCategoryService _categoryService;
         private readonly ICustomerActivityService _customerActivityService;
-        private readonly ICustomerService _customerService;
-        private readonly IDiscountService _discountService;
-        private readonly IExportManager _exportManager;
-        private readonly IImportManager _importManager;
         private readonly ILocalizationService _localizationService;
         private readonly ILocalizedEntityService _localizedEntityService;
         private readonly INotificationService _notificationService;
         private readonly IPermissionService _permissionService;
         private readonly IPictureService _pictureService;
-        private readonly IProductService _productService;
+        private readonly INewsService _newsService;
         private readonly IStaticCacheManager _staticCacheManager;
-        private readonly IStoreService _storeService;
         private readonly IUrlRecordService _urlRecordService;
         private readonly IWorkContext _workContext;
 
@@ -63,18 +58,13 @@ namespace Nop.Web.Areas.Admin.Controllers
             INewsCategoryModelFactory categoryModelFactory,
             INewsCategoryService categoryService,
             ICustomerActivityService customerActivityService,
-            ICustomerService customerService,
-            IDiscountService discountService,
-            IExportManager exportManager,
-            IImportManager importManager,
             ILocalizationService localizationService,
             ILocalizedEntityService localizedEntityService,
             INotificationService notificationService,
             IPermissionService permissionService,
             IPictureService pictureService,
-            IProductService productService,
+            INewsService newsService,
             IStaticCacheManager staticCacheManager,
-            IStoreService storeService,
             IUrlRecordService urlRecordService,
             IWorkContext workContext)
         {
@@ -82,18 +72,13 @@ namespace Nop.Web.Areas.Admin.Controllers
             _categoryModelFactory = categoryModelFactory;
             _categoryService = categoryService;
             _customerActivityService = customerActivityService;
-            _customerService = customerService;
-            _discountService = discountService;
-            _exportManager = exportManager;
-            _importManager = importManager;
             _localizationService = localizationService;
             _localizedEntityService = localizedEntityService;
             _notificationService = notificationService;
             _permissionService = permissionService;
             _pictureService = pictureService;
-            _productService = productService;
+            _newsService = newsService;
             _staticCacheManager = staticCacheManager;
-            _storeService = storeService;
             _urlRecordService = urlRecordService;
             _workContext = workContext;
         }
@@ -162,14 +147,14 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             //prepare model
-            var model = await _categoryModelFactory.PrepareCategorySearchModelAsync(new CategorySearchModel());
+            var model = await _categoryModelFactory.PrepareCategorySearchModelAsync(new NewsCategorySearchModel());
 
             return View(model);
         }
 
         [HttpPost]
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task<IActionResult> List(CategorySearchModel searchModel)
+        public virtual async Task<IActionResult> List(NewsCategorySearchModel searchModel)
         {
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageCategories))
                 return await AccessDeniedDataTablesJson();
@@ -260,7 +245,7 @@ namespace Nop.Web.Areas.Admin.Controllers
 
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task<IActionResult> Edit(CategoryModel model, bool continueEditing)
+        public virtual async Task<IActionResult> Edit(NewsCategoryModel model, bool continueEditing)
         {
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
