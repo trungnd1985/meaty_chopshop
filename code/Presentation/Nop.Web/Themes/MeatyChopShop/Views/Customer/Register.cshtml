@@ -362,7 +362,7 @@
                                             return true;
                                         } else {
                                             //just show validation errors, don't post
-                                            alert('@Html.Raw(JavaScriptEncoder.Default.Encode(T("Account.Fields.AcceptPrivacyPolicy.Required").Text))');
+                                            alert('@Html.Raw(System.Text.Encodings.Web.JavaScriptEncoder.Default.Encode(T("Account.Fields.AcceptPrivacyPolicy.Required").Text))');
                                             return false;
                                         }
                                     });
@@ -406,7 +406,7 @@
                                                     return true;
                                                 } else {
                                                     //just show validation errors, don't post
-                                               alert('@Html.Raw(JavaScriptEncoder.Default.Encode(consent.RequiredMessage))');
+                                               alert('@Html.Raw(System.Text.Encodings.Web.JavaScriptEncoder.Default.Encode(consent.RequiredMessage))');
                                                     return false;
                                                 }
                                             });
