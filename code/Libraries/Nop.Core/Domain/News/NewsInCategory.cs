@@ -12,6 +12,6 @@ namespace Nop.Core.Domain.News
 
         public int NewsCategoryId { get; set; }
 
-        public int DisplayOrder { get; set; }
+        //public int DisplayOrder { get; set; }
     }
 }

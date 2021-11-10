@@ -34,6 +34,7 @@ namespace Nop.Web.Areas.Admin.Controllers
         private readonly IStoreMappingService _storeMappingService;
         private readonly IStoreService _storeService;
         private readonly IUrlRecordService _urlRecordService;
+        private readonly INewsCategoryService _newsCategoryService;
 
         #endregion
 
@@ -48,7 +49,8 @@ namespace Nop.Web.Areas.Admin.Controllers
             IPermissionService permissionService,
             IStoreMappingService storeMappingService,
             IStoreService storeService,
-            IUrlRecordService urlRecordService)
+            IUrlRecordService urlRecordService,
+            INewsCategoryService newsCategoryService)
         {
             _customerActivityService = customerActivityService;
             _eventPublisher = eventPublisher;
@@ -60,6 +62,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             _storeMappingService = storeMappingService;
             _storeService = storeService;
             _urlRecordService = urlRecordService;
+            _newsCategoryService = newsCategoryService;
         }
 
         #endregion
@@ -161,6 +164,8 @@ namespace Nop.Web.Areas.Admin.Controllers
                 var seName = await _urlRecordService.ValidateSeNameAsync(newsItem, model.SeName, model.Title, true);
                 await _urlRecordService.SaveSlugAsync(newsItem, seName, newsItem.LanguageId);
 
+                await SaveCategoryMappingsAsync(newsItem, model);
+
                 //Stores
                 await SaveStoreMappingsAsync(newsItem, model);
 
@@ -221,6 +226,8 @@ namespace Nop.Web.Areas.Admin.Controllers
                 var seName = await _urlRecordService.ValidateSeNameAsync(newsItem, model.SeName, model.Title, true);
                 await _urlRecordService.SaveSlugAsync(newsItem, seName, newsItem.LanguageId);
 
+                await SaveCategoryMappingsAsync(newsItem, model);
+
                 //stores
                 await SaveStoreMappingsAsync(newsItem, model);
 
@@ -260,6 +267,34 @@ namespace Nop.Web.Areas.Admin.Controllers
             _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.ContentManagement.News.NewsItems.Deleted"));
 
             return RedirectToAction("NewsItems");
+        }
+
+        protected virtual async Task SaveCategoryMappingsAsync(NewsItem news, NewsItemModel model)
+        {
+            var existingNewsInCategories = await _newsCategoryService.GetNewsInCategoriesByNewsIdAsync(news.Id, true);
+
+            //delete categories
+            foreach (var existingProductCategory in existingNewsInCategories)
+                if (!model.SelectedCategoryIds.Contains(existingProductCategory.NewsCategoryId))
+                    await _newsCategoryService.DeleteNewsInCategoryAsync(existingProductCategory);
+
+            //add categories
+            foreach (var categoryId in model.SelectedCategoryIds)
+            {
+                if (_newsCategoryService.FindNewsInCategory(existingNewsInCategories, news.Id, categoryId) == null)
+                {
+                    //find next display order
+                    var displayOrder = 1;
+                    var existingCategoryMapping = await _newsCategoryService.GetNewsInCategoriesByCategoryIdAsync(categoryId, showHidden: true);
+                    //if (existingCategoryMapping.Any())
+                    //    displayOrder = existingCategoryMapping.Max(x => x.DisplayOrder) + 1;
+                    await _newsCategoryService.InsertNewsInCategoryAsync(new NewsInCategory
+                    {
+                        NewsId = news.Id,
+                        NewsCategoryId = categoryId
+                    });
+                }
+            }
         }
 
         #endregion

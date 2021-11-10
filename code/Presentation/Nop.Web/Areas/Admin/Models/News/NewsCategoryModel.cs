@@ -14,16 +14,16 @@ namespace Nop.Web.Areas.Admin.Models.News
     {
         public NewsCategoryModel()
         {
-            //if (PageSize < 1)
-            //{
-            //    PageSize = 5;
-            //}
+            if (PageSize < 1)
+            {
+                PageSize = 5;
+            }
 
-            //Locales = new List<CategoryLocalizedModel>();
+            Locales = new List<NewsCategoryLocalizedModel>();
             //AvailableCategoryTemplates = new List<SelectListItem>();
-            //AvailableCategories = new List<SelectListItem>();
+            AvailableCategories = new List<SelectListItem>();
             //AvailableDiscounts = new List<SelectListItem>();
-            //SelectedDiscountIds = new List<int>();
+            SelectedCategoryIds = new List<int>();
 
             //SelectedCustomerRoleIds = new List<int>();
             //AvailableCustomerRoles = new List<SelectListItem>();
@@ -31,7 +31,7 @@ namespace Nop.Web.Areas.Admin.Models.News
             //SelectedStoreIds = new List<int>();
             //AvailableStores = new List<SelectListItem>();
 
-            //CategoryProductSearchModel = new CategoryProductSearchModel();
+            CategoryNewsSearchModel = new CategoryNewsSearchModel();
         }
 
 
@@ -79,9 +79,12 @@ namespace Nop.Web.Areas.Admin.Models.News
 
         public string Breadcrumb { get; set; }
 
-        public CategoryNewsSearchModel CategoryProductSearchModel { get; set; }
+        public CategoryNewsSearchModel CategoryNewsSearchModel { get; set; }
 
         public IList<SelectListItem> AvailableCategories { get; set; }
+
+        [NopResourceDisplayName("Admin.ContentManagement.News.Fields.Categories")]
+        public IList<int> SelectedCategoryIds { get; set; }
 
         #endregion
     }

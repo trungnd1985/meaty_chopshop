@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Web.Framework.Mvc.ModelBinding;
 using Nop.Web.Framework.Models;
+using Google.Protobuf.Collections;
 
 namespace Nop.Web.Areas.Admin.Models.News
 {
@@ -20,6 +21,8 @@ namespace Nop.Web.Areas.Admin.Models.News
 
             SelectedStoreIds = new List<int>();
             AvailableStores = new List<SelectListItem>();
+            AvailableCategories = new List<SelectListItem>();
+            SelectedCategoryIds = new List<int>();
         }
 
         #endregion
@@ -81,6 +84,10 @@ namespace Nop.Web.Areas.Admin.Models.News
 
         [NopResourceDisplayName("Admin.ContentManagement.News.NewsItems.Fields.CreatedOn")]
         public DateTime CreatedOn { get; set; }
+
+        [NopResourceDisplayName("Admin.ContentManagement.News.Fields.Categories")]
+        public IList<int> SelectedCategoryIds { get; set; }
+        public IList<SelectListItem> AvailableCategories { get; set; }
 
         #endregion
     }

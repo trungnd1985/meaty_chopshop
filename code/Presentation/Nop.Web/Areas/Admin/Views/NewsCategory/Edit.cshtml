@@ -1,22 +1,22 @@
 @model CategoryModel
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Catalog.Categories.EditCategoryDetails").Text;
+    ViewBag.PageTitle = T("Admin.News.Categories.EditCategoryDetails").Text;
     //active menu item (system name)
-    Html.SetActiveMenuItemSystemName("Categories");
+    Html.SetActiveMenuItemSystemName("NewsCategories");
 }
 
-<form asp-controller="Category" asp-action="Edit" method="post" id="category-form">
+<form asp-controller="NewsCategory" asp-action="Edit" method="post" id="category-form">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Catalog.Categories.EditCategoryDetails") - @Model.Name
+            @T("Admin.News.Categories.EditCategoryDetails") - @Model.Name
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
-                <a asp-action="List">@T("Admin.Catalog.Categories.BackToList")</a>
+                <a asp-action="List">@T("Admin.News.Categories.BackToList")</a>
             </small>
         </h1>
         <div class="float-right">
-            <button type="button" onclick="javascript:OpenWindow('@Url.RouteUrl("Category", new {SeName = Model.SeName})', 800, 600, true); return false;" class="btn btn-info">
+            <button type="button" onclick="javascript:OpenWindow('@Url.RouteUrl("NewsCategory", new {SeName = Model.SeName})', 800, 600, true); return false;" class="btn btn-info">
                 <i class="far fa-eye"></i>
                 @T("Admin.Common.Preview")
             </button>

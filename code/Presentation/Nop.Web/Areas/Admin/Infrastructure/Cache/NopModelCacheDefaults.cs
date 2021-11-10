@@ -35,5 +35,8 @@ namespace Nop.Web.Areas.Admin.Infrastructure.Cache
         /// </remarks>
         public static CacheKey VendorsListKey => new CacheKey("Nop.pres.admin.vendors.list-{0}", VendorsListPrefixCacheKey);
         public static string VendorsListPrefixCacheKey => "Nop.pres.admin.vendors.list";
+
+        public static CacheKey NewsCategoriesListKey => new CacheKey("Nop.pres.admin.news.categories.list-{0}", NewsCategoriesListPrefixCacheKey);
+        public static string NewsCategoriesListPrefixCacheKey => "Nop.pres.admin.news.categories.list";
     }
 }

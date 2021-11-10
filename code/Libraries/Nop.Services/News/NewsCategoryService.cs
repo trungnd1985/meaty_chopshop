@@ -24,8 +24,8 @@ namespace Nop.Services.News
         private readonly ICustomerService _customerService;
         private readonly ILocalizationService _localizationService;
         private readonly IRepository<NewsCategory> _categoryRepository;
-        private readonly IRepository<NewsItem> _productRepository;
-        private readonly IRepository<NewsInCategory> _productCategoryRepository;
+        private readonly IRepository<NewsItem> _newsRepository;
+        private readonly IRepository<NewsInCategory> _newsInCategoryRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreContext _storeContext;
         private readonly IWorkContext _workContext;
@@ -45,8 +45,8 @@ namespace Nop.Services.News
         {
             _localizationService = localizationService;
             _categoryRepository = categoryRepository;
-            _productRepository = productRepository;
-            _productCategoryRepository = productCategoryRepository;
+            _newsRepository = productRepository;
+            _newsInCategoryRepository = productCategoryRepository;
             _staticCacheManager = staticCacheManager;
             _storeContext = storeContext;
             _workContext = workContext;
@@ -79,7 +79,7 @@ namespace Nop.Services.News
 
         public async Task DeleteNewsInCategoryAsync(NewsInCategory newsInCategory)
         {
-            await _productCategoryRepository.DeleteAsync(newsInCategory);
+            await _newsInCategoryRepository.DeleteAsync(newsInCategory);
         }
 
         public NewsInCategory FindNewsInCategory(IList<NewsInCategory> source, int newsId, int categoryId)
@@ -137,7 +137,7 @@ namespace Nop.Services.News
         public async Task<IList<NewsCategory>> GetAllCategoriesByParentCategoryIdAsync(int parentCategoryId, bool showHidden = false)
         {
             var customer = await _workContext.GetCurrentCustomerAsync();
-            var categories = await _categoryRepository.GetAllAsync(async query =>
+            var categories = await _categoryRepository.GetAllAsync(query =>
             {
                 if (!showHidden)
                 {
@@ -245,10 +245,10 @@ namespace Nop.Services.News
             if (categoryId == 0)
                 return new PagedList<NewsInCategory>(new List<NewsInCategory>(), pageIndex, pageSize);
 
-            var query = from pc in _productCategoryRepository.Table
-                        join p in _productRepository.Table on pc.NewsId equals p.Id
+            var query = from pc in _newsInCategoryRepository.Table
+                        join p in _newsRepository.Table on pc.NewsId equals p.Id
                         where pc.NewsCategoryId == categoryId
-                        orderby pc.DisplayOrder, pc.Id
+                        orderby pc.Id
                         select pc;
 
             if (!showHidden)
@@ -271,7 +271,7 @@ namespace Nop.Services.News
 
         public async Task<IDictionary<int, int[]>> GetNewsInCategoryIdsAsync(int[] productIds)
         {
-            var query = _productCategoryRepository.Table;
+            var query = _newsInCategoryRepository.Table;
 
             return (await query.Where(p => productIds.Contains(p.NewsId))
                 .Select(p => new { p.NewsId, p.NewsCategoryId })
@@ -308,7 +308,7 @@ namespace Nop.Services.News
 
         public async Task<NewsInCategory> GetNewsInCategoryByIdAsync(int newsCategoryId)
         {
-            return await _productCategoryRepository.GetByIdAsync(newsCategoryId, cache => default);
+            return await _newsInCategoryRepository.GetByIdAsync(newsCategoryId, cache => default);
         }
 
         public async Task InsertCategoryAsync(NewsCategory category)
@@ -318,7 +318,7 @@ namespace Nop.Services.News
 
         public async Task InsertNewsInCategoryAsync(NewsInCategory newsInCategory)
         {
-            await _productCategoryRepository.InsertAsync(newsInCategory);
+            await _newsInCategoryRepository.InsertAsync(newsInCategory);
         }
 
         public async Task UpdateCategoryAsync(NewsCategory category)
@@ -344,7 +344,7 @@ namespace Nop.Services.News
 
         public async Task UpdateNewsInCategoryAsync(NewsInCategory newsInCategory)
         {
-            await _productCategoryRepository.UpdateAsync(newsInCategory);
+            await _newsInCategoryRepository.UpdateAsync(newsInCategory);
         }
 
         protected virtual async Task<IList<NewsCategory>> SortCategoriesForTreeAsync(IList<NewsCategory> source, int parentId = 0,
@@ -380,7 +380,7 @@ namespace Nop.Services.News
 
             var customer = await _workContext.GetCurrentCustomerAsync();
 
-            return await _productCategoryRepository.GetAllAsync(async query =>
+            return await _newsInCategoryRepository.GetAllAsync(async query =>
             {
                 if (!showHidden)
                 {
@@ -391,8 +391,7 @@ namespace Nop.Services.News
 
                 return query
                     .Where(pc => pc.NewsId == newsId)
-                    .OrderBy(pc => pc.DisplayOrder)
-                    .ThenBy(pc => pc.Id);
+                    .OrderBy(pc => pc.Id);
 
             }, cache => _staticCacheManager.PrepareKeyForDefaultCache(NopNewsCategoryDefaults.NewsInCategoriesByNewsCacheKey,
                 newsId, showHidden, customer));

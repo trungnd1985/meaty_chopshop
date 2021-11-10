@@ -248,6 +248,8 @@
 
     <Content Include="Themes\MeatyChopShop\Views\Shared\Components\CustomerNavigation\Default.cshtml" />
 
+    <Content Include="Themes\MeatyChopShop\Views\Shared\Components\ExternalMethods\Default.cshtml" />
+
     <Content Include="Themes\MeatyChopShop\Views\Shared\Components\Footer\Default.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Shared\Components\HeaderLinks\Default.cshtml" />
@@ -471,6 +473,7 @@
     <None Remove="Themes\MeatyChopShop\Views\Product\_SKU_Man_GTIN_Ven.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\CategoryNavigation\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\CustomerNavigation\Default.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Shared\Components\ExternalMethods\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\Footer\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\HeaderLinks\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\ManufacturerNavigation\Default.cshtml" />
@@ -938,6 +941,10 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Update="Themes\MeatyChopShop\Views\Shared\Components\CustomerNavigation\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Shared\Components\ExternalMethods\Default.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

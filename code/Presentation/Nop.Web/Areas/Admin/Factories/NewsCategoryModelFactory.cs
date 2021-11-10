@@ -39,7 +39,6 @@ namespace Nop.Web.Areas.Admin.Factories
             INewsService productService,
             IUrlRecordService urlRecordService)
         {
-
             _aclSupportedModelFactory = aclSupportedModelFactory;
             _baseAdminModelFactory = baseAdminModelFactory;
             _categoryService = categoryService;
@@ -166,7 +165,7 @@ namespace Nop.Web.Areas.Admin.Factories
                 }
 
                 //prepare nested search model
-                PrepareCategoryNewsSearchModel(model.CategoryProductSearchModel, category);
+                PrepareCategoryNewsSearchModel(model.CategoryNewsSearchModel, category);
 
                 //define localized model configuration action
                 localizedModelConfiguration = async (locale, languageId) =>
@@ -187,13 +186,18 @@ namespace Nop.Web.Areas.Admin.Factories
                 model.Published = true;
             }
 
-            //prepare localized models
             if (!excludeProperties)
+            {
+                //model.SelectedCategoryIds = (await _categoryService.GetNewsInCategoriesByNewsIdAsync(model.Id, true))
+                //    .Select(productCategory => productCategory.CategoryId).ToList();
                 model.Locales = await _localizedModelFactory.PrepareLocalizedModelsAsync(localizedModelConfiguration);
+            }
+
+            
 
             //prepare available parent categories
-            await _baseAdminModelFactory.PrepareCategoriesAsync(model.AvailableCategories,
-                defaultItemText: await _localizationService.GetResourceAsync("Admin.Catalog.Categories.Fields.Parent.None"));
+            await _baseAdminModelFactory.PrepareNewsCategoriesAsync(model.AvailableCategories,
+                defaultItemText: await _localizationService.GetResourceAsync("Admin.News.Categories.Fields.Parent.None"));
 
             return model;
         }

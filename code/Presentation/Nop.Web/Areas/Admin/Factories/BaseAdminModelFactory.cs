@@ -20,6 +20,7 @@ using Nop.Services.Helpers;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Messages;
+using Nop.Services.News;
 using Nop.Services.Plugins;
 using Nop.Services.Shipping;
 using Nop.Services.Shipping.Date;
@@ -61,6 +62,7 @@ namespace Nop.Web.Areas.Admin.Factories
         private readonly ITaxCategoryService _taxCategoryService;
         private readonly ITopicTemplateService _topicTemplateService;
         private readonly IVendorService _vendorService;
+        private readonly INewsCategoryService _newsCategoryService;
 
         #endregion
 
@@ -88,7 +90,9 @@ namespace Nop.Web.Areas.Admin.Factories
             IStoreService storeService,
             ITaxCategoryService taxCategoryService,
             ITopicTemplateService topicTemplateService,
-            IVendorService vendorService)
+            IVendorService vendorService,
+            INewsCategoryService newsCategoryService
+            )
         {
             _categoryService = categoryService;
             _categoryTemplateService = categoryTemplateService;
@@ -113,6 +117,7 @@ namespace Nop.Web.Areas.Admin.Factories
             _taxCategoryService = taxCategoryService;
             _topicTemplateService = topicTemplateService;
             _vendorService = vendorService;
+            _newsCategoryService = newsCategoryService;
         }
 
         #endregion
@@ -232,6 +237,33 @@ namespace Nop.Web.Areas.Admin.Factories
                     Text = v.Name,
                     Value = v.Id.ToString()
                 });
+            });
+
+            var result = new List<SelectListItem>();
+            //clone the list to ensure that "selected" property is not set
+            foreach (var item in listItems)
+            {
+                result.Add(new SelectListItem
+                {
+                    Text = item.Text,
+                    Value = item.Value
+                });
+            }
+
+            return result;
+        }
+
+        protected virtual async Task<List<SelectListItem>> GetNewsCategoryListAsync(bool showHidden = true)
+        {
+            var cacheKey = _staticCacheManager.PrepareKeyForDefaultCache(NopModelCacheDefaults.NewsCategoriesListKey, showHidden);
+            var listItems = await _staticCacheManager.GetAsync(cacheKey, async () =>
+            {
+                var categories = await _newsCategoryService.GetAllCategoriesAsync(showHidden: showHidden);
+                return await categories.SelectAwait(async c => new SelectListItem
+                {
+                    Text = await _newsCategoryService.GetFormattedBreadCrumbAsync(c, categories),
+                    Value = c.Id.ToString()
+                }).ToListAsync();
             });
 
             var result = new List<SelectListItem>();
@@ -1025,6 +1057,22 @@ namespace Nop.Web.Areas.Admin.Factories
 
             //insert special item for the default value
             await PrepareDefaultItemAsync(items, withSpecialDefaultItem, defaultItemText, defaultItemValue);
+        }
+
+        public async Task PrepareNewsCategoriesAsync(IList<SelectListItem> items, bool withSpecialDefaultItem = true, string defaultItemText = null)
+        {
+            if (items == null)
+                throw new ArgumentNullException(nameof(items));
+
+            //prepare available categories
+            var availableCategoryItems = await GetNewsCategoryListAsync();
+            foreach (var categoryItem in availableCategoryItems)
+            {
+                items.Add(categoryItem);
+            }
+
+            //insert special item for the default value
+            await PrepareDefaultItemAsync(items, withSpecialDefaultItem, defaultItemText);
         }
 
         #endregion

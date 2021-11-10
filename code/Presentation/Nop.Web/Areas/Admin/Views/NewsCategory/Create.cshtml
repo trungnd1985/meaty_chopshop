@@ -1,18 +1,18 @@
-@model CategoryModel
+@model NewsCategoryModel
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Catalog.Categories.AddNew").Text;
+    ViewBag.PageTitle = T("Admin.News.Categories.AddNew").Text;
     //active menu item (system name)
-    Html.SetActiveMenuItemSystemName("Categories");
+    Html.SetActiveMenuItemSystemName("NewsCategories");
 }
 
-<form asp-controller="Category" asp-action="Create" method="post" id="category-form">
+<form asp-controller="NewsCategory" asp-action="Create" method="post" id="category-form">
     <div class="content-header clearfix">
         <h1 class="float-left">
-            @T("Admin.Catalog.Categories.AddNew")
+            @T("Admin.News.Categories.AddNew")
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
-                <a asp-action="List">@T("Admin.Catalog.Categories.BackToList")</a>
+                <a asp-action="List">@T("Admin.News.Categories.BackToList")</a>
             </small>
         </h1>
         <div class="float-right">

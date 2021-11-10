@@ -37,6 +37,7 @@ namespace Nop.Web.Areas.Admin.Factories
         private readonly IStoreMappingSupportedModelFactory _storeMappingSupportedModelFactory;
         private readonly IStoreService _storeService;
         private readonly IUrlRecordService _urlRecordService;
+        private readonly INewsCategoryService _newsCategoryService;
 
         #endregion
 
@@ -51,7 +52,8 @@ namespace Nop.Web.Areas.Admin.Factories
             INewsService newsService,
             IStoreMappingSupportedModelFactory storeMappingSupportedModelFactory,
             IStoreService storeService,
-            IUrlRecordService urlRecordService)
+            IUrlRecordService urlRecordService,
+            INewsCategoryService newsCategoryService)
         {
             _catalogSettings = catalogSettings;
             _customerService = customerService;
@@ -63,10 +65,11 @@ namespace Nop.Web.Areas.Admin.Factories
             _storeMappingSupportedModelFactory = storeMappingSupportedModelFactory;
             _storeService = storeService;
             _urlRecordService = urlRecordService;
+            _newsCategoryService = newsCategoryService;
         }
 
         #endregion
-        
+
         #region Methods
 
         /// <summary>
@@ -90,7 +93,7 @@ namespace Nop.Web.Areas.Admin.Factories
 
             return newsContentModel;
         }
-        
+
         /// <summary>
         /// Prepare paged news item list model
         /// </summary>
@@ -162,6 +165,12 @@ namespace Nop.Web.Areas.Admin.Factories
                     model.SeName = await _urlRecordService.GetSeNameAsync(newsItem, newsItem.LanguageId, true, false);
                 }
 
+                if (!excludeProperties)
+                {
+                    model.SelectedCategoryIds = (await _newsCategoryService.GetNewsInCategoriesByNewsIdAsync(newsItem.Id, true))
+                        .Select(i => i.NewsCategoryId).ToList();
+                }
+
                 model.StartDateUtc = newsItem.StartDateUtc;
                 model.EndDateUtc = newsItem.EndDateUtc;
             }
@@ -171,6 +180,13 @@ namespace Nop.Web.Areas.Admin.Factories
             {
                 model.Published = true;
                 model.AllowComments = true;
+            }
+
+            await _baseAdminModelFactory.PrepareNewsCategoriesAsync(model.AvailableCategories, false);
+            foreach (var categoryItem in model.AvailableCategories)
+            {
+                categoryItem.Selected = int.TryParse(categoryItem.Value, out var categoryId)
+                    && model.SelectedCategoryIds.Contains(categoryId);
             }
 
             //prepare available languages
@@ -283,7 +299,7 @@ namespace Nop.Web.Areas.Admin.Factories
 
             return model;
         }
-        
+
         /// <summary>
         /// Prepare news item search model
         /// </summary>
