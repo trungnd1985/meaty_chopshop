@@ -107,7 +107,7 @@
             <div class="card">
                 <div class="card-header bg-menu">
                     <div class="title">
-                        <strong>@T("Account.Login.ReturningCustomer")</strong>
+                        <strong class="text-white">@T("Account.Login.ReturningCustomer")</strong>
                     </div>
                 </div>
                 <div class="card-body">
@@ -152,12 +152,10 @@
                         </div>
                     </form>
                 </div>
+                <div class="card-footer">
+                    @await Component.InvokeAsync("ExternalMethods", "ExternalAuthentication")
+                </div>
             </div>            
         </div>        
-    </div>
-    <div class="row">
-        <div class="col">
-            @await Component.InvokeAsync("ExternalMethods", "ExternalAuthentication")
-        </div>
     </div>
 </div>
