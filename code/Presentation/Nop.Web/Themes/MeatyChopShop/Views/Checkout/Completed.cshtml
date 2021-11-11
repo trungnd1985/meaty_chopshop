@@ -8,32 +8,59 @@
     Html.AppendPageCssClassParts("html-checkout-page");
     Html.AppendPageCssClassParts("html-order-completed-page");
 }
-<div class="page checkout-page order-completed-page">
-    @if (!Model.OnePageCheckoutEnabled)
-    {
-        @await Component.InvokeAsync("CheckoutProgress",  new { step = CheckoutProgressStep.Complete })
-    }
-    <div class="page-title">
-        <h1>@T("Checkout.ThankYou")</h1>
-    </div>
-    <div class="page-body checkout-data">
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CheckoutCompletedTop, additionalData = Model })
-        <div class="section order-completed">
-            <div class="title">
-                <strong>@T("Checkout.YourOrderHasBeenSuccessfullyProcessed")</strong>
-            </div>
-            <div class="details">
-                <div class="order-number">
-                    <strong>@T("Checkout.OrderNumber"): @Model.CustomOrderNumber</strong>
+<div class="container mb-5 page checkout-page order-completed-page">
+    <div class="row">
+        <div class="col">
+            <div class="jumbotron">
+                @if (!Model.OnePageCheckoutEnabled)
+                {
+                    @await Component.InvokeAsync("CheckoutProgress", new { step = CheckoutProgressStep.Complete })
+                }
+                <div class="page-title">
+                    <h1 class="display-4">@T("Checkout.ThankYou")</h1>
                 </div>
-                <div class="details-link">
-                    <a href="@Url.RouteUrl("OrderDetails", new { orderID = Model.OrderId })">@T("Checkout.PlacedOrderDetails")</a>
+                <div class="page-body checkout-data">
+                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CheckoutCompletedTop, additionalData = Model })
+                    <div class="section order-completed">
+                        <div class="title">
+                            <strong>@T("Checkout.YourOrderHasBeenSuccessfullyProcessed")</strong>
+                        </div>
+                        <div class="lead">
+                            <div class="order-number">
+                                <strong>@T("Checkout.OrderNumber"): @Model.CustomOrderNumber</strong>
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <div class="buttons">
+                            <a class="btn btn-info" href="@Url.RouteUrl("OrderDetails", new { orderID = Model.OrderId })">@T("Checkout.PlacedOrderDetails")</a>
+                            <button type="button" class="btn btn-primary button-1 order-completed-continue-button" onclick="setLocation('@Url.RouteUrl("Homepage")')">@T("Checkout.ThankYou.Continue")</button>
+                        </div>
+                    </div>
+                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CheckoutCompletedBottom, additionalData = Model })
                 </div>
-            </div>
-            <div class="buttons">
-                <button type="button" class="button-1 order-completed-continue-button" onclick="setLocation('@Url.RouteUrl("Homepage")')">@T("Checkout.ThankYou.Continue")</button>
             </div>
         </div>
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CheckoutCompletedBottom, additionalData = Model })
-    </div>
+    </div>    
 </div>
+@section Breadcrumb{
+
+    <div class="banner-news mb-5">
+        <div class="container">
+            <div class="row align-items-center" style="min-height:400px">
+                <div class="col-12">
+                    <h1>@T("PageTitle.ShoppingCart")</h1>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="@Url.RouteUrl("Homepage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="fas fa-angle-double-right"></span>
+                        </li>
+                        <li class="list-inline-item active">@T("PageTitle.ThankYou")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

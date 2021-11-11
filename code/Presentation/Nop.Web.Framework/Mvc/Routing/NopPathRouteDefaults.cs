@@ -76,5 +76,7 @@
         /// Gets language parameter transformer
         /// </summary>
         public static string LanguageParameterTransformer => "lang";
+
+        public static string NewsCategoryIdFieldKey = "categoryId";
     }
 }

@@ -78,6 +78,10 @@
     {
       "SystemName": "ExternalAuth.Facebook",
       "Version": "1.68"
+    },
+    {
+      "SystemName": "Payments.CashOnDelivery",
+      "Version": "1.44"
     }
   ],
   "PluginNamesToUninstall": [],

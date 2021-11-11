@@ -287,5 +287,8 @@ namespace Nop.Web.Infrastructure.Cache
         public static string BlogPostPicturePrefixCacheKey => "Nop.pres.blog.picture";
         public static string BlogPostPicturePrefixCacheKeyById => "Nop.pres.blog.picture-{0}-";
 
+        public static CacheKey NewsCategoryPictureModelKey => new CacheKey("Nop.news.category.picture-{0}-{1}-{2}-{3}-{4}", NewsCategoryPicturePrefixCacheKey, NewsCategoryPicturePrefixCacheKeyById);
+        public static string NewsCategoryPicturePrefixCacheKey => "Nop.news.category.picture";
+        public static string NewsCategoryPicturePrefixCacheKeyById => "Nop.news.category.picture-{0}-";
     }
 }

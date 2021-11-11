@@ -26,7 +26,7 @@
         }
         @if (Model.PaymentMethods.Count > 0)
         {
-            <ul class="method-list" id="payment-method-block">
+            <ul class="method-list list-inline" id="payment-method-block">
                 @for (var i = 0; i < Model.PaymentMethods.Count; i++)
                 {
                     var paymentMethod = Model.PaymentMethods[i];
@@ -35,7 +35,7 @@
                     {
                         paymentMethodName = T("Checkout.SelectPaymentMethod.MethodAndFee", paymentMethodName, paymentMethod.Fee).Text;
                     }
-                    <li>
+                    <li class="list-inline-item">
                         <div class="method-name">
                             @if (!string.IsNullOrEmpty(paymentMethod.LogoUrl))
                             {
@@ -46,12 +46,12 @@
                                 </div>
                             }
                             <div class="payment-details">
-                                <input id="paymentmethod_@(i)" type="radio" name="paymentmethod" value="@(paymentMethod.PaymentMethodSystemName)" checked="@paymentMethod.Selected" />
+                                <input id="paymentmethod_@(i)" type="radio" name="paymentmethod" value="@(paymentMethod.PaymentMethodSystemName)" checked="@paymentMethod.Selected" class="hidden" />
                                 <label for="paymentmethod_@(i)">@paymentMethodName</label>
-                                @if (!string.IsNullOrEmpty(paymentMethod.Description))
+                                @*@if (!string.IsNullOrEmpty(paymentMethod.Description))
                                 {
                                     <div class="payment-description">@paymentMethod.Description</div>
-                                }
+                                }*@
                             </div>
                         </div>
                     </li>
