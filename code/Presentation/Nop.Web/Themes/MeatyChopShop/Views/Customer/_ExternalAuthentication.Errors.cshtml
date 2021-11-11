@@ -4,7 +4,7 @@
 @using Nop.Services.Authentication.External
 @if (errors != null && errors.Count > 0)
 {
-    <div class="external-auth-errors">
+    <div class="external-auth-errors alert alert-danger" role="alert">
         <ul>
             @foreach (var error in errors)
             {

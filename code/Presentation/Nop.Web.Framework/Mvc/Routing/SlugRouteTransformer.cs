@@ -164,6 +164,12 @@ namespace Nop.Web.Framework.Mvc.Routing
                     values[NopPathRouteDefaults.TopicIdFieldKey] = urlRecord.EntityId;
                     values[NopPathRouteDefaults.SeNameFieldKey] = urlRecord.Slug;
                     break;
+                case "newscategory":
+                    values[NopPathRouteDefaults.ControllerFieldKey] = "NewsCategory";
+                    values[NopPathRouteDefaults.ActionFieldKey] = "Index";
+                    values[NopPathRouteDefaults.TopicIdFieldKey] = urlRecord.EntityId;
+                    values[NopPathRouteDefaults.SeNameFieldKey] = urlRecord.Slug;
+                    break;
 
                 default:
                     //no record found, thus generate an event this way developers could insert their own types
