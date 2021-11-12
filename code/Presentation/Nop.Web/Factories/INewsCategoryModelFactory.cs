@@ -9,7 +9,7 @@ namespace Nop.Web.Factories
 {
     public interface INewsCategoryModelFactory
     {
-        Task<NewsCategoryModel> PrepareCategoryModelAsync(NewsCategory category);
+        Task<NewsCategoryModel> PrepareCategoryModelAsync(NewsCategory category, int pageIndex, int pageSize);
 
     }
 }

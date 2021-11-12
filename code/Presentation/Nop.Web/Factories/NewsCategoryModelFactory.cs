@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Nop.Web.Models.Catalog.CategoryModel;
 
 namespace Nop.Web.Factories
 {
@@ -53,7 +54,7 @@ namespace Nop.Web.Factories
             _mediaSettings = mediaSettings;
         }
 
-        public async Task<NewsCategoryModel> PrepareCategoryModelAsync(NewsCategory category)
+        public async Task<NewsCategoryModel> PrepareCategoryModelAsync(NewsCategory category, int pageIndex, int pageSize)
         {
             if (category == null)
                 throw new ArgumentNullException(nameof(category));
@@ -67,7 +68,7 @@ namespace Nop.Web.Factories
                 MetaDescription = await _localizationService.GetLocalizedAsync(category, x => x.MetaDescription),
                 MetaTitle = await _localizationService.GetLocalizedAsync(category, x => x.MetaTitle),
                 SeName = await _urlRecordService.GetSeNameAsync(category),
-                SubCategories = await PrepareCategoryProductsModelAsync(category, command)
+                //SubCategories = await PrepareCategoryProductsModelAsync(category, command)
             };
 
             //category breadcrumb
@@ -79,15 +80,15 @@ namespace Nop.Web.Factories
                     Id = catBr.Id,
                     Name = await _localizationService.GetLocalizedAsync(catBr, x => x.Name),
                     SeName = await _urlRecordService.GetSeNameAsync(catBr)
-                }).ToListAsync();                                                                                                                                           
+                }).ToListAsync();
 
             var pictureSize = _mediaSettings.CategoryThumbPictureSize;
 
             //subcategories
-            model.SubCategories = await(await _newsCategoryService.GetAllCategoriesByParentCategoryIdAsync(category.Id))
+            model.SubCategories = await (await _newsCategoryService.GetAllCategoriesByParentCategoryIdAsync(category.Id))
                 .SelectAwait(async curCategory =>
                 {
-                    var subCatModel = new NewsCategoryModel.SubCategoryModel
+                    var subCatModel = new SubCategoryModel
                     {
                         Id = curCategory.Id,
                         Name = await _localizationService.GetLocalizedAsync(curCategory, y => y.Name),
@@ -123,10 +124,21 @@ namespace Nop.Web.Factories
                     return subCatModel;
                 }).ToListAsync();
 
+            var language = await _workContext.GetWorkingLanguageAsync();
+
             //featured products
-            var featuredProducts = await _productService.GetCategoryFeaturedProductsAsync(category.Id);
-            if (featuredProducts != null)
-                model.NewsItemListModel = (await _newsModelFactory.PrepareProductOverviewModelsAsync(featuredProducts)).ToList();
+            var lstNewsItem = await _newsService.GetAllNewsInCategoryAsync(category.Id, language.Id, pageIndex, pageSize);
+            if (lstNewsItem != null)
+            {
+                foreach (var item in lstNewsItem)
+                {
+                    var newsModel = new NewsItemModel();
+                    newsModel = await _newsModelFactory.PrepareNewsItemModelAsync(newsModel, item, false);
+                    model.NewsItems.News.Add(newsModel);
+                }
+            }
+
+            model.NewsItems.LoadPagedList(lstNewsItem);
 
             return model;
         }

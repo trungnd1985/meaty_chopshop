@@ -38,7 +38,7 @@ namespace Nop.Web.Controllers
         }
 
         [CheckLanguageSeoCode(true)]
-        public async Task<IActionResult> Index(int categoryId)
+        public async Task<IActionResult> Index(int categoryId, int? pageIndex)
         {
             var category = await _newsCategoryService.GetCategoryByIdAsync(categoryId);
 
@@ -47,7 +47,12 @@ namespace Nop.Web.Controllers
                 return InvokeHttp404();
             }
 
-            var model = await _newsCategoryModelFactory.PrepareCategoryModelAsync(category);
+            if (!pageIndex.HasValue)
+            {
+                pageIndex = 1;
+            }
+
+            var model = await _newsCategoryModelFactory.PrepareCategoryModelAsync(category, pageIndex.Value - 1, category.PageSize);
 
             return View(model);
         }
@@ -66,7 +71,7 @@ namespace Nop.Web.Controllers
                 !category.Published;
             //Check whether the current user has a "Manage categories" permission (usually a store owner)
             //We should allows him (her) to use "Preview" functionality
-            
+
             if (notAvailable)
                 isAvailable = false;
 

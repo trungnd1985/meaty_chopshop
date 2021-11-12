@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.News;
+using Nop.Core.Domain.Stores;
 using Nop.Data;
+using Nop.Services.Catalog;
 using Nop.Services.Stores;
 
 namespace Nop.Services.News
@@ -21,6 +23,7 @@ namespace Nop.Services.News
         private readonly IRepository<NewsItem> _newsItemRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreMappingService _storeMappingService;
+        private readonly IRepository<NewsInCategory> _newsInCategoryRepository;
 
         #endregion
 
@@ -30,13 +33,14 @@ namespace Nop.Services.News
             IRepository<NewsComment> newsCommentRepository,
             IRepository<NewsItem> newsItemRepository,
             IStaticCacheManager staticCacheManager,
-            IStoreMappingService storeMappingService)
+            IStoreMappingService storeMappingService,
+            IRepository<NewsInCategory> newsInCategoryRepository)
         {
             _newsCommentRepository = newsCommentRepository;
             _newsItemRepository = newsItemRepository;
             _staticCacheManager = staticCacheManager;
             _storeMappingService = storeMappingService;
-
+            _newsInCategoryRepository = newsInCategoryRepository;
         }
 
         #endregion
@@ -297,5 +301,20 @@ namespace Nop.Services.News
         #endregion
 
         #endregion
+
+        public async Task<IPagedList<NewsItem>> GetAllNewsInCategoryAsync(int categoryId, int languageId = 0, int pageIndex = 0, int pageSize = int.MaxValue)
+        {
+            IList<NewsItem> lstNews = new List<NewsItem>();
+
+            if (categoryId == 0)
+                return new PagedList<NewsItem>(lstNews, pageIndex, pageSize);
+
+            var query = from n in _newsItemRepository.Table
+                        join nc in _newsInCategoryRepository.Table on n.Id equals nc.NewsId
+                        where n.Published && categoryId == nc.NewsCategoryId && n.LanguageId == languageId
+                        select n;
+
+            return await query.ToPagedListAsync(pageIndex, pageSize);
+        }
     }
 }

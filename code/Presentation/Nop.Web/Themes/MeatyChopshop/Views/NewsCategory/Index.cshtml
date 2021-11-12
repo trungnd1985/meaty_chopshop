@@ -23,91 +23,95 @@
 
     var breadcrumbDelimiter = commonSettings.BreadcrumbDelimiter;
 }
-@*category breadcrumb*@
-@section Breadcrumb
-{
-    @if (Model.DisplayCategoryBreadcrumb)
-    {
-        <div class="breadcrumb">
-            <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-                <li>
-                    <a href="@Url.RouteUrl("Homepage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
-                    <span class="delimiter">@breadcrumbDelimiter</span>
-                </li>
-                @{ int position = 1; }
-                @foreach (var cat in Model.CategoryBreadcrumb)
-                {
-                    var isLastCategory = cat.Id == Model.Id;
-                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        @if (isLastCategory)
-                        {
-                            <strong class="current-item" itemprop="name">@cat.Name</strong>
-                            <span itemprop="item" itemscope itemtype="http://schema.org/Thing"
-                                  id="@Url.RouteUrl("Category", new {SeName = cat.SeName})">
-                            </span>
-                        }
-                        else
-                        {
-                            <a href="@Url.RouteUrl("Category", new { SeName = cat.SeName })" title="@cat.Name" itemprop="item">
-                                <span itemprop="name">@cat.Name</span>
-                            </a>
-                            <span class="delimiter">@breadcrumbDelimiter</span>
-                        }
-                        <meta itemprop="position" content="@position" />
-                    </li>
-                    position++;
-                }
-            </ul>
-        </div>
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsAfterBreadcrumb, additionalData = Model })
-    }
-}
+@section Breadcrumb{
 
-<div class="page category-page">
-    <div class="page-title">
-        <h1>@Model.Name</h1>
-    </div>
-    <div class="page-body">
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsTop, additionalData = Model })
-        @*description*@
-        @if (!string.IsNullOrWhiteSpace(Model.Description))
-        {
-            <div class="category-description">
-                @Html.Raw(Model.Description)
-            </div>
-        }
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBeforeSubcategories, additionalData = Model })
-        @*subcategories*@
-        @if (Model.SubCategories.Count > 0)
-        {
-            <div class="category-grid sub-category-grid">
-                <div class="item-grid">
-                    @foreach (var item in Model.SubCategories)
-                    {
-                        <div class="item-box">
-                            <div class="sub-category-item">
-                                <h2 class="title">
-                                    <a href="@Url.RouteUrl("NewsCategory", new { SeName = item.SeName })" title="@item.PictureModel.Title">
-                                        @item.Name
-                                    </a>
-                                </h2>
-                                <div class="picture">
-                                    <a href="@Url.RouteUrl("NewsCategory", new { SeName = item.SeName })" title="@item.PictureModel.Title">
-                                        <img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    }
+    <div class="banner-news mb-5">
+        <div class="container">
+            <div class="row align-items-center" style="min-height:400px">
+                <div class="col-12">
+                    <h1>@Model.Name</h1>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="@Url.RouteUrl("Homepage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="fas fa-angle-double-right"></span>
+                        </li>
+                        @foreach (var breadcrumb in Model.CategoryBreadcrumb)
+                        {
+                            <li class="list-inline-item">
+                                <a href="@Url.RouteUrl("NewsCategory", new { SeName = breadcrumb.SeName } )" title="@breadcrumb.Name">@breadcrumb.Name</a>
+                            </li>
+                            @if (breadcrumb.Id != Model.Id)
+                            {
+                                <li class="list-inline-item">
+                                    <span class="fas fa-angle-double-right"></span>
+                                </li>
+                            }
+                        }
+                    </ul>
                 </div>
             </div>
-        }
-        test
-        @*@{
-            var catalogProductsViewData = new ViewDataDictionary(ViewData);
-            catalogProductsViewData["fetchUrl"] = Html.Raw(Url.Action("GetCategoryProducts", "Catalog", new { categoryId = Model.Id }));
-        }
-        @await Html.PartialAsync("_CatalogProducts", Model.CatalogProductsModel, catalogProductsViewData)
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBottom, additionalData = Model })*@
+        </div>
     </div>
+
+}
+<div class="container mb-5 page category-page">
+    <div class="row">
+        <div class="col-3">
+            <div class="block block-account-navigation card">
+                <div class="title card-header bg-menu ">
+                    <strong class="text-white">@T("Category")</strong>
+                </div>
+                <ul class="list-group list-group-flush">
+                    @foreach (var item in Model.SubCategories)
+                    {
+                        <li class="list-group-item">
+                            <a href="@Url.RouteUrl("NewsCategory", new { SeName = item.SeName })">@(item.Name)</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-9">
+            <div class="row">
+                @foreach (var item in Model.NewsItems.News)
+                {
+                    <div class="col-3">
+                        <div class="card">
+                            <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })"><img src="/images/thumbs/default-image_450.png" class="card-img-top" alt="@item.Title"></a>
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@item.Title</a></h5>
+                                <p class="card-text">
+                                    @item.Short
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @{
+                var pager = Html.Pager(Model.NewsItems)
+                                .QueryParam("pagenumber")
+                                // for search page
+                                .BooleanParameterName("advs")
+                                .BooleanParameterName("isc")
+                                .BooleanParameterName("sid")
+                                .MainUlCssClass("pagination")
+                                .CurrentPageCssClass("page-item active")
+                                .IndividualPageCssClass("page-item")
+                                .RenderEmptyParameters(true);
+            }
+            @if (pager != null)
+            {
+                <div class="row">
+                    <div class="col">
+                        @pager
+                    </div>
+                </div>
+            }
+        </div>
+    </div>    
 </div>

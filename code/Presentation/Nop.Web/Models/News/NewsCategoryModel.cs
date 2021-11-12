@@ -15,7 +15,7 @@ namespace Nop.Web.Models.News
             PictureModel = new PictureModel();
             SubCategories = new List<SubCategoryModel>();
             CategoryBreadcrumb = new List<NewsCategoryModel>();
-            NewsItemListModel = new NewsItemListModel();
+            NewsItems = new NewsPagableModel();
         }
 
         public string Name { get; set; }
@@ -32,6 +32,6 @@ namespace Nop.Web.Models.News
 
         public IList<SubCategoryModel> SubCategories { get; set; }        
 
-        public NewsItemListModel NewsItemListModel { get; set; }
+        public NewsPagableModel NewsItems { get; set; }
     }
 }

@@ -10,6 +10,39 @@
     //page class
     Html.AppendPageCssClassParts("html-blogpost-page");
 }
+@section Breadcrumb
+{
+    <div class="breadcrumb pt-4 pb-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                            <a href="@Url.RouteUrl("Homepage")">
+                                @T("Products.Breadcrumb.Top")
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="fas fa-angle-double-right"></span>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="@Url.RouteUrl("Blog")">
+                                @T("MenuBlog")
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="fas fa-angle-double-right"></span>
+                        </li>
+                        <li class="list-inline-item active" aria-current="page">
+                            @Model.Title
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
 @section left {
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBlogBefore })
     @await Component.InvokeAsync("BlogMonths")
@@ -17,7 +50,7 @@
     @await Component.InvokeAsync("BlogTags")
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBlogAfter })
 }
-<div class="page blogpost-page">
+<div class="container mb-5 page blogpost-page">
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageTop, additionalData = Model })
     <div class="page-title">
         <h1>@Model.Title</h1>
@@ -26,8 +59,10 @@
         <div class="post-date">
             @Model.CreatedOn.ToString("D")
         </div>
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageBeforeBody, additionalData = Model })
+        <hr />
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageBeforeBody, additionalData = Model })        
         <div class="post-body">
+            <img src="@Model.PictureModel.FullSizeImageUrl" alt="@Model.Title" title="@Model.Title" />
             @Html.Raw(Model.Body)
         </div>
         @if (Model.Tags.Count > 0)
@@ -64,7 +99,7 @@
                         <div class="result">@result</div>
                     }
                 </div>
-                
+
                 <form asp-route="BlogPost" asp-route-sename="@Model.SeName" method="post">
                     <div class="form-fields">
                         <div class="inputs">
@@ -109,12 +144,12 @@
                                                 @if (comment.AllowViewingProfiles)
                                                 {
                                                     <a href="@Url.RouteUrl("CustomerProfile", new {id = comment.CustomerId})" class="avatar-img-link">
-                                                        <img src="@(comment.CustomerAvatarUrl)" class="avatar-img" alt="avatar"/>
+                                                        <img src="@(comment.CustomerAvatarUrl)" class="avatar-img" alt="avatar" />
                                                     </a>
                                                 }
                                                 else
                                                 {
-                                                    <img src="@(comment.CustomerAvatarUrl)" class="avatar-img" alt="avatar"/>
+                                                    <img src="@(comment.CustomerAvatarUrl)" class="avatar-img" alt="avatar" />
                                                 }
                                             </div>
                                         }

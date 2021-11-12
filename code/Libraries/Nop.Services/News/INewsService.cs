@@ -151,5 +151,7 @@ namespace Nop.Services.News
         Task UpdateNewsCommentAsync(NewsComment comment);
 
         #endregion
+
+        Task<IPagedList<NewsItem>> GetAllNewsInCategoryAsync(int categoryId, int languageId = 0, int pageIndex = 0, int pageSize = int.MaxValue);
     }
 }

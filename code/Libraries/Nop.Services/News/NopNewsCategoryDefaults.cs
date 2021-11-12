@@ -28,5 +28,9 @@ namespace Nop.Services.News
 
         public static string NewsInCategoriesByNewsPrefix => "Nop.newsincategory.bynews.{0}";
 
+        public static CacheKey NewsInCategoriesByCategoryCacheKey => new CacheKey("Nop.newsincategory.bycategory.{0}-{1}-{2}", NewsInCategoriesByCategoryPrefix);
+
+        public static string NewsInCategoriesByCategoryPrefix => "Nop.newsincategory.bycategory.{0}";
+
     }
 }
