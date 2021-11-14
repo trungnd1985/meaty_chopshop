@@ -217,12 +217,14 @@
                 }
                 <li class="nav-item"><a class="nav-link" href="#">@T("ComboAndGift")</a></li>
                 <li class="nav-item  d-none d-sm-block"><span class="nav-link">|</span></li>
-                <li class="nav-item"><a class="nav-link" href="@Url.Action("List","News")">@T("MenuNews")</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Góc-ẩm-thực">@T("MenuNews")</a></li>
                 <li class="nav-item  d-none d-sm-block"><span class="nav-link">|</span></li>
                 @if (Model.BlogEnabled && Model.DisplayBlogMenuItem)
                 {
                     <li class="nav-item"><a class="nav-link" href="@Url.RouteUrl("Blog")">@T("MenuBlog")</a></li>
+                    <li class="nav-item  d-none d-sm-block"><span class="nav-link">|</span></li>
                 }
+                <li class="nav-item"><a class="nav-link" href="/Tuyển-dụng">@T("MenuRecruitment")</a></li>
             </ul>
         </div>
         <div class="col-3">

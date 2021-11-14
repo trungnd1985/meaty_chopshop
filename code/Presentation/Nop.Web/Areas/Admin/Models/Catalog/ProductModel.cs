@@ -468,6 +468,9 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
 
         public ProductAttributeCombinationSearchModel ProductAttributeCombinationSearchModel { get; set; }
 
+        [NopResourceDisplayName("Admin.Catalog.Products.Fields.DisplayAsCombo")]
+        public bool DisplayAsCombo { get; set; }
+
         #endregion
     }
 

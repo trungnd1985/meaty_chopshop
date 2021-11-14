@@ -58,23 +58,26 @@
 }
 <div class="container mb-5 page category-page">
     <div class="row">
-        <div class="col-3">
-            <div class="block block-account-navigation card">
-                <div class="title card-header bg-menu ">
-                    <strong class="text-white">@T("Category")</strong>
+        @if (Model.SubCategories.Count > 0)
+        {
+            <div class="col-3">
+                <div class="block block-account-navigation card">
+                    <div class="title card-header bg-menu ">
+                        <strong class="text-white">@T("NewsCategory")</strong>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var item in Model.SubCategories)
+                        {
+                            <li class="list-group-item">
+                                <a href="@Url.RouteUrl("NewsCategory", new { SeName = item.SeName })">@(item.Name)</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
-                <ul class="list-group list-group-flush">
-                    @foreach (var item in Model.SubCategories)
-                    {
-                        <li class="list-group-item">
-                            <a href="@Url.RouteUrl("NewsCategory", new { SeName = item.SeName })">@(item.Name)</a>
-                        </li>
-                    }
-                </ul>
-            </div>
 
-        </div>
-        <div class="col-9">
+            </div>
+        }
+        <div class="@(Model.SubCategories.Count > 0 ? "col-9" : "col-12")">
             <div class="row">
                 @foreach (var item in Model.NewsItems.News)
                 {
@@ -113,5 +116,5 @@
                 </div>
             }
         </div>
-    </div>    
+    </div>
 </div>
