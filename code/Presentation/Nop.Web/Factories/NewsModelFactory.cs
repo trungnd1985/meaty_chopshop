@@ -10,6 +10,7 @@ using Nop.Core.Domain.Security;
 using Nop.Services.Common;
 using Nop.Services.Customers;
 using Nop.Services.Helpers;
+using Nop.Services.Localization;
 using Nop.Services.Media;
 using Nop.Services.News;
 using Nop.Services.Seo;
@@ -38,6 +39,8 @@ namespace Nop.Web.Factories
         private readonly IWorkContext _workContext;
         private readonly MediaSettings _mediaSettings;
         private readonly NewsSettings _newsSettings;
+        private readonly INewsCategoryService _newsCategoryService;
+        private readonly ILocalizationService _localizationService;
 
         #endregion
 
@@ -55,7 +58,9 @@ namespace Nop.Web.Factories
             IUrlRecordService urlRecordService,
             IWorkContext workContext,
             MediaSettings mediaSettings,
-            NewsSettings newsSettings)
+            NewsSettings newsSettings,
+            INewsCategoryService newsCategoryService,
+            ILocalizationService localizationService)
         {
             _captchaSettings = captchaSettings;
             _customerSettings = customerSettings;
@@ -70,6 +75,8 @@ namespace Nop.Web.Factories
             _workContext = workContext;
             _mediaSettings = mediaSettings;
             _newsSettings = newsSettings;
+            _newsCategoryService = newsCategoryService;
+            _localizationService = localizationService;
         }
 
         #endregion
@@ -123,6 +130,25 @@ namespace Nop.Web.Factories
                     var commentModel = await PrepareNewsCommentModelAsync(nc);
                     model.Comments.Add(commentModel);
                 }
+            }
+
+            var lstNewsCategories = await _newsCategoryService.GetCategoriesByNewsId(newsItem.Id);
+
+            foreach (var item in lstNewsCategories)
+            {
+                var newsCategoryModel = new NewsCategoryModel
+                {
+                    Id = item.Id,
+                    Name = await _localizationService.GetLocalizedAsync(item, x => x.Name),
+                    Description = await _localizationService.GetLocalizedAsync(item, x => x.Description),
+                    MetaKeywords = await _localizationService.GetLocalizedAsync(item, x => x.MetaKeywords),
+                    MetaDescription = await _localizationService.GetLocalizedAsync(item, x => x.MetaDescription),
+                    MetaTitle = await _localizationService.GetLocalizedAsync(item, x => x.MetaTitle),
+                    SeName = await _urlRecordService.GetSeNameAsync(item),
+                    //SubCategories = await PrepareCategoryProductsModelAsync(category, command)
+                };
+
+                model.Categories.Add(newsCategoryModel);
             }
 
             return model;

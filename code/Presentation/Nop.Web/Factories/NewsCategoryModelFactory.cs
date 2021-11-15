@@ -142,5 +142,25 @@ namespace Nop.Web.Factories
 
             return model;
         }
+
+        public async Task<NewsCategoryModel> PrepareCategoryModelAsync(NewsCategory category)
+        {
+            if (category == null)
+                throw new ArgumentNullException(nameof(category));
+
+            var model = new NewsCategoryModel
+            {
+                Id = category.Id,
+                Name = await _localizationService.GetLocalizedAsync(category, x => x.Name),
+                Description = await _localizationService.GetLocalizedAsync(category, x => x.Description),
+                MetaKeywords = await _localizationService.GetLocalizedAsync(category, x => x.MetaKeywords),
+                MetaDescription = await _localizationService.GetLocalizedAsync(category, x => x.MetaDescription),
+                MetaTitle = await _localizationService.GetLocalizedAsync(category, x => x.MetaTitle),
+                SeName = await _urlRecordService.GetSeNameAsync(category),
+                //SubCategories = await PrepareCategoryProductsModelAsync(category, command)
+            };
+
+            return model;
+        }
     }
 }

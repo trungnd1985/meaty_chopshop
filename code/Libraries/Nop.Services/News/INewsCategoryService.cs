@@ -188,5 +188,7 @@ namespace Nop.Services.News
         /// The task result contains the category breadcrumb 
         /// </returns>
         Task<IList<NewsCategory>> GetCategoryBreadCrumbAsync(NewsCategory category, IList<NewsCategory> allCategories = null, bool showHidden = false);
+
+        Task<IList<NewsCategory>> GetCategoriesByNewsId(int newsId);
     }
 }

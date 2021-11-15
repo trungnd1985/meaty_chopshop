@@ -370,6 +370,8 @@
     <Content Remove="Themes\MeatyChopShop\Content\images\icon\thit_ga_2.svg" />
     <Content Remove="Themes\MeatyChopShop\Content\images\icon\thuy_hai_san_2.svg" />
     <Content Remove="Themes\MeatyChopShop\Content\js\main.js" />
+    <Content Remove="Themes\MeatyChopShop\Content\js\responsive_bootstrap_carousel.js" />
+    <Content Remove="Themes\MeatyChopShop\Content\js\touchSwipe.js" />
     <Content Remove="Themes\MeatyChopShop\Content\plugins\bootstrap-input-spinner.js" />
     <Content Remove="Themes\MeatyChopShop\preview.jpg" />
     <None Remove="Themes\MeatyChopShop\Content\css\print.css" />

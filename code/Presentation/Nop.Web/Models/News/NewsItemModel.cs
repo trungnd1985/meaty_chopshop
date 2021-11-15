@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Nop.Core.Domain.News;
 using Nop.Web.Framework.Models;
 
 namespace Nop.Web.Models.News
@@ -10,6 +11,7 @@ namespace Nop.Web.Models.News
         {
             Comments = new List<NewsCommentModel>();
             AddNewComment = new AddNewsCommentModel();
+            Categories = new List<NewsCategoryModel>();
         }
 
         public string MetaKeywords { get; set; }
@@ -23,6 +25,8 @@ namespace Nop.Web.Models.News
         public bool AllowComments { get; set; }
         public int NumberOfComments { get; set; }
         public DateTime CreatedOn { get; set; }
+
+        public IList<NewsCategoryModel> Categories { get; set; }
 
         public IList<NewsCommentModel> Comments { get; set; }
         public AddNewsCommentModel AddNewComment { get; set; }
