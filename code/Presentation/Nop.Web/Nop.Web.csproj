@@ -180,6 +180,8 @@
 
     <Content Include="Themes\MeatyChopShop\Views\Order\ShipmentDetails.cshtml" />
 
+    <Content Include="Themes\MeatyChopShop\Views\Product\Combo.cshtml" />
+
     <Content Include="Themes\MeatyChopShop\Views\Product\CompareProducts.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Product\CustomerProductReviews.cshtml" />
@@ -370,6 +372,8 @@
     <Content Remove="Themes\MeatyChopShop\Content\images\icon\thit_ga_2.svg" />
     <Content Remove="Themes\MeatyChopShop\Content\images\icon\thuy_hai_san_2.svg" />
     <Content Remove="Themes\MeatyChopShop\Content\js\main.js" />
+    <Content Remove="Themes\MeatyChopShop\Content\js\responsive_bootstrap_carousel.js" />
+    <Content Remove="Themes\MeatyChopShop\Content\js\touchSwipe.js" />
     <Content Remove="Themes\MeatyChopShop\Content\plugins\bootstrap-input-spinner.js" />
     <Content Remove="Themes\MeatyChopShop\preview.jpg" />
     <None Remove="Themes\MeatyChopShop\Content\css\print.css" />
@@ -447,6 +451,7 @@
     <None Remove="Themes\MeatyChopShop\Views\Order\CustomerRewardPoints.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Order\Details.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Order\ShipmentDetails.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Product\Combo.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Product\CompareProducts.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Product\CustomerProductReviews.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Product\NewProducts.cshtml" />
@@ -817,6 +822,10 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Update="Themes\MeatyChopShop\Views\Order\ShipmentDetails.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Product\Combo.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

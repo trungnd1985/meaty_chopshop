@@ -1,0 +1,68 @@
+﻿@model ComboProductModel
+@using Nop.Core.Domain.Common
+@using Nop.Core.Domain.Seo
+@inject Nop.Core.IWebHelper webHelper
+@inject SeoSettings seoSettings
+@inject CommonSettings commonSettings
+@{
+    Layout = "_ColumnsOne";
+
+    //title
+    Html.AddTitleParts(T("ComboAndGift").Text);
+    //meta
+    //Html.AddMetaDescriptionParts(Model.MetaDescription);
+    //Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    //if (seoSettings.CanonicalUrlsEnabled)
+    //{
+    //    var categoryUrl = Url.RouteUrl("Category", new { SeName = Model.SeName }, webHelper.GetCurrentRequestProtocol()).ToLowerInvariant();
+    //    Html.AddCanonicalUrlParts(categoryUrl, seoSettings.QueryStringInCanonicalUrlsEnabled);
+    //}
+
+    var breadcrumbDelimiter = commonSettings.BreadcrumbDelimiter;
+}
+@section Breadcrumb{
+
+    <div class="banner-product mb-5">
+        <div class="container">
+            <div class="row align-items-center" style="min-height:400px">
+                <div class="col-12">
+                    <h1>@T("ComboAndGift")</h1>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="@Url.RouteUrl("Homepage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="fas fa-angle-double-right"></span>
+                        </li>
+                        <li class="list-inline-item">
+                            <span>@T("ComboAndGift")</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+<div class="container mb-5">
+    <div class="row">
+        <div class="col">
+            <span>@T("Found") <span class="text-danger">@Model.Products.Count</span> @T("products")</span>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        @if (Model.Products.Count > 0)
+        {
+            @foreach (var item in Model.Products)
+            {
+                @await Html.PartialAsync("_ProductBox", item)
+            }
+        }
+        else
+        {
+            <div class="alert alert-danger">@T("NoData")</div>
+        }
+    </div>
+</div>

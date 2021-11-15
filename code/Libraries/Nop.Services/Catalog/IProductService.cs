@@ -939,5 +939,7 @@ namespace Nop.Services.Catalog
         #endregion
 
         Task<IList<Product>> GetProductsAsync(int storeId = 0);
+
+        Task<IList<Product>> GetAllProductsDisplayAsCombo();
     }
 }

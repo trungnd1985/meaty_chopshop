@@ -396,5 +396,24 @@ namespace Nop.Services.News
             }, cache => _staticCacheManager.PrepareKeyForDefaultCache(NopNewsCategoryDefaults.NewsInCategoriesByNewsCacheKey,
                 newsId, showHidden, customer));
         }
+
+        public async Task<IList<NewsCategory>> GetCategoriesByNewsId(int newsId)
+        {
+            var lst = new List<NewsCategory>();
+
+            var newsInCategories = await GetNewsInCategoriesByNewsIdAsync(newsId);
+
+            foreach (var item in newsInCategories)
+            {
+                var category = await _categoryRepository.GetByIdAsync(item.Id);
+
+                if (category != null)
+                {
+                    lst.Add(category);
+                }
+            }
+
+            return lst;
+        }
     }
 }

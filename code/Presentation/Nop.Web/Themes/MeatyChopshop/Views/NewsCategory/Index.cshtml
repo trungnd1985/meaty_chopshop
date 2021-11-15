@@ -60,10 +60,10 @@
     <div class="row">
         @if (Model.SubCategories.Count > 0)
         {
-            <div class="col-3">
+            <div class="col-2">
                 <div class="block block-account-navigation card">
                     <div class="title card-header bg-menu ">
-                        <strong class="text-white">@T("NewsCategory")</strong>
+                        <strong class="text-white">@T("Category")</strong>
                     </div>
                     <ul class="list-group list-group-flush">
                         @foreach (var item in Model.SubCategories)
@@ -74,21 +74,27 @@
                         }
                     </ul>
                 </div>
-
             </div>
         }
-        <div class="@(Model.SubCategories.Count > 0 ? "col-9" : "col-12")">
+
+        <div class="@(Model.SubCategories.Count > 0 ? "col-10" : "col-12")">
             <div class="row">
                 @foreach (var item in Model.NewsItems.News)
                 {
                     <div class="col-3">
                         <div class="card">
-                            <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })"><img src="/images/thumbs/default-image_450.png" class="card-img-top" alt="@item.Title"></a>
+                            <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })"><img src="@item.PictureModel.ImageUrl" class="card-img-top" alt="@item.PictureModel.AlternateText" title="@item.PictureModel.Title"></a>
                             <div class="card-body">
                                 <h5 class="card-title"><a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@item.Title</a></h5>
                                 <p class="card-text">
                                     @item.Short
                                 </p>
+                                <div class="float-left">
+
+                                </div>
+                                <div class="float-right">
+                                    @item.CreatedOn.ToString("D")
+                                </div>
                             </div>
                         </div>
                     </div>

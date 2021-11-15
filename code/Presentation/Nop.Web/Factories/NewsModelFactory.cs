@@ -10,10 +10,12 @@ using Nop.Core.Domain.Security;
 using Nop.Services.Common;
 using Nop.Services.Customers;
 using Nop.Services.Helpers;
+using Nop.Services.Localization;
 using Nop.Services.Media;
 using Nop.Services.News;
 using Nop.Services.Seo;
 using Nop.Web.Infrastructure.Cache;
+using Nop.Web.Models.Media;
 using Nop.Web.Models.News;
 
 namespace Nop.Web.Factories
@@ -38,6 +40,8 @@ namespace Nop.Web.Factories
         private readonly IWorkContext _workContext;
         private readonly MediaSettings _mediaSettings;
         private readonly NewsSettings _newsSettings;
+        private readonly INewsCategoryService _newsCategoryService;
+        private readonly ILocalizationService _localizationService;
 
         #endregion
 
@@ -55,7 +59,9 @@ namespace Nop.Web.Factories
             IUrlRecordService urlRecordService,
             IWorkContext workContext,
             MediaSettings mediaSettings,
-            NewsSettings newsSettings)
+            NewsSettings newsSettings,
+            INewsCategoryService newsCategoryService,
+            ILocalizationService localizationService)
         {
             _captchaSettings = captchaSettings;
             _customerSettings = customerSettings;
@@ -70,6 +76,8 @@ namespace Nop.Web.Factories
             _workContext = workContext;
             _mediaSettings = mediaSettings;
             _newsSettings = newsSettings;
+            _newsCategoryService = newsCategoryService;
+            _localizationService = localizationService;
         }
 
         #endregion
@@ -106,6 +114,29 @@ namespace Nop.Web.Factories
             model.CreatedOn = await _dateTimeHelper.ConvertToUserTimeAsync(newsItem.StartDateUtc ?? newsItem.CreatedOnUtc, DateTimeKind.Utc);
             model.AddNewComment.DisplayCaptcha = _captchaSettings.Enabled && _captchaSettings.ShowOnNewsCommentPage;
 
+            var pictureSize = _mediaSettings.CategoryThumbPictureSize;
+
+            var blogPostPictureCacheKey = _staticCacheManager.PrepareKeyForDefaultCache(NopModelCacheDefaults.NewsPictureCacheKey,
+                        model, pictureSize);
+            model.PictureModel = await _staticCacheManager.GetAsync(blogPostPictureCacheKey, async () =>
+            {
+                var picture = await _pictureService.GetPictureByIdAsync(newsItem.PictureId);
+                string fullSizeImageUrl, imageUrl;
+
+                (fullSizeImageUrl, picture) = await _pictureService.GetPictureUrlAsync(picture);
+                (imageUrl, _) = await _pictureService.GetPictureUrlAsync(picture, pictureSize);
+
+                var titleLocale = await _localizationService.GetResourceAsync("Media.Category.ImageLinkTitleFormat");
+                var altLocale = await _localizationService.GetResourceAsync("Media.Category.ImageAlternateTextFormat");
+                return new PictureModel
+                {
+                    FullSizeImageUrl = fullSizeImageUrl,
+                    ImageUrl = imageUrl,
+                    Title = string.Format(titleLocale, newsItem.Title),
+                    AlternateText = string.Format(altLocale, newsItem.Title)
+                };
+            });
+
             //number of news comments
             var storeId = _newsSettings.ShowNewsCommentsPerStore ? (await _storeContext.GetCurrentStoreAsync()).Id : 0;
 
@@ -123,6 +154,25 @@ namespace Nop.Web.Factories
                     var commentModel = await PrepareNewsCommentModelAsync(nc);
                     model.Comments.Add(commentModel);
                 }
+            }
+
+            var lstNewsCategories = await _newsCategoryService.GetCategoriesByNewsId(newsItem.Id);
+
+            foreach (var item in lstNewsCategories)
+            {
+                var newsCategoryModel = new NewsCategoryModel
+                {
+                    Id = item.Id,
+                    Name = await _localizationService.GetLocalizedAsync(item, x => x.Name),
+                    Description = await _localizationService.GetLocalizedAsync(item, x => x.Description),
+                    MetaKeywords = await _localizationService.GetLocalizedAsync(item, x => x.MetaKeywords),
+                    MetaDescription = await _localizationService.GetLocalizedAsync(item, x => x.MetaDescription),
+                    MetaTitle = await _localizationService.GetLocalizedAsync(item, x => x.MetaTitle),
+                    SeName = await _urlRecordService.GetSeNameAsync(item),
+                    //SubCategories = await PrepareCategoryProductsModelAsync(category, command)
+                };
+
+                model.Categories.Add(newsCategoryModel);
             }
 
             return model;

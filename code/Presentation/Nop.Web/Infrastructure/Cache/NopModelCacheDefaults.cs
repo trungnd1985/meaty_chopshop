@@ -290,5 +290,10 @@ namespace Nop.Web.Infrastructure.Cache
         public static CacheKey NewsCategoryPictureModelKey => new CacheKey("Nop.news.category.picture-{0}-{1}-{2}-{3}-{4}", NewsCategoryPicturePrefixCacheKey, NewsCategoryPicturePrefixCacheKeyById);
         public static string NewsCategoryPicturePrefixCacheKey => "Nop.news.category.picture";
         public static string NewsCategoryPicturePrefixCacheKeyById => "Nop.news.category.picture-{0}-";
+
+        public static CacheKey NewsPictureCacheKey => new CacheKey("Nop.pres.news.picture-{0}-{1}", NewsPicturePrefixCacheKey, NewsPicturePrefixCacheKeyById);
+        public static string NewsPicturePrefixCacheKey => "Nop.pres.news.picture";
+        public static string NewsPicturePrefixCacheKeyById => "Nop.pres.news.picture-{0}-";
+
     }
 }

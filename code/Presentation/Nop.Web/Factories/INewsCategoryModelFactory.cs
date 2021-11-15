@@ -11,5 +11,7 @@ namespace Nop.Web.Factories
     {
         Task<NewsCategoryModel> PrepareCategoryModelAsync(NewsCategory category, int pageIndex, int pageSize);
 
+        Task<NewsCategoryModel> PrepareCategoryModelAsync(NewsCategory category);
+
     }
 }

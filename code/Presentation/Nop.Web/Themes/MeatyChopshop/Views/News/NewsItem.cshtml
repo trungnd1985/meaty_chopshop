@@ -1,6 +1,6 @@
 ﻿@model NewsItemModel
 @{
-    Layout = "_ColumnsTwo";
+    Layout = "_ColumnsOne";
 
     //title
     Html.AddTitleParts(!string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Title);
@@ -10,19 +10,37 @@
     //page class
     Html.AppendPageCssClassParts("html-news-item-page");
 }
-<div class="page news-item-page">
+<div class="container mb-5 page news-item-page">
     <div class="page-title">
         <h1>@Model.Title</h1>
     </div>
-    <div class="page-body">
-        <div class="news-date">
-            @Model.CreatedOn.ToString("D")
+    <div class="row">
+        <div class="col">
+            <ul class="list-inline">
+                <li class="list-inline-item"><span class="fas fa-tags"></span></li>
+                @foreach (var item in Model.Categories)
+                {
+                    <li class="list-inline-item"><a class="text-muted" href="@Url.RouteUrl("NewsCategory", new { SeName = item.SeName })">@item.Name</a></li>
+                }
+                <li class="list-inline-item">
+                    |
+                </li>
+                <li class="list-inline-item"><span>@Model.CreatedOn.ToString("D")</span></li>
+            </ul>
         </div>
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.NewsItemPageBeforeBody, additionalData = Model })
-        <div class="news-body">
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <img src="@Model.PictureModel.FullSizeImageUrl" class="img-fluid card-img-top" alt="@Model.PictureModel.AlternateText" title="@Model.PictureModel.Title">
+        </div>
+    </div>
+    <div class="page-body row">
+        <div class="news-body col">
             @Html.Raw(Model.Full)
-        </div>
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.NewsItemPageBeforeComments, additionalData = Model })
+        </div>       
+    </div>
+    <div class="row">
         @if (Model.AllowComments)
         {
             <div class="fieldset new-comment" id="comments">
@@ -43,7 +61,7 @@
                     <div class="form-fields">
                         <div class="inputs">
                             <label asp-for="AddNewComment.CommentTitle" asp-postfix=":"></label>
-                            <input asp-for="AddNewComment.CommentTitle" class="enter-comment-title"/>
+                            <input asp-for="AddNewComment.CommentTitle" class="enter-comment-title" />
                             <span asp-validation-for="AddNewComment.CommentTitle"></span>
                         </div>
                         <div class="inputs">
@@ -88,7 +106,7 @@
                                                 @if (comment.AllowViewingProfiles)
                                                 {
                                                     <a href="@Url.RouteUrl("CustomerProfile", new { id = comment.CustomerId })" class="avatar-img-link">
-                                                        <img src="@(comment.CustomerAvatarUrl)" class="avatar-img"  alt="avatar" />
+                                                        <img src="@(comment.CustomerAvatarUrl)" class="avatar-img" alt="avatar" />
                                                     </a>
                                                 }
                                                 else
@@ -121,3 +139,29 @@
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.NewsItemPageAfterComments, additionalData = Model })
     </div>
 </div>
+<!--product breadcrumb-->
+@section Breadcrumb
+{
+    <div class="breadcrumb pt-4 pb-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                            <a href="@Url.RouteUrl("Homepage")">
+                                @T("Products.Breadcrumb.Top")
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="fas fa-angle-double-right"></span>
+                        </li>
+                        <li class="list-inline-item active" aria-current="page">
+                            @Model.Title
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
