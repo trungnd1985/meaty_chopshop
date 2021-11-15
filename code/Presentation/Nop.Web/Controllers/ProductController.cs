@@ -711,5 +711,17 @@ namespace Nop.Web.Controllers
         }
 
         #endregion
+
+        public async Task<IActionResult> Combo()
+        {
+            var lstProduct = await _productService.GetAllProductsDisplayAsCombo();
+
+            var lstProductModel = await _productModelFactory.PrepareProductOverviewModelsAsync(lstProduct.AsEnumerable());
+
+            var model = new ComboProductModel();
+            model.Products = lstProductModel.ToList();
+
+            return View(model);
+        }
     }
 }

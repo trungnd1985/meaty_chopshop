@@ -15,6 +15,7 @@ using Nop.Services.Media;
 using Nop.Services.News;
 using Nop.Services.Seo;
 using Nop.Web.Infrastructure.Cache;
+using Nop.Web.Models.Media;
 using Nop.Web.Models.News;
 
 namespace Nop.Web.Factories
@@ -112,6 +113,29 @@ namespace Nop.Web.Factories
             model.AllowComments = newsItem.AllowComments;
             model.CreatedOn = await _dateTimeHelper.ConvertToUserTimeAsync(newsItem.StartDateUtc ?? newsItem.CreatedOnUtc, DateTimeKind.Utc);
             model.AddNewComment.DisplayCaptcha = _captchaSettings.Enabled && _captchaSettings.ShowOnNewsCommentPage;
+
+            var pictureSize = _mediaSettings.CategoryThumbPictureSize;
+
+            var blogPostPictureCacheKey = _staticCacheManager.PrepareKeyForDefaultCache(NopModelCacheDefaults.NewsPictureCacheKey,
+                        model, pictureSize);
+            model.PictureModel = await _staticCacheManager.GetAsync(blogPostPictureCacheKey, async () =>
+            {
+                var picture = await _pictureService.GetPictureByIdAsync(newsItem.PictureId);
+                string fullSizeImageUrl, imageUrl;
+
+                (fullSizeImageUrl, picture) = await _pictureService.GetPictureUrlAsync(picture);
+                (imageUrl, _) = await _pictureService.GetPictureUrlAsync(picture, pictureSize);
+
+                var titleLocale = await _localizationService.GetResourceAsync("Media.Category.ImageLinkTitleFormat");
+                var altLocale = await _localizationService.GetResourceAsync("Media.Category.ImageAlternateTextFormat");
+                return new PictureModel
+                {
+                    FullSizeImageUrl = fullSizeImageUrl,
+                    ImageUrl = imageUrl,
+                    Title = string.Format(titleLocale, newsItem.Title),
+                    AlternateText = string.Format(altLocale, newsItem.Title)
+                };
+            });
 
             //number of news comments
             var storeId = _newsSettings.ShowNewsCommentsPerStore ? (await _storeContext.GetCurrentStoreAsync()).Id : 0;

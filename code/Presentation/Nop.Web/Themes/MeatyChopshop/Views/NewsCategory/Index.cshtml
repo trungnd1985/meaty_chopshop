@@ -58,29 +58,32 @@
 }
 <div class="container mb-5 page category-page">
     <div class="row">
-        <div class="col-3">
-            <div class="block block-account-navigation card">
-                <div class="title card-header bg-menu ">
-                    <strong class="text-white">@T("Category")</strong>
+        @if (Model.SubCategories.Count > 0)
+        {
+            <div class="col-2">
+                <div class="block block-account-navigation card">
+                    <div class="title card-header bg-menu ">
+                        <strong class="text-white">@T("Category")</strong>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var item in Model.SubCategories)
+                        {
+                            <li class="list-group-item">
+                                <a href="@Url.RouteUrl("NewsCategory", new { SeName = item.SeName })">@(item.Name)</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
-                <ul class="list-group list-group-flush">
-                    @foreach (var item in Model.SubCategories)
-                    {
-                        <li class="list-group-item">
-                            <a href="@Url.RouteUrl("NewsCategory", new { SeName = item.SeName })">@(item.Name)</a>
-                        </li>
-                    }
-                </ul>
             </div>
+        }
 
-        </div>
-        <div class="col-10">
+        <div class="@(Model.SubCategories.Count > 0 ? "col-10" : "col-12")">
             <div class="row">
                 @foreach (var item in Model.NewsItems.News)
                 {
                     <div class="col-3">
                         <div class="card">
-                            <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })"><img src="/images/thumbs/default-image_450.png" class="card-img-top" alt="@item.Title"></a>
+                            <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })"><img src="@item.PictureModel.ImageUrl" class="card-img-top" alt="@item.PictureModel.AlternateText" title="@item.PictureModel.Title"></a>
                             <div class="card-body">
                                 <h5 class="card-title"><a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@item.Title</a></h5>
                                 <p class="card-text">

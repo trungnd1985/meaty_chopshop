@@ -30,12 +30,17 @@
         </div>
     </div>
     <hr />
-    <div class="page-body">
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.NewsItemPageBeforeBody, additionalData = Model })
-        <div class="news-body">
-            @Html.Raw(Model.Full)
+    <div class="row">
+        <div class="col">
+            <img src="@Model.PictureModel.FullSizeImageUrl" class="img-fluid card-img-top" alt="@Model.PictureModel.AlternateText" title="@Model.PictureModel.Title">
         </div>
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.NewsItemPageBeforeComments, additionalData = Model })
+    </div>
+    <div class="page-body row">
+        <div class="news-body col">
+            @Html.Raw(Model.Full)
+        </div>       
+    </div>
+    <div class="row">
         @if (Model.AllowComments)
         {
             <div class="fieldset new-comment" id="comments">

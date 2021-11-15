@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Nop.Core.Domain.News;
 using Nop.Web.Framework.Models;
+using Nop.Web.Models.Media;
 
 namespace Nop.Web.Models.News
 {
@@ -30,5 +31,7 @@ namespace Nop.Web.Models.News
 
         public IList<NewsCommentModel> Comments { get; set; }
         public AddNewsCommentModel AddNewComment { get; set; }
+        public PictureModel PictureModel { get; set; }
+
     }
 }

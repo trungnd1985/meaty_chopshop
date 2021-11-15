@@ -73,5 +73,7 @@ namespace Nop.Core.Domain.News
         /// Gets or sets the date and time of entity creation
         /// </summary>
         public DateTime CreatedOnUtc { get; set; }
+
+        public int PictureId { get; set; }
     }
 }

@@ -180,6 +180,8 @@
 
     <Content Include="Themes\MeatyChopShop\Views\Order\ShipmentDetails.cshtml" />
 
+    <Content Include="Themes\MeatyChopShop\Views\Product\Combo.cshtml" />
+
     <Content Include="Themes\MeatyChopShop\Views\Product\CompareProducts.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Product\CustomerProductReviews.cshtml" />
@@ -449,6 +451,7 @@
     <None Remove="Themes\MeatyChopShop\Views\Order\CustomerRewardPoints.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Order\Details.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Order\ShipmentDetails.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Product\Combo.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Product\CompareProducts.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Product\CustomerProductReviews.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Product\NewProducts.cshtml" />
@@ -819,6 +822,10 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Update="Themes\MeatyChopShop\Views\Order\ShipmentDetails.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Product\Combo.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

@@ -613,6 +613,6 @@ namespace Nop.Core.Domain.Catalog
             set => RentalPricePeriodId = (int)value;
         }
 
-        public bool? DisplayAsCombo { get; set; }
+        public bool? DisplayAsCombo { get; set; }        
     }
 }
