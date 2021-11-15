@@ -25,8 +25,6 @@
     <None Remove="Views\Configuration\_Configuration.cshtml" />
     <None Remove="Views\EntityUseCode\EntityUseCode.cshtml" />
     <None Remove="Views\EntityUseCode\_EntityUseCodeField.cshtml" />
-    <None Remove="Views\Log\List.cshtml" />
-    <None Remove="Views\Log\View.cshtml" />
     <None Remove="Views\Product\ExportItems.cshtml" />
     <None Remove="Views\Product\_ExportItemsButton.cshtml" />
     <None Remove="Views\Product\_ExportItemsForm.cshtml" />

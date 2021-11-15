@@ -36,11 +36,9 @@
 
 }
 
-<div class="page account-page order-list-page">
-    <div class="page-title">
+<div class="container mb-5 page account-page order-list-page">    
+    <div class="row">
         <h1>@T("Account.MyAccount") - @T("Account.CustomerOrders")</h1>
-    </div>
-    <div class="page-body">
         @if (Model.RecurringOrders.Count > 0)
         {
             <div class="section recurring-payments">
@@ -63,7 +61,7 @@
                                 @if (canRetryRecurringOrders)
                                 {
                                     <col />
-}
+                                }
                                 <col />
                             </colgroup>
                             <thead>
@@ -159,21 +157,23 @@
             <div class="order-list">
                 @foreach (var order in Model.Orders)
                 {
-                    <div class="section order-item">
-                        <div class="title">
-                            <strong>@T("Account.CustomerOrders.OrderNumber"): @order.CustomOrderNumber</strong>
+                    <div class="card section order-item">
+                        <div class="card-header bg-success">
+                            <strong class="text-white">@T("Account.CustomerOrders.OrderNumber"): @order.CustomOrderNumber</strong>
                         </div>
-                        <ul class="info">
-                            <li>@T("Account.CustomerOrders.OrderStatus"): <span class="order-status @order.OrderStatusEnum.ToString().ToLowerInvariant()">@order.OrderStatus</span></li>
-                            <li>@T("Account.CustomerOrders.OrderDate"): <span class="order-date">@order.CreatedOn.ToString()</span></li>
-                            <li>@T("Account.CustomerOrders.OrderTotal"): <span class="order-total">@order.OrderTotal</span></li>
-                        </ul>
-                        <div class="buttons">
+                        <div class="card-body">
+                            <ul class="info list-unstyled">
+                                <li>@T("Account.CustomerOrders.OrderStatus"): <span class="order-status @order.OrderStatusEnum.ToString().ToLowerInvariant()">@order.OrderStatus</span></li>
+                                <li>@T("Account.CustomerOrders.OrderDate"): <span class="order-date">@order.CreatedOn.ToString()</span></li>
+                                <li>@T("Account.CustomerOrders.OrderTotal"): <span class="order-total">@order.OrderTotal</span></li>
+                            </ul>
+                        </div>
+                        <div class="card-footer buttons">
                             @if (order.IsReturnRequestAllowed)
                             {
-                                <button type="button" class="button-2 return-items-button" onclick="setLocation('@Url.RouteUrl("ReturnRequest", new { orderId = order.Id })')">@T("Account.CustomerOrders.ReturnItems")</button>
+                                <button type="button" class="btn btn-primary button-2 return-items-button" onclick="setLocation('@Url.RouteUrl("ReturnRequest", new { orderId = order.Id })')">@T("Account.CustomerOrders.ReturnItems")</button>
                             }
-                            <button type="button" class="button-2 order-details-button" onclick="setLocation('@Url.RouteUrl("OrderDetails", new { orderId = order.Id })')">@T("Account.CustomerOrders.OrderDetails")</button>
+                            <button type="button" class="btn btn-info button-2 order-details-button" onclick="setLocation('@Url.RouteUrl("OrderDetails", new { orderId = order.Id })')">@T("Account.CustomerOrders.OrderDetails")</button>
                         </div>
                     </div>
                 }
