@@ -44,151 +44,13 @@
         </li>
     }
 }
-
-@*<ul class="top-menu notmobile">
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuBefore })
-        @if (Model.DisplayHomepageMenuItem)
-        {
-            <li><a href="@Url.RouteUrl("Homepage")">@T("Homepage")</a></li>
-        }
-        @if (!Model.UseAjaxMenu)
-        {
-            var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
-            @foreach (var category in rootCategories)
-            {
-                var categoryLineModel = new TopMenuModel.CategoryLineModel
-                {
-                    Category = category
-                };
-                await CategoryLine(categoryLineModel);
-            }
-
-        }
-        @foreach (var topic in Model.Topics)
-        {
-            <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
-        }
-        @if (Model.NewProductsEnabled && Model.DisplayNewProductsMenuItem)
-        {
-            <li><a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a></li>
-        }
-        @if (Model.DisplayProductSearchMenuItem)
-        {
-            <li><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a></li>
-        }
-        @if (Model.DisplayCustomerInfoMenuItem)
-        {
-            <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
-        }
-        @if (Model.BlogEnabled && Model.DisplayBlogMenuItem)
-        {
-            <li><a href="@Url.RouteUrl("Blog")">@T("Blog")</a></li>
-        }
-        @if (Model.ForumEnabled && Model.DisplayForumsMenuItem)
-        {
-            <li><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
-        }
-        @if (Model.DisplayContactUsMenuItem)
-        {
-            <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
-        }
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuAfter })
-    </ul>
-    @{
-        var rootCategoriesResponsive = Model.Categories.ToList();
-        //name it "Categories" if we have only categories. Otherwise, "Menu"
-        var responsiveMenuTitle = Model.HasOnlyCategories ? T("Categories") : T("Menu");
-        <div class="menu-toggle">@responsiveMenuTitle</div>
-        <ul class="top-menu mobile">
-            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MobHeaderMenuBefore })
-            @if (Model.DisplayHomepageMenuItem)
-            {
-                <li><a href="@Url.RouteUrl("Homepage")">@T("Homepage")</a></li>
-            }
-            @if (!Model.UseAjaxMenu)
-            {
-                @foreach (var category in rootCategoriesResponsive)
-                {
-                    var categoryLineModel = new TopMenuModel.CategoryLineModel
-                    {
-                        Category = category,
-                        ResponsiveMobileMenu = true
-                    };
-                    await CategoryLine(categoryLineModel);
-                }
-
-            }
-            @foreach (var topic in Model.Topics)
-            {
-                <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
-            }
-            @if (Model.NewProductsEnabled && Model.DisplayNewProductsMenuItem)
-            {
-                <li><a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a></li>
-            }
-            @if (Model.DisplayProductSearchMenuItem)
-            {
-                <li><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a></li>
-            }
-            @if (Model.DisplayCustomerInfoMenuItem)
-            {
-                <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
-            }
-            @if (Model.BlogEnabled && Model.DisplayBlogMenuItem)
-            {
-                <li><a href="@Url.RouteUrl("Blog")">@T("Blog")</a></li>
-            }
-            @if (Model.ForumEnabled && Model.DisplayForumsMenuItem)
-            {
-                <li><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
-            }
-            @if (Model.DisplayContactUsMenuItem)
-            {
-                <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
-            }
-            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MobHeaderMenuAfter })
-        </ul>
-
-        @if (Model.UseAjaxMenu)
-        {
-            <script asp-location="Footer">
-            $(document).ready(function () {
-                $('.menu-toggle').on('click', function () {
-                    $(this).siblings('.top-menu.mobile').slideToggle('slow');
-                });
-                var localized_data = {
-                    AjaxFailure: "@T("MainMenu.AjaxFailure")"
-                };
-                mainMenu.init('@Url.RouteUrl("GetCatalogRoot")', '@Url.RouteUrl("GetCatalogSubCategories")', 'ul.top-menu.notmobile', 'ul.top-menu.mobile', localized_data);
-            });
-            </script>
-
-            Html.AppendScriptParts(ResourceLocation.Footer, "~/js/public.menu.js");
-
-        }
-        else
-        {
-            <script asp-location="Footer">
-                $(document).ready(function () {
-                    $('.menu-toggle').on('click', function () {
-                        $(this).siblings('.top-menu.mobile').slideToggle('slow');
-                    });
-                    $('.top-menu.mobile .sublist-toggle').on('click', function () {
-                        $(this).siblings('.sublist').slideToggle('slow');
-                    });
-                });
-            </script>
-
-        }
-
-    }*@
 <nav class="navbar navbar-expand-lg navbar-dark bg-menu">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse show navbar-collapse container" id="navbarSupportedContent">
-        <div class="col-3">
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="col-12 col-md-2">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -203,8 +65,8 @@
                 </li>
             </ul>
         </div>
-        <div class="col-6">
-            <ul class="navbar-nav mr-auto  nav-fill">
+        <div class="col-12 col-md-8">
+            <ul class="navbar-nav justify-content-center">
                 @if (Model.DisplayHomepageMenuItem)
                 {
                     <li class="nav-item"><a class="nav-link" href="@Url.RouteUrl("Homepage")">@T("Homepage")</a></li>
@@ -227,7 +89,7 @@
                 <li class="nav-item"><a class="nav-link" href="/Tuyển-dụng">@T("MenuRecruitment")</a></li>
             </ul>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-md-2">
             @if (Model.DisplayContactUsMenuItem)
             {
                 <ul class="navbar-nav mr-auto float-right">

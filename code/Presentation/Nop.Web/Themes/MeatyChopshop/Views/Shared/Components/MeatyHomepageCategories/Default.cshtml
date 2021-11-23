@@ -5,56 +5,60 @@
 
     @foreach (var item in Model)
     {
-        <div class="container mb-5">
-            <div class="row pt-4 pb-4">
-                <div class="col-12 col-md-3">
-                    <h1>
-                        <a class="topic-title" href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
-                            @item.Name
-                        </a>
-                    </h1>
-                </div>
-                <div class="col-12 col-md-9">
-                    <ul class="list-inline float-right sub-categories" style="margin-bottom: .5rem; line-height: 1.2; font-size: 2.5rem;">
-                        @foreach (var childCate in item.SubCategories)
-                        {
-                            <li class="list-inline-item pl-4 pr-4">
-                                <a href="@Url.RouteUrl("Category", new { SeName = childCate.SeName })" title="@childCate.PictureModel.Title">
-                                    @childCate.Name
+        if (item.FeaturedProducts.Count > 0)
+        {
+            <div class="container mb-5">
+                <div class="row pt-4 pb-4">
+                    <div class="col-12 col-md-3">
+                        <h1>
+                            <a class="topic-title" href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
+                                @item.Name
+                            </a>
+                        </h1>
+                    </div>
+                    <div class="col-12 col-md-9 d-none d-sm-block">
+                        <ul class="list-inline float-right sub-categories" style="margin-bottom: .5rem; line-height: 1.2; font-size: 2.5rem;">
+                            @foreach (var childCate in item.SubCategories)
+                            {
+                                <li class="list-inline-item pl-4 pr-4">
+                                    <a href="@Url.RouteUrl("Category", new { SeName = childCate.SeName })" title="@childCate.PictureModel.Title">
+                                        @childCate.Name
+                                    </a>
+                                </li>
+                            }
+                            <li class="list-inline-item border-left pl-4">
+                                <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
+                                    Shop all
                                 </a>
                             </li>
-                        }
-                        <li class="list-inline-item border-left pl-4">
-                            <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
-                                Shop all
-                            </a>
-                        </li>
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <hr />
+                <div class="row">
+                    <div class="col">
+                        <hr />
+                    </div>
                 </div>
-            </div>
-            <div class="row pt-4">
-                <div class="col-2  d-none d-sm-block">
-                    <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
-                        <img class="img-fluid" alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" />
-                    </a>
-                </div>
-                <div class="col-12 col-md-10">
-                    <div class="row owl-carousel owl-theme">
-                        @foreach (var product in item.FeaturedProducts)
-                        {
-                            <div>
-                                @await Html.PartialAsync("_ProductBox", product)
-                            </div>
-                        }
+                <div class="row pt-4">
+                    <div class="col-2  d-none d-sm-block">
+                        <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
+                            <img class="img-fluid" alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" />
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <div class="row owl-carousel owl-theme">
+                            @foreach (var product in item.FeaturedProducts)
+                            {
+                                <div>
+                                    @await Html.PartialAsync("_ProductBox", product)
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
+
 
         if ((index + 1) % 3 == 0)
         {
@@ -74,7 +78,22 @@
             autoplay: true,
             autoplayHoverPause: true,
             margin: 10,
-            dots: true
+            dots: true,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 3,
+                    nav: false
+                },
+                1000: {
+                    items: 4,
+                    nav: true
+                }
+            }
         });
     });
 </script>

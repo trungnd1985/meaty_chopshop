@@ -37,8 +37,7 @@ html, * {
 }
 
 footer {
-    background-image: url('../images/bg_footer.jpg');
-    background-repeat: repeat-x;
+    background-image: url('../images/bg_footer.jpg');    
     color: #ffffff;
 }
 
@@ -57,7 +56,6 @@ footer {
 
 header {
     background-image: url('../images/bg_top.jpg');
-    background-repeat: repeat-x;
     color: #FFF;
 }
 

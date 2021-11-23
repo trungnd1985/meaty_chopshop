@@ -75,7 +75,7 @@
     <div class="row page-body">
         <form asp-route="Product" class="container" asp-route-sename="@Model.SeName" method="post" id="product-details-form">
             <div class="row">
-                <div class="col-5">
+                <div class="col-12 col-md5">
                     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsTop, additionalData = Model })
 
                     @if (seoSettings.MicrodataEnabled)
@@ -85,7 +85,7 @@
                     @await Html.PartialAsync("_ProductDetailsPictures", Model)
                     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsBottom, additionalData = Model })
                 </div>
-                <div class="col-5">                    
+                <div class="col-12 col-md-5">                    
                     <div data-productid="@Model.Id">
                         <div class="row hr pb-4 pt-4">
                             <div class="col">

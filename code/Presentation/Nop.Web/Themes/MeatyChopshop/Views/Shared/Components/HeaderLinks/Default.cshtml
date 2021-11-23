@@ -7,8 +7,8 @@
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksBefore })
         @if (Model.IsAuthenticated)
         {
-            <li class="list-inline-item"><a href="@Url.RouteUrl("CustomerInfo")" class="ico-account"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_tai_khoan.svg" /></a></li>
-            <li class="list-inline-item"><a href="@Url.RouteUrl("Logout")" class="ico-logout"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_dang_xuat.svg" /></a></li>
+            <li class="list-inline-item"><a href="@Url.RouteUrl("CustomerInfo")" class="ico-account"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_tai_khoan.svg" class="img-fluid"/></a></li>
+            <li class="list-inline-item"><a href="@Url.RouteUrl("Logout")" class="ico-logout"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_dang_xuat.svg" class="img-fluid"/></a></li>
         }
         else
         {
@@ -35,7 +35,7 @@
         {
             <li class="list-inline-item">
                 <a href="@Url.RouteUrl("Wishlist")" class="ico-wishlist">
-                    <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_yeu_thich.svg" />
+                    <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_yeu_thich.svg" class="img-fluid" />
                     <span class="badge rounded-pill badge-notification bg-primary wishlist-qty">@Model.WishlistItems</span>
                 </a>
             </li>
@@ -44,7 +44,7 @@
         {
             <li id="topcartlink"  class="list-inline-item">
                 <a href="@Url.RouteUrl("ShoppingCart")" class="ico-cart">
-                    <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_gio_hang.svg" />
+                    <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_gio_hang.svg" class="img-fluid"/>
                     <span class="badge rounded-pill badge-notification bg-primary cart-qty">@Model.ShoppingCartItems</span>
                 </a>
             </li>
