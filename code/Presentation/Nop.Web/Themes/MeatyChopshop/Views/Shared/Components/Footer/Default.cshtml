@@ -47,13 +47,13 @@
     <div class="row">
         <div class="container pt-5 pb-5 hr">
             <div class="row">
-                <div class="col">
+                <div class="col-12 col-md-6">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12 col-md-6 mb-4">
                             @await Component.InvokeAsync("Logo")
                         </div>
-                        <div class="col-6">
-                            <div class="title text-uppercase mb-4">
+                        <div class="col-12 col-md-6">
+                            <div class="title text-uppercase mb-4 d-none d-sm-block">
                                 <strong>Meaty ChopShop</strong>
                             </div>
                             <ul class="list-unstyled">
@@ -80,9 +80,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-12 col-md-6 d-none d-sm-block">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-12 col-md-4">
                             <div class="title text-uppercase mb-4">
                                 <strong>Thông tin chung</strong>
                             </div>
@@ -94,7 +94,7 @@
                                 <li><a href="@Url.RouteUrl("Topic", new {SeName = "cau-hoi-thuong-gap"})">Câu hỏi thường gặp</a></li>
                             </ul>
                         </div>
-                        <div class="col">
+                        <div class="col-12 col-md-4">
                             <div class="title text-uppercase mb-4">
                                 <strong>@T("Footer.MyAccount")</strong>
                             </div>
@@ -113,7 +113,7 @@
                                 }                                
                             </ul>
                         </div>
-                        <div class="col">
+                        <div class="col-12 col-md-4">
                             <div class="title text-uppercase mb-4">
                                 <strong>Tản mạn</strong>
                             </div>
@@ -134,8 +134,8 @@
     <div class="row">
         <div class="container pt-4 pb-4">
             <div class="row">
-                <div class="col"></div>
-                <div class="col-6 text-center">
+                <div class="col d-none d-sm-block"></div>
+                <div class="col-12 col-md-6 text-center">
                     <div class="footer-info">
                         <span class="footer-disclaimer">@T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreName)</span>
                         @if (Model.DisplayTaxShippingInfoFooter)
@@ -156,7 +156,7 @@
                     }
                     @await Component.InvokeAsync("StoreThemeSelector")
                 </div>
-                <div class="col"></div>
+                <div class="col d-none d-sm-block"></div>
             </div>
         </div>
     </div>

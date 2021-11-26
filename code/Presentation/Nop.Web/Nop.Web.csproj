@@ -258,6 +258,8 @@
 
     <Content Include="Themes\MeatyChopShop\Views\Shared\Components\HeaderLinks\Default.cshtml" />
 
+    <Content Include="Themes\MeatyChopShop\Views\Shared\Components\Logo\Default.cshtml" />
+
     <Content Include="Themes\MeatyChopShop\Views\Shared\Components\ManufacturerNavigation\Default.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Shared\Components\MeatyHomepageCategories\Default.cshtml" />
@@ -271,6 +273,8 @@
     <Content Include="Themes\MeatyChopShop\Views\Shared\Components\PopularProductTags\Default.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Shared\Components\RelatedProducts\Default.cshtml" />
+
+    <Content Include="Themes\MeatyChopShop\Views\Shared\Components\SearchBox\Default.cshtml" />
 
     <Content Include="Themes\MeatyChopShop\Views\Shared\Components\SocialButtons\Default.cshtml" />
 
@@ -490,6 +494,7 @@
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\ExternalMethods\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\Footer\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\HeaderLinks\Default.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Shared\Components\Logo\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\ManufacturerNavigation\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\MeatyHomepageCategories\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\HomepageProducts\Default.cshtml" />
@@ -497,6 +502,7 @@
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\OrderTotals\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\PopularProductTags\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\RelatedProducts\Default.cshtml" />
+    <None Remove="Themes\MeatyChopShop\Views\Shared\Components\SearchBox\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\SocialButtons\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\TopicBlock\Default.cshtml" />
     <None Remove="Themes\MeatyChopShop\Views\Shared\Components\TopMenu\Default.cshtml" />
@@ -981,6 +987,10 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Shared\Components\Logo\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Update="Themes\MeatyChopShop\Views\Shared\Components\ManufacturerNavigation\Default.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -1006,6 +1016,10 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Update="Themes\MeatyChopShop\Views\Shared\Components\RelatedProducts\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\MeatyChopShop\Views\Shared\Components\SearchBox\Default.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

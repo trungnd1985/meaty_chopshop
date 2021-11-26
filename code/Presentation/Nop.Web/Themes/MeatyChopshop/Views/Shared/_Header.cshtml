@@ -23,13 +23,25 @@
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderAfter })
 </div>*@
 <header>
-    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            @await Component.InvokeAsync("Logo")
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#toplink" aria-controls="toplink" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="toplink">
+                @await Component.InvokeAsync("SearchBox")
+                @await Component.InvokeAsync("HeaderLinks")
+            </div>
+        </div>
+    </nav>
+    @*<div class="container">
         <div class="row pt-4">
             <div class="col-6 col-md-4">
                 @await Component.InvokeAsync("Logo")
             </div>
             <div class="col-4 align-self-center d-none d-sm-block">
-                @await Component.InvokeAsync("SearchBox")
+                
             </div>
             <div class="col-6 col-md-4 align-self-center">
                 <div class="row">
@@ -47,6 +59,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
     @await Component.InvokeAsync("TopMenu")
 </header>

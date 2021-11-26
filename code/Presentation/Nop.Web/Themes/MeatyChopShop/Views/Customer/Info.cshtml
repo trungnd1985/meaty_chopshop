@@ -40,98 +40,100 @@
 
 }
 
-<div class="container mb-5">
-    <div class="row">
-        <div class="col-6">
-            <div class="card">
-                <div class="card-header bg-menu">
-                    <div class="title">
-                        <strong class="text-white">@T("Account.CustomerInfo")</strong>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form asp-route="CustomerInfo" method="post">
-                        <div asp-validation-summary="ModelOnly" class="message-error"></div>
-                        <div class="form-fields">
-                            @if (Model.GenderEnabled)
-                            {
-                                <div class="inputs form-group">
-                                    <label asp-for="Gender" asp-postfix=":">@T("Account.Fields.Gender")</label>
-                                    <span class="male">
-                                        <input type="radio" asp-for="Gender" value="M" checked="@(Model.Gender == "M")" id="gender-male" />
-                                        <label class="forcheckbox" for="gender-male">@T("Account.Fields.Gender.Male")</label>
-                                    </span>
-                                    <span class="female">
-                                        <input type="radio" asp-for="Gender" value="F" checked="@(Model.Gender == "F")" id="gender-female" />
-                                        <label class="forcheckbox" for="gender-female">@T("Account.Fields.Gender.Female")</label>
-                                    </span>
-                                </div>
-                            }
-                            @if (Model.FirstNameEnabled)
-                            {
-                                <div class="inputs form-group">
-                                    <label asp-for="FirstName" asp-postfix=":"></label>@if (Model.FirstNameRequired)
-                                    {
-                                        <nop-required />
-                                    }
-                                    <input asp-for="FirstName" class="form-control" />
-                                    <span asp-validation-for="FirstName"></span>
-                                </div>
-                            }
-                            @if (Model.LastNameEnabled)
-                            {
-                                <div class="inputs form-group">
-                                    <label asp-for="LastName" asp-postfix=":"></label>@if (Model.LastNameRequired)
-                                    {
-                                        <nop-required />
-                                    }
-                                    <input asp-for="LastName" class="form-control" />
-                                    <span asp-validation-for="LastName"></span>
-                                </div>
-                            }
-                            @if (Model.DateOfBirthEnabled)
-                            {
-                                <div class="inputs form-group date-of-birth">
-                                    <label>@T("Account.Fields.DateOfBirth"):</label>@if (Model.DateOfBirthRequired)
-                                    {
-                                        <nop-required />
-                                    }
-                                    <nop-date-picker asp-day-name="@Html.NameFor(x => x.DateOfBirthDay)"
-                                                     asp-month-name="@Html.NameFor(x => x.DateOfBirthMonth)"
-                                                     asp-year-name="@Html.NameFor(x => x.DateOfBirthYear)"
-                                                     asp-begin-year="@(DateTime.Now.Year - 110)"
-                                                     asp-end-year="@(DateTime.Now.Year)"
-                                                     asp-selected-day="@Model.DateOfBirthDay"
-                                                     asp-selected-month="@Model.DateOfBirthMonth"
-                                                     asp-selected-year="@Model.DateOfBirthYear" />
+@*<div class="container mb-5">
+    
+</div>*@
 
-                                    <span asp-validation-for="DateOfBirthDay"></span>
-                                    <span asp-validation-for="DateOfBirthMonth"></span>
-                                    <span asp-validation-for="DateOfBirthYear"></span>
-                                </div>
-                            }
+<div class="row mb-5">
+    <div class="col-12 col-md-6">
+        <div class="card">
+            <div class="card-header bg-menu">
+                <div class="title">
+                    <strong class="text-white">@T("Account.CustomerInfo")</strong>
+                </div>
+            </div>
+            <div class="card-body">
+                <form asp-route="CustomerInfo" method="post">
+                    <div asp-validation-summary="ModelOnly" class="message-error"></div>
+                    <div class="form-fields">
+                        @if (Model.GenderEnabled)
+                        {
                             <div class="inputs form-group">
-                                <label asp-for="Email" asp-postfix=":"></label><nop-required />
-                                <input asp-for="Email" class="form-control" />
-
-                                <span asp-validation-for="Email"></span>
+                                <label asp-for="Gender" asp-postfix=":">@T("Account.Fields.Gender")</label>
+                                <span class="male">
+                                    <input type="radio" asp-for="Gender" value="M" checked="@(Model.Gender == "M")" id="gender-male" />
+                                    <label class="forcheckbox" for="gender-male">@T("Account.Fields.Gender.Male")</label>
+                                </span>
+                                <span class="female">
+                                    <input type="radio" asp-for="Gender" value="F" checked="@(Model.Gender == "F")" id="gender-female" />
+                                    <label class="forcheckbox" for="gender-female">@T("Account.Fields.Gender.Female")</label>
+                                </span>
                             </div>
-                            @if (!string.IsNullOrEmpty(Model.EmailToRevalidate))
-                            {
-                                <div class="inputs form-group">
-                                    <label asp-for="EmailToRevalidate"></label>
-                                    <span class="email-to-revalidate">@Model.EmailToRevalidate</span>
-                                    <span class="email-to-revalidate-note">
-                                        <em>@T("Account.Fields.EmailToRevalidate.Note")</em>
-                                    </span>
-                                </div>
-                            }
+                        }
+                        @if (Model.FirstNameEnabled)
+                        {
+                            <div class="inputs form-group">
+                                <label asp-for="FirstName" asp-postfix=":"></label>@if (Model.FirstNameRequired)
+                                {
+                                    <nop-required />
+                                }
+                                <input asp-for="FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName"></span>
+                            </div>
+                        }
+                        @if (Model.LastNameEnabled)
+                        {
+                            <div class="inputs form-group">
+                                <label asp-for="LastName" asp-postfix=":"></label>@if (Model.LastNameRequired)
+                                {
+                                    <nop-required />
+                                }
+                                <input asp-for="LastName" class="form-control" />
+                                <span asp-validation-for="LastName"></span>
+                            </div>
+                        }
+                        @if (Model.DateOfBirthEnabled)
+                        {
+                            <div class="inputs form-group date-of-birth">
+                                <label>@T("Account.Fields.DateOfBirth"):</label>@if (Model.DateOfBirthRequired)
+                                {
+                                    <nop-required />
+                                }
+                                <nop-date-picker asp-day-name="@Html.NameFor(x => x.DateOfBirthDay)"
+                                                 asp-month-name="@Html.NameFor(x => x.DateOfBirthMonth)"
+                                                 asp-year-name="@Html.NameFor(x => x.DateOfBirthYear)"
+                                                 asp-begin-year="@(DateTime.Now.Year - 110)"
+                                                 asp-end-year="@(DateTime.Now.Year)"
+                                                 asp-selected-day="@Model.DateOfBirthDay"
+                                                 asp-selected-month="@Model.DateOfBirthMonth"
+                                                 asp-selected-year="@Model.DateOfBirthYear" />
+
+                                <span asp-validation-for="DateOfBirthDay"></span>
+                                <span asp-validation-for="DateOfBirthMonth"></span>
+                                <span asp-validation-for="DateOfBirthYear"></span>
+                            </div>
+                        }
+                        <div class="inputs form-group">
+                            <label asp-for="Email" asp-postfix=":"></label><nop-required />
+                            <input asp-for="Email" class="form-control" />
+
+                            <span asp-validation-for="Email"></span>
                         </div>
-                        <div class="buttons">
-                            <button type="submit" id="save-info-button" name="save-info-button" class="button-1 btn btn-primary save-customer-info-button">@T("Common.Save")</button>
-                        </div>
-                    </form>
-                </div>
+                        @if (!string.IsNullOrEmpty(Model.EmailToRevalidate))
+                        {
+                            <div class="inputs form-group">
+                                <label asp-for="EmailToRevalidate"></label>
+                                <span class="email-to-revalidate">@Model.EmailToRevalidate</span>
+                                <span class="email-to-revalidate-note">
+                                    <em>@T("Account.Fields.EmailToRevalidate.Note")</em>
+                                </span>
+                            </div>
+                        }
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" id="save-info-button" name="save-info-button" class="button-1 btn btn-primary save-customer-info-button">@T("Common.Save")</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

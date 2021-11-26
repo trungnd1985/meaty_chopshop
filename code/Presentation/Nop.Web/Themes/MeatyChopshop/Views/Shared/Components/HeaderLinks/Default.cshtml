@@ -2,81 +2,101 @@
 @using Nop.Core.Domain.Customers
 @inject Nop.Core.IWebHelper webHelper
 
-<div class="header-links">
-    <ul class="list-inline">
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksBefore })
-        @if (Model.IsAuthenticated)
-        {
-            <li class="list-inline-item"><a href="@Url.RouteUrl("CustomerInfo")" class="ico-account"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_tai_khoan.svg" class="img-fluid"/></a></li>
-            <li class="list-inline-item"><a href="@Url.RouteUrl("Logout")" class="ico-logout"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_dang_xuat.svg" class="img-fluid"/></a></li>
-        }
-        else
-        {
-            var returnUrl = Context.Request.Query.TryGetValue("returnUrl", out var url) && !StringValues.IsNullOrEmpty(url)
-                ? url.ToString()
-                : webHelper.GetRawUrl(Context.Request);
-
-            @if (Model.RegistrationType != UserRegistrationType.Disabled)
-            {
-                <li class="list-inline-item"><a href="@Url.RouteUrl("Register", new { returnUrl })" class="ico-register"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_tai_khoan.svg" /></a></li>
-            }
-    <li class="list-inline-item"><a title="@T("Account.Login")" href="@Url.RouteUrl("Login", new { returnUrl })" class="ico-login"><img src="~/Themes/MeatyChopShop/Content/images/icon/icon_dang_nhap.svg" /></a></li>
-        }
-        @if (Model.AllowPrivateMessages)
-        {
-            <li class="list-inline-item">
-                <a href="@Url.RouteUrl("PrivateMessages", new { tab = "" })" class="ico-inbox">
-                    <span class="inbox-label">@T("PrivateMessages.Inbox")</span>
-                    <span class="inbox-unread">@Model.UnreadPrivateMessages</span>
-                </a>
-            </li>
-        }
-        @if (Model.WishlistEnabled)
-        {
-            <li class="list-inline-item">
-                <a href="@Url.RouteUrl("Wishlist")" class="ico-wishlist">
-                    <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_yeu_thich.svg" class="img-fluid" />
-                    <span class="badge rounded-pill badge-notification bg-primary wishlist-qty">@Model.WishlistItems</span>
-                </a>
-            </li>
-        }
-        @if (Model.ShoppingCartEnabled)
-        {
-            <li id="topcartlink"  class="list-inline-item">
-                <a href="@Url.RouteUrl("ShoppingCart")" class="ico-cart">
-                    <img src="~/Themes/MeatyChopShop/Content/images/icon/icon_gio_hang.svg" class="img-fluid"/>
-                    <span class="badge rounded-pill badge-notification bg-primary cart-qty">@Model.ShoppingCartItems</span>
-                </a>
-            </li>
-        }
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksAfter })
-    </ul>
-    @if (Model.AllowPrivateMessages && !string.IsNullOrEmpty(Model.AlertMessage))
+<ul class="nav">
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksBefore })
+    @if (Model.IsAuthenticated)
     {
-        //new private message notification
-        <script asp-location="Footer">
-            $(document).ready(function () {
-                displayPopupNotification('@Html.Raw(System.Text.Encodings.Web.JavaScriptEncoder.Default.Encode(Model.AlertMessage))', 'success', false);
-            });
-        </script>
+        <li class="nav-item">
+            <a href="@Url.RouteUrl("CustomerInfo")" class="ico-account">
+                @*<img src="~/Themes/MeatyChopShop/Content/images/icon/icon_tai_khoan.svg" class="img-fluid" />*@
+                <i class="fas fa-user fa-2x"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="@Url.RouteUrl("Logout")" class="ico-logout">
+                @*<img src="~/Themes/MeatyChopShop/Content/images/icon/icon_dang_xuat.svg" class="img-fluid" />*@
+                <i class="fas fa-sign-out-alt fa-2x"></i>
+            </a>
+        </li>
+    }
+    else
+    {
+        var returnUrl = Context.Request.Query.TryGetValue("returnUrl", out var url) && !StringValues.IsNullOrEmpty(url)
+            ? url.ToString()
+            : webHelper.GetRawUrl(Context.Request);
+
+        @if (Model.RegistrationType != UserRegistrationType.Disabled)
+        {
+            <li class="nav-item">
+                <a href="@Url.RouteUrl("Register", new { returnUrl })" class="ico-register nav-link">
+                    @*<img src="~/Themes/MeatyChopShop/Content/images/icon/icon_tai_khoan.svg" />*@
+                    <i class="fas fa-user-plus fa-2x"></i>
+                </a>
+            </li>
+        }
+        <li class="nav-item">
+            <a title="@T("Account.Login")" href="@Url.RouteUrl("Login", new { returnUrl })" class="ico-login nav-link">
+                @*<img src="~/Themes/MeatyChopShop/Content/images/icon/icon_dang_nhap.svg" />*@
+                <i class="fas fa-sign-in-alt fa-2x"></i>
+            </a>
+        </li>
+    }
+    @if (Model.AllowPrivateMessages)
+    {
+        <li class="nav-item">
+            <a href="@Url.RouteUrl("PrivateMessages", new { tab = "" })" class="ico-inbox nav-link">
+                <span class="inbox-label">@T("PrivateMessages.Inbox")</span>
+                <span class="inbox-unread">@Model.UnreadPrivateMessages</span>
+            </a>
+        </li>
+    }
+    @if (Model.WishlistEnabled)
+    {
+        <li class="nav-item">
+            <a href="@Url.RouteUrl("Wishlist")" class="ico-wishlist nav-link">
+                <i class="fas fa-heart fa-2x"></i>
+                @*<img src="~/Themes/MeatyChopShop/Content/images/icon/icon_yeu_thich.svg" class="img-fluid" />*@
+                <span class="badge rounded-pill badge-notification bg-primary wishlist-qty">@Model.WishlistItems</span>
+            </a>
+        </li>
     }
     @if (Model.ShoppingCartEnabled)
     {
-        <script asp-location="Footer">
-            $(document).ready(function () {
-                $('.header').on('mouseenter', '#topcartlink', function () {
-                    $('#flyout-cart').addClass('active');
-                });
-                $('.header').on('mouseleave', '#topcartlink', function () {
-                    $('#flyout-cart').removeClass('active');
-                });
-                $('.header').on('mouseenter', '#flyout-cart', function () {
-                    $('#flyout-cart').addClass('active');
-                });
-                $('.header').on('mouseleave', '#flyout-cart', function () {
-                    $('#flyout-cart').removeClass('active');
-                });
-            });
-        </script>
+        <li id="topcartlink" class="nav-item">
+            <a href="@Url.RouteUrl("ShoppingCart")" class="ico-cart nav-link">
+                @*<img src="~/Themes/MeatyChopShop/Content/images/icon/icon_gio_hang.svg" class="img-fluid"/>*@
+                <i class="fas fa-shopping-cart fa-2x"></i>
+                <span class="badge rounded-pill badge-notification bg-primary cart-qty">@Model.ShoppingCartItems</span>
+            </a>
+        </li>
     }
-</div>
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksAfter })
+</ul>
+@if (Model.AllowPrivateMessages && !string.IsNullOrEmpty(Model.AlertMessage))
+{
+    //new private message notification
+    <script asp-location="Footer">
+            $(document).ready(function () {
+                displayPopupNotification('@Html.Raw(System.Text.Encodings.Web.JavaScriptEncoder.Default.Encode(Model.AlertMessage))', 'success', false);
+            });
+    </script>
+}
+@if (Model.ShoppingCartEnabled)
+{
+    <script asp-location="Footer">
+        $(document).ready(function () {
+            $('.header').on('mouseenter', '#topcartlink', function () {
+                $('#flyout-cart').addClass('active');
+            });
+            $('.header').on('mouseleave', '#topcartlink', function () {
+                $('#flyout-cart').removeClass('active');
+            });
+            $('.header').on('mouseenter', '#flyout-cart', function () {
+                $('#flyout-cart').addClass('active');
+            });
+            $('.header').on('mouseleave', '#flyout-cart', function () {
+                $('#flyout-cart').removeClass('active');
+            });
+        });
+    </script>
+}
