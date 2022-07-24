@@ -2,11 +2,11 @@
 @if (Model.Tags.Count > 0)
 {
     <div class="block block-popular-blogtags">
-        <div class="title">
-            <strong>@T("Blog.TagCloud")</strong>
-        </div>
+        <h4 class="title">
+            @T("Blog.TagCloud")
+        </h4>
         <div class="listbox">
-            <ul class="tags">
+            <ul class="tags list-unstyled mb-0">
                 @foreach (var item in Model.Tags)
                 {
                     <li><a href="@Url.RouteUrl("BlogByTag", new { tag = item.Name })" style="font-size:@(Model.GetFontSize(item))%;">@item.Name</a>
