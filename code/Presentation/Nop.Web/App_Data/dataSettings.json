@@ -1,5 +1,5 @@
 ﻿{
-  "DataConnectionString": "server=103.164.36.116;database=meaty_chopshop_dev;allowuservariables=True;user id=trungnd;password=CunNhim@123",
+  "DataConnectionString": "server=103.195.237.118;database=meaty_chopshop_dev;allowuservariables=True;user id=trungnd;password=CunNhim@123",
   "DataProvider": "mysql",
   "SQLCommandTimeout": null,
   "RawDataSettings": {}
